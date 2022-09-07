@@ -313,30 +313,37 @@ document.addEventListener('click', event => {
   let reportsValueNew = [];
   let $wrapperTable = document.querySelector(`.wrapper__year`);
   if(event.target.classList.contains('btn__delete')){
-    let classBtn = + event.target.classList[1];
-    reportsMonth.forEach((month, monthIdx) => {
-      if(reportsMonth.length > 1) {
-        if(month.id === classBtn) {
-          reportsMonth.splice(monthIdx, 1);
-          localStorage.setItem('reportsMonth', JSON.stringify(reportsMonth));
-          reportsValue.forEach((objVal, objValIdx) => {
-            if(objVal.id !== month.id) {
-              reportsValueTrans.push(reportsValue.slice(objValIdx, objValIdx + 1));
-              reportsValueNew = reportsValueTrans.flat();
-              localStorage.setItem('reportsValue', JSON.stringify(reportsValueNew));
-            }
+    if(confirm(`Вы уверены, что желаете удалить таблицу и все введённые в неё данные без возможности восстановления?`)) {
+      if(confirm(`Извиняюсь, но хочу ещё раз уточнить, хорошо подумайте, данные потом не восстановишь! Удалить таблицу?`)) {
+        if(confirm(`Ладно, ладно, хорошо, я понял, ты кремень и решительно настроен, твоё "да" означает "да", как и написано! Хвалю и удаляю?`)) {
+          alert(`Мооооо - лооооооо - деееец!!!`);
+          let classBtn = + event.target.classList[1];
+          reportsMonth.forEach((month, monthIdx) => {
+            if(reportsMonth.length > 1 ) {
+              if(month.id === classBtn) {
+                reportsMonth.splice(monthIdx, 1);
+                localStorage.setItem('reportsMonth', JSON.stringify(reportsMonth));
+                reportsValue.forEach((objVal, objValIdx) => {
+                  if(objVal.id !== month.id) {
+                    reportsValueTrans.push(reportsValue.slice(objValIdx, objValIdx + 1));
+                    reportsValueNew = reportsValueTrans.flat();
+                    localStorage.setItem('reportsValue', JSON.stringify(reportsValueNew));
+                  };
+                });
+                $wrapperTable.innerHTML = ``;
+                getReportsLength();
+              };
+            }else {
+              reportsValue.splice(0);
+              reportsMonth.splice(0);
+              $wrapperTable.innerHTML = ``;
+              localStorage.setItem('reportsValue', JSON.stringify(reportsValue));
+              localStorage.setItem('reportsMonth', JSON.stringify(reportsMonth));
+            };
           });
-          $wrapperTable.innerHTML = ``;
-          getReportsLength();
         };
-      }else {
-        reportsValue.splice(0);
-        reportsMonth.splice(0);
-        $wrapperTable.innerHTML = ``;
-        localStorage.setItem('reportsValue', JSON.stringify(reportsValue));
-        localStorage.setItem('reportsMonth', JSON.stringify(reportsMonth));
       };
-    });
+    };
   } else if (event.target.classList.contains('btn__delete__values')) {
     let classCellBtn = + event.target.classList[3] - 1;
     let classTableBtn = + event.target.classList[2];
