@@ -12,7 +12,7 @@
   border-radius: 25px;
   display: table;
   padding: 0px 34px 10px 34px;
-  box-shadow: 10px 5px 30px 0px rgba(201, 201, 180, 0.6);
+  box-shadow: 8px 8px 10px 0px rgba(201, 201, 180, 0.6);
   margin: 0 auto;
   text-align: center;
   margin-bottom: 20px;
@@ -44,6 +44,7 @@
   line-height: 16px;
   padding: 5px 10px;
   background-color: rgb(223, 223, 200);
+  box-shadow: 4px 4px 8px 1px rgba(255, 255, 0, 0.6);
 }
 .inputs__month input:focus , .inputs__result input:focus {
   transform: scale(1.1);
@@ -63,6 +64,7 @@
 .input__iz, .input__video, .input__publ, .input__pp, .input__hour, .input__date {
   max-width: 100px;
   width: 100%;
+  box-shadow: 4px 4px 8px 1px rgba(255, 255, 0, 0.6);
 }
 .inputs__result input{
   margin: 0 20px 0 0;
@@ -80,6 +82,7 @@
   font-family: Tahoma, Arial, sans-serif;
   cursor: pointer;
   padding: 5px 5px;
+  box-shadow: 4px 4px 8px 1px rgba(255, 255, 0, 0.6);
 }
 .order__month:hover, .order__result:hover {
   transform: scale(1.1);
