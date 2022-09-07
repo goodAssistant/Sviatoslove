@@ -1,0 +1,61 @@
+.month {
+ border-spacing: 10px;
+ overflow: auto;
+ display: block;
+}
+th {
+ font-family: 'Museo';
+ font-size: 20px;
+}
+td, th {
+ border: 1px solid rgb(255, 255, 255);
+ padding: 10px 10px;
+ background-color: rgba(223, 223, 200, 0.9);
+ box-shadow: 0px 0px 10px 10px rgba(89, 19, 100, 0.6);
+ border-radius: 10px;
+ font-family: 'Choco cooky';
+ font-size: 17px;
+}
+.wrapper__buttuns__delete {
+ display: flex;
+}
+.btn__delete, .btn__delete__values {
+ cursor: pointer;
+ border: 2px solid rgb(100, 57, 139);
+}
+.btn__delete:hover, .btn__delete__values:hover {
+ transform: scale(1.1);
+ border: 2px solid rgb(0, 255, 187);
+ background-color: rgba(255, 255, 255, 0.9);
+}
+.btn__delete:hover{
+ transform: scale(1.03);
+}
+.btn__delete:active, .btn__delete__values:active {
+ transform: scale(0.95);
+ border: 2px solid rgb(0, 255, 187);
+ background-color: rgba(255, 255, 255, 0.9);
+}
+.btn__delete {
+ color: red;
+ background-color: rgba(223, 223, 200, 0.9);
+ font-weight: bold;
+ font-size: 20px;
+ border-radius: 10px;
+ padding: 9px;
+ letter-spacing: 1em;
+ margin-left: 10px;
+ margin-right: 10px;
+ box-shadow: 0px 0px 10px 6px rgba(100, 57, 139, 1);
+}
+.wrapper__year {
+}
+
+.table__wrapp {
+ overflow-x: auto;
+}
+.month__name {
+}
+.month {
+ 
+}

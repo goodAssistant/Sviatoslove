@@ -1,0 +1,76 @@
+
+/* -----------Specification------------- */
+@font-face {
+  font-family: 'Choco cooky';
+  src: url('../fonts/Chococooky.eot');
+  src: url('../fonts/Chococooky.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/Chococooky.woff2') format('woff2'),
+      url('../fonts/Chococooky.woff') format('woff'),
+      url('../fonts/Chococooky.svg#Chococooky') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Museo Sans 300', Geneva, sans-serif;
+  font-size: 15px;
+  color: #000000;
+  padding: 0;
+  margin: 0;
+  background-color: #000000;
+}
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+.d-flex {
+  display: flex;
+}
+.justify-content-between {
+  justify-content: space-between;
+}
+.align-items-center {
+  align-items: center;
+}
+div, p, form, input, button, a, span {
+  box-sizing: border-box;
+}
+p {
+  font-family: 'Choco cooky';
+}
+input, input:hover, input:focus, input:active, button, button:hover, button:focus, button:active {
+  outline: none;
+}
+button {
+  padding: 0;
+}
+a, a:hover, a:active {
+  text-decoration: none;
+}
+a, button, input, th, div {
+  color: rgb(0, 0, 0);
+  transition: all 0.5s ease;
+}
+ul, li {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+h1, h2, h3 {
+  font-family: 'Natasha';
+  padding: 0;
+  text-transform: uppercase;
+  color: gold;
+}
+h1, h2 {
+  margin: 10px 0;
+}
+h3 {
+  margin: 10px 0;
+}

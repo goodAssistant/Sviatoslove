@@ -1,0 +1,93 @@
+
+.wrapper__year {
+ 
+}
+.wrapper__year div {
+  margin-right: 10px;
+}
+.form__wrapper {
+  height: 86px;
+  color: #000;
+  background-color: rgb(100, 57, 139);
+  border-radius: 25px;
+  display: table;
+  padding: 0px 34px 10px 34px;
+  box-shadow: 10px 5px 30px 0px rgba(201, 201, 180, 0.6);
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.form_month{
+  margin-bottom: 30px;
+}
+.form__wrapper h4 {
+  font-size: 15px;
+  line-height: 18px;
+}
+.inputs__month {
+  margin-top: 10px;
+  justify-content: space-between;
+  display: flex;
+}
+.inputs__result {
+  margin-top: 6px;
+  justify-content: space-between;
+}
+.inputs__month input, .inputs__result input {
+  font-family: 'Choco cooky';
+  height: 34px;
+  border: 2px solid rgba(255, 255, 255);
+  border-radius: 22px;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 16px;
+  padding: 5px 10px;
+  background-color: rgb(223, 223, 200);
+}
+.inputs__month input:focus , .inputs__result input:focus {
+  transform: scale(1.1);
+  border: 1px solid rgb(0, 255, 187);
+  box-shadow: 10px 5px 30px 10px rgba(156, 156, 152, 0.6);
+}
+
+.inputs__month input {
+  max-width: 100px;
+  width: 100%;
+}
+
+.month, .days {
+  margin: 0 20px 0 0;
+}
+
+.input__iz, .input__video, .input__publ, .input__pp, .input__hour, .input__date {
+  max-width: 100px;
+  width: 100%;
+}
+.inputs__result input{
+  margin: 0 20px 0 0;
+}
+.order__month, .order__result {
+  min-width: 177px;
+  height: 34px;
+  border-radius: 22px;
+  border: 2px solid black;
+  background-color: #776951;
+  color: rgba(64, 9, 114, 1);;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: bold;
+  font-family: Tahoma, Arial, sans-serif;
+  cursor: pointer;
+  padding: 5px 5px;
+}
+.order__month:hover, .order__result:hover {
+  transform: scale(1.1);
+  border: 2px solid aqua;
+  box-shadow: 10px 5px 30px 2px rgba(156, 156, 152, 1);
+}
+.order__month:active, .order__result:active {
+  transform: scale(0.9);
+  color: blanchedalmond;
+  transition: color none;
+}
