@@ -35,42 +35,42 @@ if(!localStorage.getItem('reportsMonth') && !localStorage.getItem('reportsValue'
   counterClick = -1;
  }else {
   counterClick = reportsMonth[reportsMonth.length - 1].counterClickTable;
- }
-}
+ };
+};
 
 class CreateMonth {
- constructor(id, monthName, daysMonth, counterClickTable) {
-  this.id = id;
-  this.monthName = monthName;
-  this.daysMonth = daysMonth;
-  this.counterClickTable = counterClickTable;
- }
-}
+  constructor(id, monthName, daysMonth, counterClickTable) {
+    this.id = id;
+    this.monthName = monthName;
+    this.daysMonth = daysMonth;
+    this.counterClickTable = counterClickTable;
+  };
+};
  
 class CreateValue {
- constructor(id, monthDay, hours, pp, publ, video, iz) {
-  this.id = id;
-  this.monthDay = monthDay;
-  this.hours = hours;
-  this.pp = pp;
-  this.publ = publ;
-  this.video = video;
-  this.iz = iz
- }
-}
+  constructor(id, monthDay, hours, pp, publ, video, iz) {
+    this.id = id;
+    this.monthDay = monthDay;
+    this.hours = hours;
+    this.pp = pp;
+    this.publ = publ;
+    this.video = video;
+    this.iz = iz
+  };
+};
 
 const renderWrapperTableDom = index => {
- let arrTableMonth = [
-  reportsMonth[index].monthName,
-  reportsMonth[index].daysMonth,
-  reportsMonth[index].id
- ];
+  let arrTableMonth = [
+    reportsMonth[index].monthName,
+    reportsMonth[index].daysMonth,
+    reportsMonth[index].id
+  ];
 
  let $wrapperTable = document.createElement('div');
  $wrapperTable.classList.add(`wrapper__table`, `wrapper_table_${reportsMonth[index].id}`)
  let $tableMonth = document.createElement('table');
  let $tBody = document.createElement('tbody');
- $tableMonth.classList.add('month');
+ $tableMonth.classList.add('table__month');
  let $monthName = document.createElement('h2');
  $monthName.classList.add('month__name');
  wrapperYear.prepend($wrapperTable);
@@ -87,7 +87,7 @@ const renderWrapperTableDom = index => {
  $wrapperTable.append($buttonDeleteTable);
   valueTitles.forEach((row, idx) => {
     const $rowTr = document.createElement('tr');
-    $rowTr.classList.add('row');
+    $rowTr.classList.add(`row__${reportsMonth[index].id}`);
     const $cellTh = document.createElement('th');
     $cellTh.classList.add('cell', 'title');
     $cellTh.innerHTML = row;
@@ -105,10 +105,10 @@ const renderWrapperTableDom = index => {
           $rowTr.append($buttonDeleteValues);
         } else {
           let $buttonDeleteValues = document.createElement('th');
-          $buttonDeleteValues.classList.add('btn__delete__values', `cell__${days}`, `${reportsMonth[index].id}`, `${days + 1}`);
+          $buttonDeleteValues.classList.add('btn__delete__values', `${reportsMonth[index].id}`, `c_${days}`);
           $buttonDeleteValues.innerHTML = `❌`;
           $rowTr.append($buttonDeleteValues);
-        }
+        };
       } else {
         if(id === arrDaysMonth.length - 1){
           const $cellTd = document.createElement('th');
@@ -118,43 +118,73 @@ const renderWrapperTableDom = index => {
           const $cellTd = document.createElement('td');
           $cellTd.classList.add(`cell__${days}`);
           $rowTr.append($cellTd);
-        }
-      }
+        };
+      };
       return $tBody.append($rowTr);
     });
   });
 };
 
+const getResult = (arr) => {
+  let valueResult = [];
+  let arrHours = [];
+  let arrPp = [];
+  let arrPubl = [];
+  let arrVid = [];
+  let arrIz = [];
+  arr.forEach(value => {
+    arrHours.push(value.hours)
+    arrPp.push(value.pp)
+    arrPubl.push(value.publ)
+    arrVid.push(value.video)
+    arrIz.push(value.iz)
+  });
+  let resultHours = arrHours.reduce((sum, item) => {
+    return sum + (+item);
+  }, 0);
+  let resultPp = arrPp.reduce((sum, item) => {
+    return sum + (+item);
+  }, 0);
+  let resultPubl = arrPubl.reduce((sum, item) => {
+    return sum + (+item);
+  }, 0);
+  let resultVid = arrVid.reduce((sum, item) => {
+    return sum + (+item);
+  }, 0);
+  let resultIz = arrIz.reduce((sum, item) => {
+    return sum + (+item);
+  }, 0);
+  return valueResult = [resultHours, resultPp, resultPubl, resultVid, resultIz];
+}
+
 const inputDaysValue = () => {
+  let arrDaysValueId = [];
   let $wrapperTable = Array.from(document.querySelectorAll(`.wrapper__table`));
   reportsMonth.forEach((month, mId) => {
-    let arrDaysValueId = reportsValue.filter(obj => {
-      if (obj.id === month.id){
-        return obj.id
-      }
-    })
-    arrDaysValueId.forEach(item => {
-      let arrDaysValue = [];
-      arrDaysValue.push(item.hours)
-      arrDaysValue.push(item.pp)
-      arrDaysValue.push(item.publ)
-      arrDaysValue.push(item.video)
-      arrDaysValue.push(item.iz)
-
+    let arrDaysMonth = Array.from({ length: month.daysMonth}, (v, i) =>  i + 1);
+    arrDaysMonth.forEach(numDay => {
+      arrDaysValueId = reportsValue.filter(obj => {
+        if(obj.id === month.id){
+          if(+ obj.monthDay === numDay) {
+            return obj;
+          };
+        };
+      });
+      let valueResult = (getResult(arrDaysValueId));
       $wrapperTable.filter(elem => {
         if(+ elem.classList.value[29] === month.id){
-          let $row = Array.from(elem.getElementsByClassName(`cell__${item.monthDay}`));
+          let $row = Array.from(elem.getElementsByClassName(`cell__${numDay}`));
           $row.forEach((cellValue, a) => {
-            arrDaysValue.forEach((value, b) => {
+            valueResult.forEach((value, b) => {
               if(a === b) {
-                cellValue.innerHTML = value;
-              }
-            })
-          })
-        }
-      })
-    })
-  })
+                value === 0 ? cellValue.innerHTML = '' : cellValue.innerHTML = value;
+              };
+            });
+          });
+        };
+      });
+    });
+  });
 };
 
 const getTimeFromMins = mins => {
@@ -169,75 +199,42 @@ const sum = () => {
     let arrDaysValueId = reportsValue.filter(obj => {
       if (obj.id === month.id){
         return obj;
-      }
-    })
-    let arrHours = [];
-    let arrPp = [];
-    let arrPubl = [];
-    let arrVid = [];
-    let arrIz = [];
-    arrDaysValueId.forEach(value => {
-      arrHours.push(value.hours)
-      arrPp.push(value.pp)
-      arrPubl.push(value.publ)
-      arrVid.push(value.video)
-      arrIz.push(value.iz)
-    })
-    let resultHours = arrHours.reduce((sum, item) => {
-      return sum + (+item);
-    }, 0);
-    let resultPp = arrPp.reduce((sum, item) => {
-      return sum + (+item);
-    }, 0);
-    let resultPubl = arrPubl.reduce((sum, item) => {
-      return sum + (+item);
-    }, 0);
-    let resultVid = arrVid.reduce((sum, item) => {
-      return sum + (+item);
-    }, 0);
-    let resultIz = arrIz.reduce((sum, item) => {
-      return sum + (+item);
-    }, 0);
-    let valueResult = [resultHours, resultPp, resultPubl, resultVid, resultIz];
+      };
+    });
+    let valueResult = (getResult(arrDaysValueId));
     $wrapperTable.filter(table => {
       if(+ table.classList.value[29] === month.id) {
         let $cellResult = Array.from(table.getElementsByClassName(`cell__Итого:`));
         $cellResult.forEach((cell, cId) => {
           valueResult.forEach((valueRes, valResId) => {
             if(cId === valResId) {
-              if(cId === 0) {
-                cell.innerHTML = getTimeFromMins(valueRes);
-
-              } else {
-                cell.innerHTML = valueRes;
-              }
-            }
-          })
-        })
-      }
-    })
-  })
-}
+              cId === 0 ? cell.innerHTML = getTimeFromMins(valueRes) : cell.innerHTML = valueRes;
+            };
+          });
+        });
+      };
+    });
+  });
+};
 
 buttonMonth.addEventListener('click', function(){
  if(isNaN(inputMonth.value) && inputDays.value > 0) {
   counterClick ++;
   reportsMonth.push(new CreateMonth(counterClick + 1, inputMonth.value, inputDays.value, counterClick))
   localStorage.setItem('reportsMonth', JSON.stringify(reportsMonth))
-  renderWrapperTableDom(reportsMonth.length - 1, counterClick);
+  renderWrapperTableDom(reportsMonth.length - 1);
   inputDaysValue();
   sum();
  }else if(isNaN(inputDays.value)) {
   alert('Вы ввели не число в поле "Введите количество дней". Пожалуйста попробуйте ещё раз.');
  }else{
   alert('Вы ввели число в поле "Название месяца". Будьте внимательнее пожалуйста.');
- }
+ };
  inputDays.value = '';
  inputMonth.value = '';
 });
 
 const pushBtnResult = () => {
-  
   if(
     !isNaN(inputDate.value) && inputDate.value !== '' ||
     !isNaN(inputHour.value) && inputHour.value !== '' ||
@@ -246,65 +243,32 @@ const pushBtnResult = () => {
     !isNaN(inputVideo.value) && inputVideo.value !== '' ||
     !isNaN(inputIz.value) && inputIz.value !== ''
     ) {
-      if(reportsValue.length === 0) {
-        reportsValue.push(new CreateValue(
-          counterClick + 1,
-          inputDate.value, 
-          inputHour.value,
-          inputPP.value,
-          inputPubl.value,
-          inputVideo.value,
-          inputIz.value
-        ));
-        localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
-        inputDaysValue();
-        sum();
-      }else {
-        let arr = []
-        reportsValue.forEach(obj => {
-          arr.push(Object.entries(obj).flat()[3]);
-        })
-        function getIdenticValue(arr, value) {
-          return arr.some(obj => obj === value)
-        }
-        if(getIdenticValue(arr, inputDate.value) && reportsValue[reportsValue.length - 1].id === counterClick + 1) {
-          let reportsMonth = JSON.parse(localStorage.getItem('reportsMonth'));
-          reportsMonth.forEach(month => {
-            if(month.id === counterClick + 1) {
-              alert(`Данные на ${inputDate.value} число ${month.monthName} месяца уже введены, чтобы их заменить очистите пожалуйста столбец соответствующей кнопкой для удаления и введите новые данные. У вас всё получится!`)
-            }
-          })
-        }else {
-          reportsValue.push(new CreateValue(
-            counterClick + 1,
-            inputDate.value, 
-            inputHour.value,
-            inputPP.value,
-            inputPubl.value,
-            inputVideo.value,
-            inputIz.value
-          ));
-          localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
-          inputDaysValue();
-          sum();
-        }
-      }
-    }else if(
-      inputDate.value == ''
-    ) {
-      console.log(2)
-      alert('Число месяца обязательный пункт для ввода.');
-    } else {
-      console.log(3)
-      alert('Вы ввели не число в одно из полей. Будьте внимательнее пожалуйста.')
-    }
+    reportsValue.push(new CreateValue(
+      counterClick + 1,
+      inputDate.value, 
+      inputHour.value,
+      inputPP.value,
+      inputPubl.value,
+      inputVideo.value,
+      inputIz.value
+    ));
+    localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
+    inputDaysValue();
+    sum();
+  }else if(
+    inputDate.value == ''
+  ) {
+    alert('Число месяца обязательный пункт для ввода.');
+  } else {
+    alert('Вы ввели не число в одно из полей. Будьте внимательнее пожалуйста.')
+  };
   inputDate.value = '';
   inputHour.value = '';
   inputPP.value = '';
   inputPubl.value = '';
   inputVideo.value = '';
   inputIz.value = '';
-}
+};
 
 buttonResult.addEventListener('click', pushBtnResult);
 
@@ -331,7 +295,7 @@ document.addEventListener('click', event => {
                   };
                 });
                 $wrapperTable.innerHTML = ``;
-                getReportsLength();
+                location.reload();
               };
             }else {
               reportsValue.splice(0);
@@ -345,57 +309,38 @@ document.addEventListener('click', event => {
       };
     };
   } else if (event.target.classList.contains('btn__delete__values')) {
-    let classCellBtn = + event.target.classList[3] - 1;
-    let classTableBtn = + event.target.classList[2];
+    let classCellBtn = + event.target.classList.value[24];
+    let classTableBtn = + event.target.classList[1];
     reportsMonth.forEach((month, monthIdx) => {
       if(month.id === classTableBtn) {
         reportsValue.forEach((objVal, objValIdx) => {
           if(objVal.id === month.id) {
             if(+ objVal.monthDay === classCellBtn) {
-              reportsValue.splice(objValIdx, 1);
-              $wrapperTable.innerHTML = ``;
-              localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
-              getReportsLength();
-            }
-          }
-        })
-      }
-    })
-  }
+              if(confirm(`Вы уверены, что желаете очистить все значения в столбце на ?`)) {
+                reportsValue.splice(objValIdx, 1);
+                $wrapperTable.innerHTML = ``;
+                localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
+                getReportsLength();
+              };
+            };
+          };
+        });
+      };
+    });
+  };
 });
 
-let reportsTitle = document.querySelector('.reports__title');
-let stepLeft = 10;
-let stepRight = 200;
-
-function animeLogoPlus(a, b, ms) {
-  setInterval(() => {
-    if(stepLeft >= a && stepLeft <= b) {
-      stepLeft += 1;
-      reportsTitle.style.left = stepLeft + 'px';
-    }else if(stepRight <= b && stepRight >= a) {
-      stepRight -= 1;
-      reportsTitle.style.left = stepRight + 'px';
-    }else {
-    stepLeft = a;
-    stepRight = b;
-    };
-  }, ms);
-};
-
-// animeLogoPlus(stepLeft, stepRight, 10);
-
-i=0;
-dt=new Array(
+i = 0;
+dt = new Array(
   '#ffd70000', '#ffd7001a', '#ffd70036', '#ffd7004d', '#ffd70063', '#ffd70080', '#ffd7009e', '#ffd700ba', '#ffd700d1', '#ffd700e6', '#ffd700fa', "#ffd700", "#d5c328", "#a0963e", "#767144", "#827e5f", "#8c8973", '#8e8c80', '#afaea6', '#d3d2cb', '#efeeea', '#ffffff', '#f5ede2', '#ecdcc7', '#f0d6b4', '#f5d09e', '#f4c689', '#f5bf78', '#f3b767', '#f2ae54', '#f3a742', '#ef9c2f', '#ef9c2f', '#ef941c', '#f3900f', '#ff9000', '#ff9002e3', '#ff9002c9', '#ff9002ad', '#ff90028f', '#ff900278', '#ff90025e', '#ff900247', '#ff900233', '#ff900221', '#ff90020d', '#ff900200', '#64398b17', '#64398b36', '#64398b4f', '#64398b70', '#64398b87', '#64398b9e', '#64398bb5', '#64398bcc', '#64398be3', '#64398bf5', '#64398b', '#6d399d', '#7235ab', '#752fb6', '#7c2ac8', '#7f23d4', '#7f17df', '#7f0de8', '#8206f5', '#8400ff', '#7906df', '#6606bb', '#5a0aa1', '#4f0f88', '#4c1a79', '#4e2375', '#562f78', '#613e80', '#6a4b86', '#704c90', '#694f80', '#614f71', '#74697e', '#76717a', '#737275', '#5a5a5a', '#393737', '#201f1f', '#100f0f', '#0e0e0e', '#000000'
 );
 function cl() {
-  document.querySelector('.reports__title').style.color=dt[i++];
-  if (i>dt.length) i=0;
+  document.querySelector('.reports__title').style.color = dt[i++];
+  if (i > dt.length) i=0;
   setTimeout("cl()",200);
-}
-setTimeout("cl()",5);
+};
 
+setTimeout("cl()",5);
 
 const getReportsLength = () => {
  reportsMonth.forEach((item, idx) => {
@@ -404,4 +349,5 @@ const getReportsLength = () => {
   inputDaysValue();
   sum();
 };
+
 getReportsLength();
