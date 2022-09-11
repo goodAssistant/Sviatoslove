@@ -316,7 +316,7 @@ document.addEventListener('click', event => {
         reportsValue.forEach((objVal, objValIdx) => {
           if(objVal.id === month.id) {
             if(+ objVal.monthDay === classCellBtn) {
-              if(confirm(`Вы уверены, что желаете очистить все значения в столбце на ?`)) {
+              if(confirm(`Вы уверены, что желаете очистить все значения в столбце?`)) {
                 reportsValue.splice(objValIdx, 1);
                 $wrapperTable.innerHTML = ``;
                 localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
