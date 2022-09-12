@@ -1,5 +1,4 @@
 .wrapper__year {
- 
 }
 .wrapper__year div {
   margin-right: 10px;
@@ -50,16 +49,13 @@
   border: 1px solid rgb(0, 255, 187);
   box-shadow: 10px 5px 30px 10px rgba(156, 156, 152, 0.6);
 }
-
 .inputs__month input {
   max-width: 100px;
   width: 100%;
 }
-
 .month, .days {
   margin: 0 20px 0 0;
 }
-
 .input__iz, .input__video, .input__publ, .input__pp, .input__hour, .input__date {
   max-width: 100px;
   width: 100%;
