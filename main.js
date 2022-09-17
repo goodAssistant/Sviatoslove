@@ -156,7 +156,7 @@ const getResult = (arr) => {
     return sum + (+item);
   }, 0);
   return valueResult = [resultHours, resultPp, resultPubl, resultVid, resultIz];
-}
+};
 
 const inputDaysValue = () => {
   let arrDaysValueId = [];
