@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Arturo Black outline';
+    src: url('Arturo-Heavyoutline.eot');
+    src: url('Arturo-Heavyoutline.eot?#iefix') format('embedded-opentype'),
+        url('Arturo-Heavyoutline.woff2') format('woff2'),
+        url('Arturo-Heavyoutline.woff') format('woff'),
+        url('Arturo-Heavyoutline.ttf') format('truetype'),
+        url('Arturo-Heavyoutline.svg#Arturo-Heavyoutline') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
