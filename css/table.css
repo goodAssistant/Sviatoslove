@@ -6,6 +6,10 @@
 th {
  font-family: 'Museo';
  font-size: 20px;
+ cursor: context-menu;
+}
+td {
+ cursor: cell;
 }
 td, th {
  border: 1px solid rgb(255, 255, 255);
@@ -52,6 +56,7 @@ td, th {
 }
 .table__wrapp {
  overflow-x: auto;
+ cursor: pointer;
 }
 .month__name {
 }

@@ -99,13 +99,12 @@ const renderWrapperTableDom = index => {
         $rowTr.append($cellTd);
       } else if (idx === valueTitles.length - 1) {
         if(id === arrDaysMonth.length - 1) {
-          let $buttonDeleteValues = document.createElement('td');
-          $buttonDeleteValues.style.fontWeight = 'bold';
+          let $buttonDeleteValues = document.createElement('th');
           $buttonDeleteValues.innerHTML = `«столбец`;
           $rowTr.append($buttonDeleteValues);
         } else {
           let $buttonDeleteValues = document.createElement('th');
-          $buttonDeleteValues.classList.add('btn__delete__values', `${reportsMonth[index].id}`, `c_${days}`);
+          $buttonDeleteValues.classList.add('btn__delete__values', `${reportsMonth[index].id}`, `${days + 1}`);
           $buttonDeleteValues.innerHTML = `❌`;
           $rowTr.append($buttonDeleteValues);
         };
@@ -116,7 +115,9 @@ const renderWrapperTableDom = index => {
           $rowTr.append($cellTd);
         }else {
           const $cellTd = document.createElement('td');
-          $cellTd.classList.add(`cell__${days}`);
+          $cellTd.classList.add(`cell__${days}`, `${row}`);
+          $cellTd.setAttribute('id', `${days}`);
+          $cellTd.contentEditable = 'true';
           $rowTr.append($cellTd);
         };
       };
@@ -219,6 +220,7 @@ const sum = () => {
 
 buttonMonth.addEventListener('click', function(){
  if(isNaN(inputMonth.value) && inputDays.value > 0) {
+  console.log(1)
   counterClick ++;
   reportsMonth.push(new CreateMonth(counterClick + 1, inputMonth.value, inputDays.value, counterClick))
   localStorage.setItem('reportsMonth', JSON.stringify(reportsMonth))
@@ -309,7 +311,7 @@ document.addEventListener('click', event => {
       };
     };
   } else if (event.target.classList.contains('btn__delete__values')) {
-    let classCellBtn = + event.target.classList.value[24];
+    let classCellBtn = + event.target.classList[2] - 1;
     let classTableBtn = + event.target.classList[1];
     reportsMonth.forEach((month, monthIdx) => {
       if(month.id === classTableBtn) {
@@ -327,7 +329,24 @@ document.addEventListener('click', event => {
         });
       };
     });
-  };
+  }else if(event.target.id != '') {
+    event.target.contentEditable = 'true';
+    console.log(event.target.classList.contains['Минуты'])
+    let dateValue = param => param.id;
+    // let hourValue = param.addEventListener (click) => param.classList[1] === 'Минуты' ? param.value : '';
+    console.log(hourValue(event.target))
+    console.log(dateValue(event.target))
+    // reportsValue.push(new CreateValue(
+    //   counterClick + 1,
+    //   inputDate.value, 
+    //   inputHour.value,
+    //   inputPP.value,
+    //   inputPubl.value,
+    //   inputVideo.value,
+    //   inputIz.value
+    // ));
+    // if()
+  }
 });
 
 i = 0;
