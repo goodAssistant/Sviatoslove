@@ -310,6 +310,7 @@ document.addEventListener('click', event => {
         };
       };
     };
+    
   } else if (event.target.classList.contains('btn__delete__values')) {
     let classCellBtn = + event.target.classList[2] - 1;
     let classTableBtn = + event.target.classList[1];
@@ -329,24 +330,63 @@ document.addEventListener('click', event => {
         });
       };
     });
+
   }else if(event.target.id != '') {
-    event.target.contentEditable = 'true';
-    console.log(event.target.classList.contains['Минуты'])
-    let dateValue = param => param.id;
-    // let hourValue = param.addEventListener (click) => param.classList[1] === 'Минуты' ? param.value : '';
-    console.log(hourValue(event.target))
-    console.log(dateValue(event.target))
-    // reportsValue.push(new CreateValue(
-    //   counterClick + 1,
-    //   inputDate.value, 
-    //   inputHour.value,
-    //   inputPP.value,
-    //   inputPubl.value,
-    //   inputVideo.value,
-    //   inputIz.value
-    // ));
-    // if()
-  }
+    let dateValue = event.target.id;
+    let hourValue;
+    let ppValue;
+    let publValue;
+    let videoValue;
+    let izValue;
+    event.target.addEventListener ('keypress', (event) => {
+      if(event.target.classList[1] === 'Минуты') {
+        hourValue = event.target.innerHTML;
+        ppValue = '';
+        publValue = '';
+        videoValue = '';
+        izValue = '';
+      }else if(event.target.classList[1] === 'ПП') {
+        hourValue = '';
+        ppValue = event.target.innerHTML;
+        publValue = '';
+        videoValue = '';
+        izValue = '';
+      }else if(event.target.classList[1] === 'Публ') {
+        hourValue = '';
+        ppValue = '';
+        publValue = event.target.innerHTML;
+        videoValue = '';
+        izValue = '';
+      }else if(event.target.classList[1] === 'Видео') {
+        hourValue = '';
+        ppValue = '';
+        publValue = '';
+        videoValue = event.target.innerHTML;
+        izValue = '';
+      }else if(event.target.classList[1] === 'Из') {
+        hourValue = '';
+        ppValue = '';
+        publValue = '';
+        videoValue = '';
+        izValue = event.target.innerHTML;
+      }
+      if(event.key === 'Enter') {
+        event.preventDefault();
+        reportsValue.push(new CreateValue(
+          counterClick + 1,
+          dateValue, 
+          hourValue,
+          ppValue,
+          publValue,
+          videoValue,
+          izValue
+        ));
+        localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
+        inputDaysValue();
+        sum();
+      };
+    });
+  };
 });
 
 i = 0;
