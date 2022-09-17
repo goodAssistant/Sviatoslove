@@ -19,6 +19,14 @@ td, th {
  font-family: 'Choco cooky';
  font-size: 17px;
 }
+td:focus {
+ transform: scale(1.5);
+ transition: all ease 1s;
+ outline: 2px solid rgb(100, 57, 139);
+ outline-offset: -4px ;
+ border: none;
+ color: rgb(100, 57, 139);
+}
 .wrapper__buttuns__delete {
  display: flex;
 }
