@@ -104,7 +104,9 @@ const renderWrapperTableDom = index => {
           $rowTr.append($buttonDeleteValues);
         } else {
           let $buttonDeleteValues = document.createElement('th');
-          $buttonDeleteValues.classList.add('btn__delete__values', `${reportsMonth[index].id}`, `${days + 1}`);
+          $buttonDeleteValues.classList.add('btn__delete__values', `${days}`);
+          $buttonDeleteValues.setAttribute('id', `${reportsMonth[index].id}`);
+
           $buttonDeleteValues.innerHTML = `❌`;
           $rowTr.append($buttonDeleteValues);
         };
@@ -115,7 +117,7 @@ const renderWrapperTableDom = index => {
           $rowTr.append($cellTd);
         }else {
           const $cellTd = document.createElement('td');
-          $cellTd.classList.add(`cell__${days}`, `${row}`);
+          $cellTd.classList.add(`cell__${days}`, `${reportsMonth[index].id}`, `${row}`);
           $cellTd.setAttribute('id', `${days}`);
           $cellTd.contentEditable = 'true';
           $rowTr.append($cellTd);
@@ -220,7 +222,6 @@ const sum = () => {
 
 buttonMonth.addEventListener('click', function(){
  if(isNaN(inputMonth.value) && inputDays.value > 0) {
-  console.log(1)
   counterClick ++;
   reportsMonth.push(new CreateMonth(counterClick + 1, inputMonth.value, inputDays.value, counterClick))
   localStorage.setItem('reportsMonth', JSON.stringify(reportsMonth))
@@ -312,26 +313,26 @@ document.addEventListener('click', event => {
     };
     
   } else if (event.target.classList.contains('btn__delete__values')) {
-    let classCellBtn = + event.target.classList[2] - 1;
-    let classTableBtn = + event.target.classList[1];
-    reportsMonth.forEach((month, monthIdx) => {
-      if(month.id === classTableBtn) {
-        reportsValue.forEach((objVal, objValIdx) => {
-          if(objVal.id === month.id) {
-            if(+ objVal.monthDay === classCellBtn) {
-              if(confirm(`Вы уверены, что желаете очистить все значения в столбце?`)) {
-                reportsValue.splice(objValIdx, 1);
-                $wrapperTable.innerHTML = ``;
-                localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
-                getReportsLength();
-              };
-            };
-          };
-        });
+    event.stopImmediatePropagation();
+    let classCellBtn = + event.target.classList[1];
+    let classTableBtn = + event.target.id;
+    let indexMonth = reportsMonth.map(month => month.id).indexOf(classTableBtn);
+    let idMonth = reportsMonth[indexMonth].id;
+    let currentValuesMonth = reportsValue.filter(item => item.id === idMonth);
+    let valuesMonth = reportsValue.filter(item => item.id !== idMonth);
+    if(currentValuesMonth.find(item => + item.monthDay === classCellBtn)) {
+      if(confirm(`Вы уверены, что желаете очистить все значения в столбце?`)) {
+        let currentValues = currentValuesMonth.filter(item => + item.monthDay !== classCellBtn);
+        let finalValues = [...valuesMonth, ...currentValues];
+        $wrapperTable.innerHTML = ``;
+        localStorage.setItem('reportsValue', JSON.stringify(finalValues));
+        reportsValue = JSON.parse(localStorage.getItem('reportsValue'));
+        getReportsLength();
       };
-    });
+    };
 
-  }else if(event.target.id != '') {
+  }else if(event.target.id !== '') {
+    let classTableBtn = + event.target.classList[1];
     let dateValue = event.target.id;
     let hourValue;
     let ppValue;
@@ -339,31 +340,31 @@ document.addEventListener('click', event => {
     let videoValue;
     let izValue;
     event.target.addEventListener ('keypress', (event) => {
-      if(event.target.classList[1] === 'Минуты') {
+      if(event.target.classList[2] === 'Минуты') {
         hourValue = event.target.innerHTML;
         ppValue = '';
         publValue = '';
         videoValue = '';
         izValue = '';
-      }else if(event.target.classList[1] === 'ПП') {
+      }else if(event.target.classList[2] === 'ПП') {
         hourValue = '';
         ppValue = event.target.innerHTML;
         publValue = '';
         videoValue = '';
         izValue = '';
-      }else if(event.target.classList[1] === 'Публ') {
+      }else if(event.target.classList[2] === 'Публ') {
         hourValue = '';
         ppValue = '';
         publValue = event.target.innerHTML;
         videoValue = '';
         izValue = '';
-      }else if(event.target.classList[1] === 'Видео') {
+      }else if(event.target.classList[2] === 'Видео') {
         hourValue = '';
         ppValue = '';
         publValue = '';
         videoValue = event.target.innerHTML;
         izValue = '';
-      }else if(event.target.classList[1] === 'Из') {
+      }else if(event.target.classList[2] === 'Из') {
         hourValue = '';
         ppValue = '';
         publValue = '';
@@ -371,9 +372,10 @@ document.addEventListener('click', event => {
         izValue = event.target.innerHTML;
       }
       if(event.key === 'Enter') {
+        event.stopImmediatePropagation();
         event.preventDefault();
         reportsValue.push(new CreateValue(
-          counterClick + 1,
+          classTableBtn,
           dateValue, 
           hourValue,
           ppValue,
