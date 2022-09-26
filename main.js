@@ -468,7 +468,7 @@ function cl() {
   setTimeout("cl()",200);
 };
 
-// setTimeout("cl()",5);
+setTimeout("cl()",5);
 
 const getReportsLength = () => {
  reportsMonth.forEach((item, idx) => {
