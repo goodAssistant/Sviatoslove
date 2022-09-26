@@ -239,12 +239,12 @@ buttonMonth.addEventListener('click', function(){
 
 const pushBtnResult = () => {
   if(
-    !isNaN(inputDate.value) && inputDate.value !== '' ||
-    !isNaN(inputHour.value) && inputHour.value !== '' ||
-    !isNaN(inputPP.value) && inputPP.value !== '' ||
-    !isNaN(inputPubl.value) && inputPubl.value !== '' ||
-    !isNaN(inputVideo.value) && inputVideo.value !== '' ||
-    !isNaN(inputIz.value) && inputIz.value !== ''
+    !isNaN(inputDate.value) && inputDate.value !== '' &&
+    !isNaN(inputHour.value) && 
+    !isNaN(inputPP.value) && 
+    !isNaN(inputPubl.value) && 
+    !isNaN(inputVideo.value) &&
+    !isNaN(inputIz.value)
     ) {
     reportsValue.push(new CreateValue(
       counterClick + 1,
@@ -275,12 +275,15 @@ const pushBtnResult = () => {
 
 buttonResult.addEventListener('click', pushBtnResult);
 
+const keyCodes = Array.from({ length: 10 }, (v, i) =>  i + 48);
+
 document.addEventListener('click', event => {
   let reportsValueTrans = [];
   let reportsValueNew = [];
   let $wrapperTable = document.querySelector(`.wrapper__year`);
   if(event.target.classList.contains('btn__delete')){
-    if(confirm(`Вы уверены, что желаете удалить таблицу и все введённые в неё данные без возможности восстановления?`)) {
+    let monthName = reportsMonth.find(item => item.id === + event.target.classList[1]).monthName
+    if(confirm(`Вы уверены, что желаете удалить таблицу за ${monthName} месяц и все введённые в неё данные без возможности восстановления?`)) {
       if(confirm(`Извиняюсь, но хочу ещё раз уточнить, хорошо подумайте, данные потом не восстановишь! Удалить таблицу?`)) {
         if(confirm(`Ладно, ладно, хорошо, я понял, ты кремень и решительно настроен, твоё "да" означает "да", как и написано! Хвалю и удаляю?`)) {
           alert(`Мооооо - лооооооо - деееец!!!`);
@@ -314,14 +317,18 @@ document.addEventListener('click', event => {
     
   } else if (event.target.classList.contains('btn__delete__values')) {
     event.stopImmediatePropagation();
+    let monthDay;
     let classCellBtn = + event.target.classList[1];
     let classTableBtn = + event.target.id;
     let indexMonth = reportsMonth.map(month => month.id).indexOf(classTableBtn);
     let idMonth = reportsMonth[indexMonth].id;
+    let month = reportsMonth[indexMonth].monthName;
     let currentValuesMonth = reportsValue.filter(item => item.id === idMonth);
     let valuesMonth = reportsValue.filter(item => item.id !== idMonth);
-    if(currentValuesMonth.find(item => + item.monthDay === classCellBtn)) {
-      if(confirm(`Вы уверены, что желаете очистить все значения в столбце?`)) {
+    if(currentValuesMonth.find(item => {
+      monthDay = + item.monthDay;
+      return monthDay === classCellBtn})) {
+      if(confirm(`Вы уверены, что желаете очистить все значения в столбце за ${monthDay}-ое число месяца ${month}?`)) {
         let currentValues = currentValuesMonth.filter(item => + item.monthDay !== classCellBtn);
         let finalValues = [...valuesMonth, ...currentValues];
         $wrapperTable.innerHTML = ``;
@@ -330,8 +337,9 @@ document.addEventListener('click', event => {
         getReportsLength();
       };
     };
-
+    
   }else if(event.target.id !== '') {
+    let element = event.target;
     let classTableBtn = + event.target.classList[1];
     let dateValue = event.target.id;
     let hourValue;
@@ -339,7 +347,8 @@ document.addEventListener('click', event => {
     let publValue;
     let videoValue;
     let izValue;
-    event.target.addEventListener ('keypress', (event) => {
+    event.target.addEventListener ('keypress', event => {
+      event.stopImmediatePropagation();
       if(event.target.classList[2] === 'Минуты') {
         hourValue = event.target.innerHTML;
         ppValue = '';
@@ -374,19 +383,76 @@ document.addEventListener('click', event => {
       if(event.key === 'Enter') {
         event.stopImmediatePropagation();
         event.preventDefault();
-        reportsValue.push(new CreateValue(
-          classTableBtn,
-          dateValue, 
-          hourValue,
-          ppValue,
-          publValue,
-          videoValue,
-          izValue
-        ));
-        localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
-        inputDaysValue();
-        sum();
-      };
+        if(!isNaN(+ event.target.innerHTML)) {
+          reportsValue.push(new CreateValue(
+            classTableBtn,
+            dateValue, 
+            hourValue,
+            ppValue,
+            publValue,
+            videoValue,
+            izValue
+          ));
+          localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
+          inputDaysValue();
+          sum();
+          element.blur();
+        }else {
+          alert(`Это поле принимает только число. Как то так)))`);
+          event.target.innerHTML = '';
+          element.blur();
+        };
+      }
+      // else {
+        // console.log(1)
+      //   element.addEventListener('focusout', event => {
+      //     console.log(2)
+      //     event.stopImmediatePropagation();
+      //     if(event.target.classList[2] === 'Минуты') {
+      //       hourValue = event.target.innerHTML;
+      //       ppValue = '';
+      //       publValue = '';
+      //       videoValue = '';
+      //       izValue = '';
+      //     }else if(event.target.classList[2] === 'ПП') {
+      //       hourValue = '';
+      //       ppValue = event.target.innerHTML;
+      //       publValue = '';
+      //       videoValue = '';
+      //       izValue = '';
+      //     }else if(event.target.classList[2] === 'Публ') {
+      //       hourValue = '';
+      //       ppValue = '';
+      //       publValue = event.target.innerHTML;
+      //       videoValue = '';
+      //       izValue = '';
+      //     }else if(event.target.classList[2] === 'Видео') {
+      //       hourValue = '';
+      //       ppValue = '';
+      //       publValue = '';
+      //       videoValue = event.target.innerHTML;
+      //       izValue = '';
+      //     }else if(event.target.classList[2] === 'Из') {
+      //       hourValue = '';
+      //       ppValue = '';
+      //       publValue = '';
+      //       videoValue = '';
+      //       izValue = event.target.innerHTML;
+      //     }
+      //     reportsValue.push(new CreateValue(
+      //       classTableBtn,
+      //       dateValue, 
+      //       hourValue,
+      //       ppValue,
+      //       publValue,
+      //       videoValue,
+      //       izValue
+      //     ));
+      //     localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
+      //     inputDaysValue();
+      //     sum();
+      //   });
+      // };
     });
   };
 });
@@ -402,7 +468,7 @@ function cl() {
   setTimeout("cl()",200);
 };
 
-setTimeout("cl()",5);
+// setTimeout("cl()",5);
 
 const getReportsLength = () => {
  reportsMonth.forEach((item, idx) => {
