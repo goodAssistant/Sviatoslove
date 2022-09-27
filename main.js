@@ -67,7 +67,7 @@ const renderWrapperTableDom = index => {
   ];
 
  let $wrapperTable = document.createElement('div');
- $wrapperTable.classList.add(`wrapper__table`, `wrapper_table_${reportsMonth[index].id}`)
+ $wrapperTable.classList.add(`wrapper__table`, `${reportsMonth[index].id}`)
  let $tableMonth = document.createElement('table');
  let $tBody = document.createElement('tbody');
  $tableMonth.classList.add('table__month');
@@ -175,7 +175,7 @@ const inputDaysValue = () => {
       });
       let valueResult = (getResult(arrDaysValueId));
       $wrapperTable.filter(elem => {
-        if(+ elem.classList.value[29] === month.id){
+        if(+ elem.classList[1] === month.id){
           let $row = Array.from(elem.getElementsByClassName(`cell__${numDay}`));
           $row.forEach((cellValue, a) => {
             valueResult.forEach((value, b) => {
@@ -206,7 +206,7 @@ const sum = () => {
     });
     let valueResult = (getResult(arrDaysValueId));
     $wrapperTable.filter(table => {
-      if(+ table.classList.value[29] === month.id) {
+      if(+ table.classList[1] === month.id) {
         let $cellResult = Array.from(table.getElementsByClassName(`cell__Итого:`));
         $cellResult.forEach((cell, cId) => {
           valueResult.forEach((valueRes, valResId) => {
@@ -348,42 +348,50 @@ document.addEventListener('click', event => {
     let videoValue;
     let izValue;
     event.target.addEventListener ('keypress', event => {
-      event.stopImmediatePropagation();
-      if(event.target.classList[2] === 'Минуты') {
-        hourValue = event.target.innerHTML;
-        ppValue = '';
-        publValue = '';
-        videoValue = '';
-        izValue = '';
-      }else if(event.target.classList[2] === 'ПП') {
-        hourValue = '';
-        ppValue = event.target.innerHTML;
-        publValue = '';
-        videoValue = '';
-        izValue = '';
-      }else if(event.target.classList[2] === 'Публ') {
-        hourValue = '';
-        ppValue = '';
-        publValue = event.target.innerHTML;
-        videoValue = '';
-        izValue = '';
-      }else if(event.target.classList[2] === 'Видео') {
-        hourValue = '';
-        ppValue = '';
-        publValue = '';
-        videoValue = event.target.innerHTML;
-        izValue = '';
-      }else if(event.target.classList[2] === 'Из') {
-        hourValue = '';
-        ppValue = '';
-        publValue = '';
-        videoValue = '';
-        izValue = event.target.innerHTML;
-      }
       if(event.key === 'Enter') {
-        event.stopImmediatePropagation();
         event.preventDefault();
         if(!isNaN(+ event.target.innerHTML)) {
+          element.blur();
+        }else {
+          alert(`Вы ввели буквы. Это поле принимает только число. Как то так)))`);
+          event.target.innerHTML = '';
+          element.blur();
+        };
+      };
+      element.addEventListener('focusout', event => {
+        event.stopImmediatePropagation();
+        if(!isNaN(+ event.target.innerHTML) && event.target.innerHTML !== '') {
+          if(event.target.classList[2] === 'Минуты') {
+            hourValue = event.target.innerHTML;
+            ppValue = '';
+            publValue = '';
+            videoValue = '';
+            izValue = '';
+          }else if(event.target.classList[2] === 'ПП') {
+            hourValue = '';
+            ppValue = event.target.innerHTML;
+            publValue = '';
+            videoValue = '';
+            izValue = '';
+          }else if(event.target.classList[2] === 'Публ') {
+            hourValue = '';
+            ppValue = '';
+            publValue = event.target.innerHTML;
+            videoValue = '';
+            izValue = '';
+          }else if(event.target.classList[2] === 'Видео') {
+            hourValue = '';
+            ppValue = '';
+            publValue = '';
+            videoValue = event.target.innerHTML;
+            izValue = '';
+          }else if(event.target.classList[2] === 'Из') {
+            hourValue = '';
+            ppValue = '';
+            publValue = '';
+            videoValue = '';
+            izValue = event.target.innerHTML;
+          }
           reportsValue.push(new CreateValue(
             classTableBtn,
             dateValue, 
@@ -396,63 +404,13 @@ document.addEventListener('click', event => {
           localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
           inputDaysValue();
           sum();
-          element.blur();
+        }else if(event.target.innerHTML === '') {
         }else {
           alert(`Это поле принимает только число. Как то так)))`);
           event.target.innerHTML = '';
           element.blur();
         };
-      }
-      // else {
-        // console.log(1)
-      //   element.addEventListener('focusout', event => {
-      //     console.log(2)
-      //     event.stopImmediatePropagation();
-      //     if(event.target.classList[2] === 'Минуты') {
-      //       hourValue = event.target.innerHTML;
-      //       ppValue = '';
-      //       publValue = '';
-      //       videoValue = '';
-      //       izValue = '';
-      //     }else if(event.target.classList[2] === 'ПП') {
-      //       hourValue = '';
-      //       ppValue = event.target.innerHTML;
-      //       publValue = '';
-      //       videoValue = '';
-      //       izValue = '';
-      //     }else if(event.target.classList[2] === 'Публ') {
-      //       hourValue = '';
-      //       ppValue = '';
-      //       publValue = event.target.innerHTML;
-      //       videoValue = '';
-      //       izValue = '';
-      //     }else if(event.target.classList[2] === 'Видео') {
-      //       hourValue = '';
-      //       ppValue = '';
-      //       publValue = '';
-      //       videoValue = event.target.innerHTML;
-      //       izValue = '';
-      //     }else if(event.target.classList[2] === 'Из') {
-      //       hourValue = '';
-      //       ppValue = '';
-      //       publValue = '';
-      //       videoValue = '';
-      //       izValue = event.target.innerHTML;
-      //     }
-      //     reportsValue.push(new CreateValue(
-      //       classTableBtn,
-      //       dateValue, 
-      //       hourValue,
-      //       ppValue,
-      //       publValue,
-      //       videoValue,
-      //       izValue
-      //     ));
-      //     localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
-      //     inputDaysValue();
-      //     sum();
-      //   });
-      // };
+      });
     });
   };
 });
