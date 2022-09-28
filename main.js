@@ -358,8 +358,7 @@ document.addEventListener('click', event => {
           element.blur();
         };
       };
-      element.addEventListener('focusout', event => {
-        event.stopImmediatePropagation();
+      element.onblur = function() {
         if(!isNaN(+ event.target.innerHTML) && event.target.innerHTML !== '') {
           if(event.target.classList[2] === 'Минуты') {
             hourValue = event.target.innerHTML;
@@ -410,7 +409,60 @@ document.addEventListener('click', event => {
           event.target.innerHTML = '';
           element.blur();
         };
-      });
+      };
+      // element.addEventListener('focusout', event => {
+      //   event.stopImmediatePropagation();
+      //   if(!isNaN(+ event.target.innerHTML) && event.target.innerHTML !== '') {
+      //     if(event.target.classList[2] === 'Минуты') {
+      //       hourValue = event.target.innerHTML;
+      //       ppValue = '';
+      //       publValue = '';
+      //       videoValue = '';
+      //       izValue = '';
+      //     }else if(event.target.classList[2] === 'ПП') {
+      //       hourValue = '';
+      //       ppValue = event.target.innerHTML;
+      //       publValue = '';
+      //       videoValue = '';
+      //       izValue = '';
+      //     }else if(event.target.classList[2] === 'Публ') {
+      //       hourValue = '';
+      //       ppValue = '';
+      //       publValue = event.target.innerHTML;
+      //       videoValue = '';
+      //       izValue = '';
+      //     }else if(event.target.classList[2] === 'Видео') {
+      //       hourValue = '';
+      //       ppValue = '';
+      //       publValue = '';
+      //       videoValue = event.target.innerHTML;
+      //       izValue = '';
+      //     }else if(event.target.classList[2] === 'Из') {
+      //       hourValue = '';
+      //       ppValue = '';
+      //       publValue = '';
+      //       videoValue = '';
+      //       izValue = event.target.innerHTML;
+      //     }
+      //     reportsValue.push(new CreateValue(
+      //       classTableBtn,
+      //       dateValue, 
+      //       hourValue,
+      //       ppValue,
+      //       publValue,
+      //       videoValue,
+      //       izValue
+      //     ));
+      //     localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
+      //     inputDaysValue();
+      //     sum();
+      //   }else if(event.target.innerHTML === '') {
+      //   }else {
+      //     alert(`Это поле принимает только число. Как то так)))`);
+      //     event.target.innerHTML = '';
+      //     element.blur();
+      //   };
+      // });
     });
   };
 });
