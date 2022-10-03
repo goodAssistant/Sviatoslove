@@ -4,13 +4,12 @@
  display: block;
 }
 th {
- font-size: 20px;
+	font-size: 20px;
  cursor: context-menu;
- 
-}
-th {
- min-width: 32px;
+ min-width: 24px;
  width: 100%;
+	transition: all 2s ease;
+
 }
 td {
  font-size: 17px;
@@ -42,13 +41,12 @@ td:focus {
 .btn__delete__values {
  padding: 0;
  border: 1px solid rgba(89, 19, 100, 0.6);
- background-color: rgba(89, 19, 100, 0.6);
 }
 .btn__delete__values:hover {
  transform: scale(1.3);
 }
 .btn__delete__values:active {
- animation: myAnim 1s ease 0.2s 0.3 alternate backwards;
+	animation: myAnim 1s ease-in 0s 0.5 forwards;
 }
 .btn__delete:hover {
  transform: scale(1.1);
@@ -78,6 +76,7 @@ td:focus {
 .wrapper__year {
 }
 .table__wrapp {
+	scroll-behavior: smooth;
  overflow-x: auto;
  cursor: pointer;
 }

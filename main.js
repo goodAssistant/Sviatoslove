@@ -64,7 +64,8 @@ const addValuesBasket  = () => {
   reportsValue.filter(valueObj => {
     buttonsDelete.filter(item => {
       if(valueObj.id === + item.id && item.classList[1] === valueObj.monthDay) {
-        item.style.background = `rgba(89, 19, 100, 0.6) url(./img/full.png) no-repeat center center / contain`;
+        item.style.background = `rgb(152, 21, 21, 0.6) url(./img/fullBox.png) no-repeat center center / contain`;
+        item.style.boxShadow = `0px 0px 20px 2px rgba(255, 0, 0, 0.6)`;
       };
     });
   });
@@ -117,7 +118,7 @@ const renderWrapperTableDom = index => {
           let $buttonDeleteValues = document.createElement('th');
           $buttonDeleteValues.classList.add('btn__delete__values', `${days}`);
           $buttonDeleteValues.setAttribute('id', `${reportsMonth[index].id}`);
-          $buttonDeleteValues.style.background = `rgba(89, 19, 100, 0.6) url(./img/empty.png) no-repeat center center / contain`;
+          $buttonDeleteValues.style.background = `rgba(223, 223, 200, 0.9) url(./img/emptyBox.png) no-repeat center center / contain`;
           $rowTr.append($buttonDeleteValues);
         };
       } else {
@@ -311,7 +312,6 @@ document.addEventListener('click', event => {
                     localStorage.setItem('reportsValue', JSON.stringify(reportsValueNew));
                   };
                 });
-                $wrapperTable.innerHTML = ``;
                 location.reload();
               };
             }else {
@@ -339,11 +339,12 @@ document.addEventListener('click', event => {
       if(confirm(`Вы уверены, что желаете очистить все значения в столбце за ${classCellBtn}-ое число месяца ${month}?`)) {
         let currentValues = currentValuesMonth.filter(item => + item.monthDay !== classCellBtn);
         let finalValues = [...valuesMonth, ...currentValues];
-        $wrapperTable.innerHTML = ``;
         localStorage.setItem('reportsValue', JSON.stringify(finalValues));
         reportsValue = JSON.parse(localStorage.getItem('reportsValue'));
-        event.target.style.background = `rgba(89, 19, 100, 0.6) url(./img/empty.png) no-repeat center center / contain`;
-        getReportsLength();
+        event.target.style.background = `rgba(223, 223, 200, 0.9) url(./img/emptyBox.png) no-repeat center center / contain`;
+        event.target.style.boxShadow = `0px 0px 10px 10px rgba(89, 19, 100, 0.6)`;
+        inputDaysValue();
+        sum();
       };
     };
     
