@@ -59,6 +59,17 @@ class CreateValue {
   };
 };
 
+const addValuesBasket  = () => {
+  let buttonsDelete = Array.from(document.querySelectorAll('.btn__delete__values'));
+  reportsValue.filter(valueObj => {
+    buttonsDelete.filter(item => {
+      if(valueObj.id === + item.id && item.classList[1] === valueObj.monthDay) {
+        item.style.background = `rgba(89, 19, 100, 0.6) url(./img/full.png) no-repeat center center / contain`;
+      };
+    });
+  });
+};
+
 const renderWrapperTableDom = index => {
   let arrTableMonth = [
     reportsMonth[index].monthName,
@@ -106,8 +117,7 @@ const renderWrapperTableDom = index => {
           let $buttonDeleteValues = document.createElement('th');
           $buttonDeleteValues.classList.add('btn__delete__values', `${days}`);
           $buttonDeleteValues.setAttribute('id', `${reportsMonth[index].id}`);
-
-          $buttonDeleteValues.innerHTML = `❌`;
+          $buttonDeleteValues.style.background = `rgba(89, 19, 100, 0.6) url(./img/empty.png) no-repeat center center / contain`;
           $rowTr.append($buttonDeleteValues);
         };
       } else {
@@ -176,6 +186,7 @@ const inputDaysValue = () => {
       let valueResult = (getResult(arrDaysValueId));
       $wrapperTable.filter(elem => {
         if(+ elem.classList[1] === month.id){
+          addValuesBasket(numDay);
           let $row = Array.from(elem.getElementsByClassName(`cell__${numDay}`));
           $row.forEach((cellValue, a) => {
             valueResult.forEach((value, b) => {
@@ -317,7 +328,6 @@ document.addEventListener('click', event => {
     
   } else if (event.target.classList.contains('btn__delete__values')) {
     event.stopImmediatePropagation();
-    let monthDay;
     let classCellBtn = + event.target.classList[1];
     let classTableBtn = + event.target.id;
     let indexMonth = reportsMonth.map(month => month.id).indexOf(classTableBtn);
@@ -325,15 +335,14 @@ document.addEventListener('click', event => {
     let month = reportsMonth[indexMonth].monthName;
     let currentValuesMonth = reportsValue.filter(item => item.id === idMonth);
     let valuesMonth = reportsValue.filter(item => item.id !== idMonth);
-    if(currentValuesMonth.find(item => {
-      monthDay = + item.monthDay;
-      return monthDay === classCellBtn})) {
-      if(confirm(`Вы уверены, что желаете очистить все значения в столбце за ${monthDay}-ое число месяца ${month}?`)) {
+    if(currentValuesMonth.find(item => + item.monthDay === classCellBtn)) {
+      if(confirm(`Вы уверены, что желаете очистить все значения в столбце за ${classCellBtn}-ое число месяца ${month}?`)) {
         let currentValues = currentValuesMonth.filter(item => + item.monthDay !== classCellBtn);
         let finalValues = [...valuesMonth, ...currentValues];
         $wrapperTable.innerHTML = ``;
         localStorage.setItem('reportsValue', JSON.stringify(finalValues));
         reportsValue = JSON.parse(localStorage.getItem('reportsValue'));
+        event.target.style.background = `rgba(89, 19, 100, 0.6) url(./img/empty.png) no-repeat center center / contain`;
         getReportsLength();
       };
     };
@@ -350,15 +359,7 @@ document.addEventListener('click', event => {
     event.target.addEventListener ('keypress', event => {
       if(event.key === 'Enter') {
         event.preventDefault();
-        if(!isNaN(+ event.target.innerHTML)) {
-          element.blur();
-        }else {
-          alert(`Вы ввели буквы. Это поле принимает только число. Как то так)))`);
-          event.target.innerHTML = '';
-          element.blur();
-        };
-      };
-      element.onblur = function() {
+        event.stopImmediatePropagation();
         if(!isNaN(+ event.target.innerHTML) && event.target.innerHTML !== '') {
           if(event.target.classList[2] === 'Минуты') {
             hourValue = event.target.innerHTML;
@@ -400,70 +401,23 @@ document.addEventListener('click', event => {
             videoValue,
             izValue
           ));
-          localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
+          localStorage.setItem('reportsValue', JSON.stringify(reportsValue));
           inputDaysValue();
           sum();
+          element.blur();
         }else if(event.target.innerHTML === '') {
+          element.blur();
         }else {
-          alert(`Это поле принимает только число. Как то так)))`);
+          alert(`Вы ввели буквы. Это поле принимает только число. Как то так)))`);
           event.target.innerHTML = '';
           element.blur();
         };
       };
-      // element.addEventListener('focusout', event => {
-      //   event.stopImmediatePropagation();
-      //   if(!isNaN(+ event.target.innerHTML) && event.target.innerHTML !== '') {
-      //     if(event.target.classList[2] === 'Минуты') {
-      //       hourValue = event.target.innerHTML;
-      //       ppValue = '';
-      //       publValue = '';
-      //       videoValue = '';
-      //       izValue = '';
-      //     }else if(event.target.classList[2] === 'ПП') {
-      //       hourValue = '';
-      //       ppValue = event.target.innerHTML;
-      //       publValue = '';
-      //       videoValue = '';
-      //       izValue = '';
-      //     }else if(event.target.classList[2] === 'Публ') {
-      //       hourValue = '';
-      //       ppValue = '';
-      //       publValue = event.target.innerHTML;
-      //       videoValue = '';
-      //       izValue = '';
-      //     }else if(event.target.classList[2] === 'Видео') {
-      //       hourValue = '';
-      //       ppValue = '';
-      //       publValue = '';
-      //       videoValue = event.target.innerHTML;
-      //       izValue = '';
-      //     }else if(event.target.classList[2] === 'Из') {
-      //       hourValue = '';
-      //       ppValue = '';
-      //       publValue = '';
-      //       videoValue = '';
-      //       izValue = event.target.innerHTML;
-      //     }
-      //     reportsValue.push(new CreateValue(
-      //       classTableBtn,
-      //       dateValue, 
-      //       hourValue,
-      //       ppValue,
-      //       publValue,
-      //       videoValue,
-      //       izValue
-      //     ));
-      //     localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
-      //     inputDaysValue();
-      //     sum();
-      //   }else if(event.target.innerHTML === '') {
-      //   }else {
-      //     alert(`Это поле принимает только число. Как то так)))`);
-      //     event.target.innerHTML = '';
-      //     element.blur();
-      //   };
-      // });
     });
+    element.addEventListener('blur', event => {
+      event.target.innerHTML = '';
+      inputDaysValue();
+    })
   };
 });
 

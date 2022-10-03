@@ -6,8 +6,14 @@
 th {
  font-size: 20px;
  cursor: context-menu;
+ 
+}
+th {
+ min-width: 32px;
+ width: 100%;
 }
 td {
+ font-size: 17px;
  cursor: cell;
 }
 td, th {
@@ -17,7 +23,6 @@ td, th {
  box-shadow: 0px 0px 10px 10px rgba(89, 19, 100, 0.6);
  border-radius: 10px;
  font-family: 'Choco cooky';
- font-size: 17px;
 }
 td:focus {
  transform: scale(1.5);
@@ -34,7 +39,18 @@ td:focus {
  cursor: pointer;
  border: 2px solid rgb(100, 57, 139);
 }
-.btn__delete:hover, .btn__delete__values:hover {
+.btn__delete__values {
+ padding: 0;
+ border: 1px solid rgba(89, 19, 100, 0.6);
+ background-color: rgba(89, 19, 100, 0.6);
+}
+.btn__delete__values:hover {
+ transform: scale(1.3);
+}
+.btn__delete__values:active {
+ animation: myAnim 1s ease 0.2s 0.3 alternate backwards;
+}
+.btn__delete:hover {
  transform: scale(1.1);
  border: 2px solid rgb(0, 255, 187);
  background-color: rgba(255, 255, 255, 0.9);
@@ -42,7 +58,7 @@ td:focus {
 .btn__delete:hover{
  transform: scale(1.03);
 }
-.btn__delete:active, .btn__delete__values:active {
+.btn__delete:active {
  transform: scale(0.95);
  border: 2px solid rgb(0, 255, 187);
  background-color: rgba(255, 255, 255, 0.9);
@@ -69,4 +85,15 @@ td:focus {
 }
 .month {
  
+}
+@keyframes myAnim {
+	0% {
+		transform: rotate(0);
+		transform-origin: right;
+	}
+
+	100% {
+		transform: rotate(360deg);
+		transform-origin: right;
+	}
 }
