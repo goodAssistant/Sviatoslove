@@ -64,7 +64,7 @@ const addValuesBasket  = () => {
   reportsValue.filter(valueObj => {
     buttonsDelete.filter(item => {
       if(valueObj.id === + item.id && item.classList[1] === valueObj.monthDay) {
-        item.style.background = `rgb(152, 21, 21, 0.6) url(./img/fullBox.png) no-repeat center center / contain`;
+        item.style.background = `rgba(89, 19, 100, 0.6) url(./img/fullBox.png) no-repeat center center / contain`;
         item.style.boxShadow = `0px 0px 20px 2px rgba(255, 0, 0, 0.6)`;
       };
     });
