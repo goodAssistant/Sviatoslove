@@ -84,6 +84,7 @@ const initPage = startTheme => {
       counterClick = -1;
     }else {
       counterClick = reportsMonth[reportsMonth.length - 1].counterClickTable;
+      initTheme(reportsTheme[0].theme);
       addTableInitTheme(reportsTheme[0].theme);
     };
   };
