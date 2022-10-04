@@ -11,48 +11,86 @@
   <link rel="stylesheet" href="./fonts/stylesheet_Natasha.css">
   <link rel="stylesheet" href="css/form.css">
   <link rel="stylesheet" href="css/table.css">
+  <link rel="stylesheet" href="css/burger.css">
   <link rel="stylesheet" href="css/media.css">
 </head>
 <body>
-  <div class="container">
-      <h1 class="reports__title">
-        Reports
-      </h1>
-    <div class="form__wrapper form_month">
-      <div class="form__month">
-        <h3>
-          Сформируйте месяц
-        </h3>
-        <div class="inputs__month">
-          <input class="month" type="text" placeholder="Месяц" required>
-          <input class="days" type="text" placeholder="Дни" required>
-          <button class="order__month" type="submit">
-            Сформировать месяц
-          </button>
+  <header class="header">
+    <div class="container">
+      <div class="wrapper__burger">
+        <div class="menu__burger__header">
+          <div class="mouse__over">
+            Меню
+          </div>
+          <span></span>
+        </div>
+        <div class="nav">
+          <div class="menu d-flex">
+            <div class="menu__item">
+              <a class="menu__link" href="#">
+                Good Assistant: "Познакомимся?"
+              </a>
+            </div>
+            <div class="menu__item">
+              <a class="menu__link" href="#">Сменить тему</a>
+            </div>
+            <!-- <div class="menu__item">
+              <a class="menu__link" href="#3">
+                Обо мне
+              </a>
+            </div>
+            <div class="menu__item">
+              <a class="menu__link" href="#4">
+                Трудовая деятельность
+              </a>
+            </div>
+            <div class="menu__item">
+              <a class="menu__link" href="#5">
+                Образование
+              </a>
+            </div> -->
+          </div>
         </div>
       </div>
-    </div>
-    <div class="form__wrapper form_result">
-      <div class="form__results">
-        <h3>
-          Внесите данные
-        </h3>
-        <div class="inputs__result">
-          <input class="input__date" type="text" placeholder="Число" required>
-          <input class="input__hour" type="text" placeholder="Минуты" required>
-          <input class="input__pp" type="text" placeholder="ПП" required>
-          <input class="input__publ" type="text" placeholder="Публ" required>
-          <input class="input__video" type="text" placeholder="Видео" required>
-          <input class="input__iz" type="text" placeholder="Из" required>
-          <button class="order__result" type="submit">
-            Внести записи
-          </button>
+        <h1 class="reports__title">
+          Reports
+        </h1>
+      <div class="form__wrapper form_month">
+        <div class="form__month">
+          <h3>
+            Сформируйте месяц
+          </h3>
+          <div class="inputs__month">
+            <input class="month" type="text" placeholder="Месяц" required>
+            <input class="days" type="text" placeholder="Дни" required>
+            <button class="order__month" type="submit">
+              Сформировать месяц
+            </button>
+          </div>
         </div>
       </div>
+      <div class="form__wrapper form_result">
+        <div class="form__results">
+          <h3>
+            Внесите данные
+          </h3>
+          <div class="inputs__result">
+            <input class="input__date" type="text" placeholder="Число" required>
+            <input class="input__hour" type="text" placeholder="Минуты" required>
+            <input class="input__pp" type="text" placeholder="ПП" required>
+            <input class="input__publ" type="text" placeholder="Публ" required>
+            <input class="input__video" type="text" placeholder="Видео" required>
+            <input class="input__iz" type="text" placeholder="Из" required>
+            <button class="order__result" type="submit">
+              Внести записи
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper__year"></div>
+      <a class="back_to_top" title="Наверх">∧</a> 
     </div>
-    <div class="wrapper__year">
-    </div>
-  </div>
+  </header>
   <script src="main.js"></script>
 </body>
 </html>

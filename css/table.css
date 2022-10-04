@@ -19,10 +19,16 @@ td, th {
  border: 1px solid rgb(255, 255, 255);
  padding: 10px 10px;
  background-color: rgba(223, 223, 200, 0.9);
- box-shadow: 0px 0px 10px 10px rgba(89, 19, 100, 0.6);
  border-radius: 10px;
  font-family: 'Choco cooky';
 }
+td.theme__milk, th.theme__milk {
+ box-shadow: 0px 0px 10px 3px rgba(54, 44, 55, 0.6);
+}
+td.theme__black, th.theme__black {
+	box-shadow: 0px 0px 10px 10px rgba(89, 19, 100, 0.6);
+}
+
 td:focus {
  transform: scale(1.5);
  transition: all ease 1s;
@@ -62,16 +68,20 @@ td:focus {
  background-color: rgba(255, 255, 255, 0.9);
 }
 .btn__delete {
- color: red;
  background-color: rgba(223, 223, 200, 0.9);
  font-weight: bold;
  font-size: 20px;
  border-radius: 10px;
  padding: 9px;
  letter-spacing: 1em;
- margin-left: 10px;
- margin-right: 10px;
- box-shadow: 0px 0px 10px 6px rgba(100, 57, 139, 1);
+}
+.btn__delete.theme__milk {
+	box-shadow: 0px 0px 10px 3px rgba(54, 44, 55, 0.6);
+	color: #000;
+}
+.btn__delete.theme__black {
+	box-shadow: 0px 0px 10px 6px rgba(100, 57, 139, 1);
+ color: red;
 }
 .wrapper__year {
 }
@@ -80,7 +90,11 @@ td:focus {
  overflow-x: auto;
  cursor: pointer;
 }
-.month__name {
+.month__name.theme__milk {
+	color: rgba(26, 123, 112, 0.5);
+}
+.month__name.theme__black {
+	color: gold;
 }
 .month {
  

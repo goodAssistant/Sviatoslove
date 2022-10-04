@@ -53,8 +53,12 @@
   .btn__delete {
     letter-spacing: 0;
   }
-  h1, h2 {
-    margin: 10px 0;
+  h1 {
+    margin: 0 0 10px 0;
+  }
+  h2 {
+    margin: 20px 0;
+
   }
   td, th {
     font-size: 10px;
