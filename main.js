@@ -22,10 +22,19 @@ const nav = document.querySelector('.nav');
 const header = document.querySelector('.header');
 const formWrappers = document.querySelectorAll('.form__wrapper ');
 
+const themeBlack = document.querySelector('.theme__black ');
+const themeMilk = document.querySelector('.theme__milk ');
+const themeBlueYellow = document.querySelector('.themes__blue__yellow');
+const themesWrapper = document.querySelector('.themes__wrapper');
+
+
 let reportsMonth;
 let reportsValue;
 let counterClick;
 let reportsTheme;
+let currentTheme;
+
+let startTheme = 'theme__black';
 
 class CreateTheme {
   constructor(theme) {
@@ -33,64 +42,67 @@ class CreateTheme {
   };
 };
 
-const initTheme = currentTheme => {
-  header.classList.add(currentTheme);
-  menuBurger.classList.add(currentTheme);
-  mouseOver.classList.add(currentTheme);
-  formWrappers.forEach(item => {item.classList.add(currentTheme)});
+const initTheme = theme => {
+  header.classList.add(theme);
+  menuBurger.classList.add(theme);
+  mouseOver.classList.add(theme);
+  formWrappers.forEach(item => {item.classList.add(theme)});
 };
 
-const addTableInitTheme = currentTheme => {
+const addTableInitTheme = theme => {
   const monthNames = wrapperYear.querySelectorAll('.month__name');
   const tds = Array.from(document.getElementsByTagName('TD'));
   const ths = Array.from(document.getElementsByTagName('TH'));
   const deleteBtns = Array.from(document.querySelectorAll('.btn__delete'));
 
-  monthNames.forEach(item => {item.classList.add(currentTheme)});
-  tds.forEach(item => {item.classList.add(currentTheme)});
-  ths.forEach(item => {item.classList.add(currentTheme)});
-  deleteBtns.forEach(item => {item.classList.add(currentTheme)});
+  monthNames.forEach(item => {item.classList.add(theme)});
+  tds.forEach(item => {item.classList.add(theme)});
+  ths.forEach(item => {item.classList.add(theme)});
+  deleteBtns.forEach(item => {item.classList.add(theme)});
 };
 
-const initPage = startTheme => {
-  if(!localStorage.getItem('reportsTheme')){
-    reportsTheme = [];
-    reportsTheme.push(new CreateTheme(startTheme));
-    localStorage.setItem('reportsTheme', JSON.stringify(reportsTheme))
-  }else {
-    reportsTheme = JSON.parse(localStorage.getItem('reportsTheme'));
-  }
+if(!localStorage.getItem('reportsTheme')){
+  reportsTheme = [];
+  reportsTheme.push(new CreateTheme(startTheme));
+  localStorage.setItem('reportsTheme', JSON.stringify(reportsTheme))
+  currentTheme = startTheme;
+}else {
+  reportsTheme = JSON.parse(localStorage.getItem('reportsTheme'));
+  currentTheme = reportsTheme[0].theme;
+};
+
+const initPage = theme => {
   if(!localStorage.getItem('reportsMonth') && !localStorage.getItem('reportsValue')) {
     reportsMonth = [];
     reportsValue = [];
     counterClick = -1;
-    initTheme(reportsTheme[0].theme);
+    initTheme(theme);
   }else if(!localStorage.getItem('reportsValue')) {
     reportsMonth = JSON.parse(localStorage.getItem('reportsMonth'));
     reportsValue = [];
     counterClick = reportsMonth[reportsMonth.length - 1].counterClickTable;
-    initTheme(reportsTheme[0].theme);
+    initTheme(theme);
     addTableInitTheme(reportsTheme[0].theme);
   }else if(!localStorage.getItem('reportsMonth')) {
     reportsMonth = [];
     counterClick = -1;
     reportsValue = JSON.parse(localStorage.getItem('reportsValue'));
-    initTheme(startTheme);
+    initTheme(theme);
   } else {
     reportsMonth = JSON.parse(localStorage.getItem('reportsMonth'));
     reportsValue = JSON.parse(localStorage.getItem('reportsValue'));
-    initTheme(startTheme);
+    initTheme(theme);
     if(reportsMonth.length === 0) {
       counterClick = -1;
     }else {
       counterClick = reportsMonth[reportsMonth.length - 1].counterClickTable;
-      initTheme(reportsTheme[0].theme);
-      addTableInitTheme(reportsTheme[0].theme);
+      initTheme(theme);
+      addTableInitTheme(theme);
     };
   };
 };
 
-initPage('theme__black');
+initPage(currentTheme);
 
 class CreateMonth {
   constructor(id, monthName, daysMonth, counterClickTable) {
@@ -396,12 +408,11 @@ document.addEventListener('click', event => {
         localStorage.setItem('reportsValue', JSON.stringify(finalValues));
         reportsValue = JSON.parse(localStorage.getItem('reportsValue'));
         event.target.style.background = `rgba(223, 223, 200, 0.9) url(./img/emptyBox.png) no-repeat center center / contain`;
-        event.target.style.boxShadow = `0px 0px 10px 10px rgba(89, 19, 100, 0.6)`;
+        event.target.style.boxShadow = `0px 0px 10px 3px rgba(54, 44, 55, 0.6)`;
         inputDaysValue();
         sum();
       };
     };
-    
   }else if(event.target.id !== '') {
     let element = event.target;
     let classTableBtn = + event.target.classList[1];
@@ -496,9 +507,10 @@ const backToTop = () => {
 
 document.addEventListener("scroll", function(event) {
   event.stopImmediatePropagation();
-  if(window.pageYOffset  <= 1) {
+  if(window.pageYOffset  >= 50) {
     goTopBtn.classList.add('back_to_top-show');
     closeBurgerMenu();
+    closeThemesMenu();
   }else {
     goTopBtn.classList.remove('back_to_top-show');
   }
@@ -512,62 +524,52 @@ menuBurger.addEventListener('click', () =>{
   moveMenuBurger();
 });
 
-const changeTheme = (event, theme = 'theme__black') => {
-  console.log(event.target)
+const changeTheme = (theme) => {
   const monthNames = wrapperYear.querySelectorAll('.month__name');
   const tds = Array.from(document.getElementsByTagName('TD'));
   const ths = Array.from(document.getElementsByTagName('TH'));
   const deleteBtns = Array.from(document.querySelectorAll('.btn__delete'));
-  if(event.target.innerHTML === 'Сменить тему') {
-    if(header.classList.contains(theme)) {
 
-      header.classList.remove(theme);
-      menuBurger.classList.remove(theme);
-      mouseOver.classList.remove(theme);
-      monthNames.forEach(item => {item.classList.remove(theme)});
-      formWrappers.forEach(item => {item.classList.remove(theme)});
-      tds.forEach(item => {item.classList.remove(theme)});
-      ths.forEach(item => {item.classList.toggle(theme)});
-      deleteBtns.forEach(item => {item.classList.remove(theme)});
+  let currentTheme = header.classList[1];
+ 
+  header.classList.remove(currentTheme);
+  menuBurger.classList.remove(currentTheme);
+  mouseOver.classList.remove(currentTheme);
+  monthNames.forEach(item => {item.classList.remove(currentTheme)});
+  formWrappers.forEach(item => {item.classList.remove(currentTheme)});
+  tds.forEach(item => {item.classList.remove(currentTheme)});
+  ths.forEach(item => {item.classList.toggle(currentTheme)});
+  deleteBtns.forEach(item => {item.classList.remove(currentTheme)});
 
-      header.classList.add('theme__milk');
-      menuBurger.classList.add('theme__milk');
-      mouseOver.classList.add('theme__milk');
-      monthNames.forEach(item => {item.classList.add('theme__milk')});
-      formWrappers.forEach(item => {item.classList.add('theme__milk')});
-      tds.forEach(item => {item.classList.add('theme__milk')});
-      ths.forEach(item => {item.classList.add('theme__milk')});
-      deleteBtns.forEach(item => {item.classList.add('theme__milk')});
-      reportsTheme[0].theme = 'theme__milk';
-      localStorage.setItem('reportsTheme', JSON.stringify(reportsTheme));
-    } else {
-      header.classList.remove('theme__milk');
-      menuBurger.classList.remove('theme__milk');
-      mouseOver.classList.remove('theme__milk');
-      monthNames.forEach(item => {item.classList.remove('theme__milk')});
-      formWrappers.forEach(item => {item.classList.remove('theme__milk')});
-      tds.forEach(item => {item.classList.remove('theme__milk')});
-      ths.forEach(item => {item.classList.remove('theme__milk')});
-      deleteBtns.forEach(item => {item.classList.remove('theme__milk')});
-
-      header.classList.add(theme);
-      menuBurger.classList.add(theme);
-      mouseOver.classList.add(theme);
-      monthNames.forEach(item => {item.classList.add(theme)});
-      formWrappers.forEach(item => {item.classList.add(theme)});
-      tds.forEach(item => {item.classList.add(theme)});
-      ths.forEach(item => {item.classList.add(theme)});
-      deleteBtns.forEach(item => {item.classList.add(theme)});
-      reportsTheme[0].theme = theme;
-      localStorage.setItem('reportsTheme', JSON.stringify(reportsTheme));
-    };
-    moveMenuBurger();
-  };
+  header.classList.add(theme);
+  menuBurger.classList.add(theme);
+  mouseOver.classList.add(theme);
+  monthNames.forEach(item => {item.classList.add(theme)});
+  formWrappers.forEach(item => {item.classList.add(theme)});
+  tds.forEach(item => {item.classList.add(theme)});
+  ths.forEach(item => {item.classList.add(theme)});
+  deleteBtns.forEach(item => {item.classList.add(theme)});
+  reportsTheme[0].theme = theme;
+  localStorage.setItem('reportsTheme', JSON.stringify(reportsTheme));
 };
 
-nav.addEventListener('click', event =>{changeTheme(event)})
+const closeThemesMenu = () => {
+  themesWrapper.style.display = `none`;
+  setTimeout(() => {themesWrapper.classList.remove('open_menu')}, 1)
+  setTimeout(() => {themesWrapper.style.display = `block`}, 1)
+};
 
-
+nav.addEventListener('click', () => {
+  moveMenuBurger();
+  themesWrapper.classList.add('open_menu');
+  const btnsThemes = Array.from(themesWrapper.getElementsByTagName('div'));
+  btnsThemes.forEach(item => {
+    item.addEventListener('click', event => {
+      changeTheme(event.target.classList[1])
+      closeThemesMenu();
+    });
+  });
+});
 
 i = 0;
 dt = new Array(
@@ -580,7 +582,7 @@ function cl() {
   setTimeout("cl()",200);
 };
 
-setTimeout("cl()",5);
+// setTimeout("cl()",5);
 
 const getReportsLength = () => {
  reportsMonth.forEach((item, idx) => {

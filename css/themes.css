@@ -1,0 +1,85 @@
+
+/*--------------Themes Wrapper----------------*/
+
+.themes__wrapper {
+ position: absolute;
+ font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+ top: 40px;
+ left: 59vw;
+ color: #fff;
+ padding: 10px;
+ border-radius: 25px;
+ box-shadow: 5px 5px 5px 0px rgb(0 0 0 / 70%);
+ background-color: rgba(89, 19, 100, 0.8);
+ transition: all 0.8s ease-out;
+ text-align: start;
+ opacity: 0;
+}
+
+.themes__wrapper.open_menu {
+ opacity: 1;
+ transition: opacity 1.5s ease;
+ animation: myAnim 1s ease 1.5s 1 normal forwards;
+}
+
+.themes__title {
+ color: #fff;
+ margin-bottom: 5px;
+}
+
+.themes__link {
+ color: #fff;
+ font-size: 13px; 
+ cursor: pointer;
+}
+.themes__link:hover {
+ text-decoration: underline;
+}
+
+.themes__link:not(:last-child) {
+ margin-bottom: 5px;
+}
+
+@keyframes myAnim {
+	0% {
+  left: 61vw;
+	}
+
+	100% {
+  left: 0;
+	}
+}
+
+/* ------------------- themes__blue__yellow ----------------*/
+
+.header.themes__blue__yellow {
+ background: linear-gradient(30deg, #ffd500 -10%, #0008ff 122%);
+}
+
+.menu__burger__header.themes__blue__yellow span, .menu__burger__header.themes__blue__yellow:after, .menu__burger__header.themes__blue__yellow:before {
+ background-color: rgb(255 180 0 / 60%);
+}
+
+.menu__burger__header.open_menu.themes__blue__yellow:before, .menu__burger__header.open_menu.themes__blue__yellow:after {
+ background-color: rgb(255 180 0 / 60%);
+}
+
+.mouse__over.themes__blue__yellow {
+ color: rgb(255 180 0 / 60%);
+ font-weight: bold;
+}
+
+.form_month.themes__blue__yellow {
+ background: linear-gradient(42deg, #0025ff -10%, #875e05 59%);
+}
+
+.form_result.themes__blue__yellow {
+ background: linear-gradient(42deg, #0025ff -10%, #875e05 59%);
+}
+.form__wrapper.themes__blue__yellow {
+ box-shadow: 8px 8px 10px 0px rgba(55, 55, 44, 0.6);
+}
+td.themes__blue__yellow, th.themes__blue__yellow {
+ box-shadow: 0px 0px 10px 3px rgba(54, 44, 55, 0.6);
+
+}
