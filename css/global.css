@@ -9,13 +9,10 @@ body {
   color: #ffffff;
   padding: 0;
   margin: 0;
+  overflow: hidden;
 }
-.header.theme__black {
-  background-color: #000;
-
-}
-.header.theme__milk {
-  background-color: #d9dab8;
+.header {
+  height: 100vh;
 }
 .container {
   max-width: 1200px;

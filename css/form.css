@@ -8,12 +8,6 @@
   margin: 0 auto;
   text-align: center;
 }
-.form__wrapper.theme__black {
-  box-shadow: 8px 8px 10px 0px rgba(201, 201, 180, 0.6);
-}
-.form__wrapper.theme__milk {
-  box-shadow: 8px 8px 10px 0px rgba(55, 55, 44, 0.6);
-}
 .menu__link{
   cursor: pointer;
   font-weight: bold;

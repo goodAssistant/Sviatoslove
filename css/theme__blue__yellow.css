@@ -19,7 +19,6 @@
 
 .nav.open_menu.theme__blue__yellow, .themes__wrapper.theme__blue__yellow  {
  background-color: rgba(255 180 0 / 60%);
-
 }
 
 .menu__link.theme__blue__yellow a {
@@ -37,20 +36,60 @@
 .form_result.theme__blue__yellow {
  background: linear-gradient(42deg, #0025ff -10%, #875e05 59%);
 }
+
 .form__wrapper.theme__blue__yellow {
  box-shadow: 8px 8px 10px 0px rgba(55, 55, 44, 0.6);
 }
+
 .menu__link.theme__blue__yellow {
 	color: rgb(16, 16, 13);
 }
+
 .inputs.theme__blue__yellow {
  box-shadow: 8px 8px 10px 0px rgba(89, 19, 100, 0.6);
 }
+
 .btns_add.theme__blue__yellow {
  box-shadow: 4px 4px 10px 0px rgba(190, 167, 194, 0.8);
 	border: solid rgb(251, 141, 7);
 	color: #fff;
 }
+
+.btns_add.theme__blue__yellow:hover {
+ box-shadow: 4px 4px 10px 0px rgba(190, 167, 194, 0.8), 0 0 10px 4px rgba(190, 167, 194, 0.8)inset;
+	border: none;
+}
+
+
 td.theme__blue__yellow, th.theme__blue__yellow {
  box-shadow: 0px 0px 10px 3px rgba(54, 44, 55, 0.6);
+}
+
+.btn__delete__values.theme__blue__yellow {
+ padding: 0;
+ border: 1px solid rgba(89, 19, 100, 0.6);
+	background: rgba(223, 223, 200, 0.9) url(../img/empty.png) no-repeat center center / contain;
+ box-shadow: 0px 0px 10px 3px rgba(54, 44, 55, 0.6);
+ border: none;
+}
+
+.btn__delete__values.garbage.theme__blue__yellow {
+	background: rgba(204, 204, 144, 0.9) url(../img/full.png) no-repeat center center / contain;
+	box-shadow: 0px 0px 10px 2px rgba(34, 9, 211, 0.8);
+ border: none;
+}
+
+.btn__delete.theme__blue__yellow {
+	color: #6d3120;
+	border: 2px solid #6d3120;
+ box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.9);
+}
+
+.btn__delete.theme__blue__yellow {
+	border: none;
+}
+
+.btn__delete.theme__blue__yellow:hover {
+	border: none;
+ box-shadow: 0 0 10px 4px rgba(189, 234, 229, 0.8)inset, 0 0 6px 6px rgba(189, 234, 229, 0.9);
 }

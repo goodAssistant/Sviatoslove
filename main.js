@@ -21,6 +21,8 @@ const menuLink = document.querySelectorAll('.menu__link');
 const themesWrapper = document.querySelector('.themes__wrapper');
 const themesTitle = document.querySelector('.themes__title');
 const formWrappers = document.querySelectorAll('.form__wrapper');
+const formTitle = Array.from(document.getElementsByTagName('h3'));
+console.log(formTitle)
 const inputs = document.querySelectorAll('.inputs');
 const btnsAdd = document.querySelectorAll('.btns_add');
 const goTopBtn = document.querySelector('.back_to_top');
@@ -47,6 +49,7 @@ const initTheme = theme => {
   themesWrapper.classList.add(theme);
   themesTitle.classList.add(theme);
   menuLink.forEach(item => {item.classList.add(theme)});
+  formTitle.forEach(item => {item.classList.add(theme)});
   formWrappers.forEach(item => {item.classList.add(theme)});
   inputs.forEach(item => {item.classList.add(theme)});
   btnsAdd.forEach(item => {item.classList.add(theme)});
@@ -553,6 +556,7 @@ const changeTheme = (theme) => {
   menuLink.forEach(item => {item.classList.remove(currentTheme)});
   monthNames.forEach(item => {item.classList.remove(currentTheme)});
   formWrappers.forEach(item => {item.classList.remove(currentTheme)});
+  formTitle.forEach(item => {item.classList.remove(currentTheme)});
   inputs.forEach(item => {item.classList.remove(currentTheme)});
   btnsAdd.forEach(item => {item.classList.remove(currentTheme)});
   tds.forEach(item => {item.classList.remove(currentTheme)});
@@ -568,8 +572,9 @@ const changeTheme = (theme) => {
   menuLink.forEach(item => {item.classList.add(theme)});
   monthNames.forEach(item => {item.classList.add(theme)});
   formWrappers.forEach(item => {item.classList.add(theme)});
+  formTitle.forEach(item => {item.classList.add(theme)});
   inputs.forEach(item => {item.classList.add(theme)});
-  btnsAdd.forEach(item => {item.classList.add(currentTheme)});
+  btnsAdd.forEach(item => {item.classList.add(theme)});
   tds.forEach(item => {item.classList.add(theme)});
   ths.forEach(item => {item.classList.add(theme)});
   deleteBtns.forEach(item => {item.classList.add(theme)});
