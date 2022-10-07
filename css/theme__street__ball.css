@@ -1,5 +1,5 @@
 .header.theme__street__ball {
- background: url(../img/adidas-originals-streetball.jpg) no-repeat center center / cover;
+ background: url(../img/adidas-originals-streetball.jpg) repeat center 115px / contain;
 }
 
 .menu__burger__header.theme__street__ball span, .menu__burger__header.theme__street__ball:after, .menu__burger__header.theme__street__ball:before {

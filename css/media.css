@@ -67,4 +67,7 @@
     font-size: 12px;
     letter-spacing: 4px;
   }
+  .back_to_top {
+    right:0;
+  }
 }

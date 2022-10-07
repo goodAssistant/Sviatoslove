@@ -511,14 +511,11 @@ const backToTop = () => {
 };
 
 const closeThemesMenu = () => {
-  themesWrapper.style.display = `none`;
   setTimeout(() => {themesWrapper.classList.remove('open_menu')}, 1)
-  setTimeout(() => {themesWrapper.style.display = `block`}, 1)
 };
 
-document.addEventListener("scroll", function(event) {
-  event.stopImmediatePropagation();
-  if(window.pageYOffset  >= 50) {
+document.addEventListener("scroll", function() {
+  if(window.pageYOffset  >= 10) {
     goTopBtn.classList.add('back_to_top-show');
     closeBurgerMenu();
     closeThemesMenu();
@@ -582,6 +579,7 @@ const changeTheme = (theme) => {
 };
 
 menuNav.addEventListener('click', event => {
+  event.preventDefault();
   if(event.target.classList.contains('change__theme')) {
     menuNav.classList.remove('open_menu');
 
@@ -589,6 +587,7 @@ menuNav.addEventListener('click', event => {
     const btnsThemes = document.querySelectorAll('.theme__link');
     btnsThemes.forEach(item => {
       item.addEventListener('click', event => {
+      event.preventDefault();
       changeTheme(event.target.classList[1])
       closeThemesMenu();
       closeBurgerMenu();
