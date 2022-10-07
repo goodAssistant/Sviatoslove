@@ -22,7 +22,6 @@ const themesWrapper = document.querySelector('.themes__wrapper');
 const themesTitle = document.querySelector('.themes__title');
 const formWrappers = document.querySelectorAll('.form__wrapper');
 const formTitle = Array.from(document.getElementsByTagName('h3'));
-console.log(formTitle)
 const inputs = document.querySelectorAll('.inputs');
 const btnsAdd = document.querySelectorAll('.btns_add');
 const goTopBtn = document.querySelector('.back_to_top');

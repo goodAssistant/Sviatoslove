@@ -9,10 +9,8 @@ body {
   color: #ffffff;
   padding: 0;
   margin: 0;
-  overflow: hidden;
 }
 .header {
-  height: 100vh;
 }
 .container {
   max-width: 1200px;

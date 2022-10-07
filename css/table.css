@@ -64,12 +64,6 @@ td:focus {
 	margin: 0 10px;
 }
 .wrapper__year {
-}
-.table__wrapp {
-	scroll-behavior: smooth;
- overflow-x: auto;
- cursor: pointer;
-}
 
 .month {
  
