@@ -1,0 +1,54 @@
+
+/*--------------Themes Wrapper----------------*/
+
+.themes__wrapper {
+ position: absolute;
+	max-width: 150px;
+	width: 100%;
+ font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+ top: 40px;
+ left: 150%;
+ color: #fff;
+ padding: 10px;
+ border-radius: 25px;
+ box-shadow: 5px 5px 5px 0px rgb(0 0 0 / 70%);
+ background-color: rgba(89, 19, 100, 0.8);
+ transition: all 0.8s ease-out;
+ text-align: start;
+ opacity: 0;
+}
+
+.themes__wrapper.open_menu {
+	left:43vw;
+ opacity: 1;
+ transition: opacity 1.2s ease 0.5s;
+ animation: myAnim 1s ease 1.2s 1 normal forwards;
+}
+
+.themes__title {
+ color: #fff;
+ margin-bottom: 5px;
+}
+
+.menu__link a {
+ color: #fff;
+ font-size: 13px; 
+ cursor: pointer;
+}
+.themes__link:hover {
+ text-decoration: underline;
+}
+
+.themes__link:not(:last-child) {
+ margin-bottom: 5px;
+}
+
+@keyframes myAnim {
+	0% {
+  left: 43vw;
+	}
+
+	100% {
+  left: 0;
+	}
+}

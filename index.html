@@ -12,7 +12,9 @@
   <link rel="stylesheet" href="css/form.css">
   <link rel="stylesheet" href="css/table.css">
   <link rel="stylesheet" href="css/burger.css">
-  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/themes__wrapper.css">
+  <link rel="stylesheet" href="css/themes__blue__yellow.css">
+  <link rel="stylesheet" href="css/theme__street__ball.css">
   <link rel="stylesheet" href="css/media.css">
 </head>
 <body>
@@ -33,7 +35,7 @@
               </a>
             </div>
             <div class="menu__item">
-              <a class="menu__link" href="#">Сменить тему</a>
+              <a class="menu__link change__theme" href="#">Сменить тему</a>
             </div>
             <!-- <div class="menu__item">
               <a class="menu__link" href="#3">
@@ -44,8 +46,8 @@
               <a class="menu__link" href="#4">
                 Трудовая деятельность
               </a>
-            </div>
-            <div class="menu__item">
+            </div> -->
+            <!-- <div class="menu__item">
               <a class="menu__link" href="#5">
                 Образование
               </a>
@@ -55,15 +57,21 @@
       </div>
       <div class="themes__wrapper">
         <h4 class="themes__title">Доступные темы:</h4>
-        <div class="themes__link theme__black">
-          Black - purple
+        <div class="menu__link">
+          <a href="#" class="theme__link theme__black">Black - purple</a>
         </div>
-        <div class="themes__link theme__milk">
-          Dairy
+        <div class="menu__link">
+          <a href="#" class="theme__link theme__milk">Milk</a>
         </div>
-        <div class="themes__link themes__blue__yellow">
-          Blue - yellow
+        <div class="menu__link">
+          <a href="#" class="theme__link theme__blue__yellow">Blue - yellow</a>
         </div>
+        <div class="menu__link">
+          <a href="#" class="theme__link theme__street__ball" >Street basketball</a>
+        </div>
+        <!-- <div class="menu__link theme__road">
+          Road
+        </div> -->
       </div>
       <h1 class="reports__title">
         Reports
@@ -74,9 +82,9 @@
             Сформируйте месяц
           </h3>
           <div class="inputs__month">
-            <input class="month" type="text" placeholder="Месяц" required>
-            <input class="days" type="text" placeholder="Дни" required>
-            <button class="order__month" type="submit">
+            <input class="month inputs" type="text" placeholder="Месяц" required>
+            <input class="days inputs" type="text" placeholder="Дни" required>
+            <button class="order__month btns_add" type="submit">
               Сформировать месяц
             </button>
           </div>
@@ -88,13 +96,13 @@
             Внесите данные
           </h3>
           <div class="inputs__result">
-            <input class="input__date" type="text" placeholder="Число" required>
-            <input class="input__hour" type="text" placeholder="Минуты" required>
-            <input class="input__pp" type="text" placeholder="ПП" required>
-            <input class="input__publ" type="text" placeholder="Публ" required>
-            <input class="input__video" type="text" placeholder="Видео" required>
-            <input class="input__iz" type="text" placeholder="Из" required>
-            <button class="order__result" type="submit">
+            <input class="input__date inputs" type="text" placeholder="Число" required>
+            <input class="input__hour inputs" type="text" placeholder="Минуты" required>
+            <input class="input__pp inputs" type="text" placeholder="ПП" required>
+            <input class="input__publ inputs" type="text" placeholder="Публ" required>
+            <input class="input__video inputs" type="text" placeholder="Видео" required>
+            <input class="input__iz inputs" type="text" placeholder="Из" required>
+            <button class="order__result btns_add" type="submit">
               Внести записи
             </button>
           </div>

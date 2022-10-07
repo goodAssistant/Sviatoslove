@@ -12,21 +12,18 @@ const inputIz = wrapperResult.querySelector('.input__iz');
 const buttonResult = wrapperResult.querySelector('.order__result');
 const wrapperYear = document.querySelector('.wrapper__year');
 
-const menuBurger = document.querySelector('.menu__burger__header');
-const menuNav = document.querySelector('.nav');
-const wrapperBurger = document.querySelector('.wrapper__burger');
-const mouseOver = document.querySelector('.mouse__over');
-const menuLink = document.querySelectorAll('.menu__link');
-const goTopBtn = document.querySelector('.back_to_top');
-const nav = document.querySelector('.nav');
 const header = document.querySelector('.header');
-const formWrappers = document.querySelectorAll('.form__wrapper ');
-
-const themeBlack = document.querySelector('.theme__black ');
-const themeMilk = document.querySelector('.theme__milk ');
-const themeBlueYellow = document.querySelector('.themes__blue__yellow');
+const wrapperBurger = document.querySelector('.wrapper__burger');
+const menuBurger = document.querySelector('.menu__burger__header');
+const mouseOver = document.querySelector('.mouse__over');
+const menuNav = document.querySelector('.nav');
+const menuLink = document.querySelectorAll('.menu__link');
 const themesWrapper = document.querySelector('.themes__wrapper');
-
+const themesTitle = document.querySelector('.themes__title');
+const formWrappers = document.querySelectorAll('.form__wrapper');
+const inputs = document.querySelectorAll('.inputs');
+const btnsAdd = document.querySelectorAll('.btns_add');
+const goTopBtn = document.querySelector('.back_to_top');
 
 let reportsMonth;
 let reportsValue;
@@ -45,20 +42,29 @@ class CreateTheme {
 const initTheme = theme => {
   header.classList.add(theme);
   menuBurger.classList.add(theme);
+  menuNav.classList.add(theme);
   mouseOver.classList.add(theme);
+  themesWrapper.classList.add(theme);
+  themesTitle.classList.add(theme);
+  menuLink.forEach(item => {item.classList.add(theme)});
   formWrappers.forEach(item => {item.classList.add(theme)});
+  inputs.forEach(item => {item.classList.add(theme)});
+  btnsAdd.forEach(item => {item.classList.add(theme)});
 };
 
 const addTableInitTheme = theme => {
   const monthNames = wrapperYear.querySelectorAll('.month__name');
   const tds = Array.from(document.getElementsByTagName('TD'));
   const ths = Array.from(document.getElementsByTagName('TH'));
+  const btnDeleteValues  = Array.from(document.querySelectorAll('.btn__delete__values'));
   const deleteBtns = Array.from(document.querySelectorAll('.btn__delete'));
 
   monthNames.forEach(item => {item.classList.add(theme)});
   tds.forEach(item => {item.classList.add(theme)});
   ths.forEach(item => {item.classList.add(theme)});
   deleteBtns.forEach(item => {item.classList.add(theme)});
+  btnDeleteValues.forEach(item => {item.classList.add(theme)});
+  btnDeleteValues.forEach(item => {item.classList.add(theme)});
 };
 
 if(!localStorage.getItem('reportsTheme')){
@@ -130,8 +136,7 @@ const addValuesBasket  = () => {
   reportsValue.filter(valueObj => {
     buttonsDelete.filter(item => {
       if(valueObj.id === + item.id && item.classList[1] === valueObj.monthDay) {
-        item.style.background = `rgba(89, 19, 100, 0.6) url(./img/fullBox.png) no-repeat center center / contain`;
-        item.style.boxShadow = `0px 0px 20px 2px rgba(255, 0, 0, 0.6)`;
+        item.classList.add('garbage');
       };
     });
   });
@@ -184,7 +189,6 @@ const renderWrapperTableDom = index => {
           let $buttonDeleteValues = document.createElement('th');
           $buttonDeleteValues.classList.add('btn__delete__values', `${days}`);
           $buttonDeleteValues.setAttribute('id', `${reportsMonth[index].id}`);
-          $buttonDeleteValues.style.background = `rgba(223, 223, 200, 0.9) url(./img/emptyBox.png) no-repeat center center / contain`;
           $rowTr.append($buttonDeleteValues);
         };
       } else {
@@ -407,8 +411,7 @@ document.addEventListener('click', event => {
         let finalValues = [...valuesMonth, ...currentValues];
         localStorage.setItem('reportsValue', JSON.stringify(finalValues));
         reportsValue = JSON.parse(localStorage.getItem('reportsValue'));
-        event.target.style.background = `rgba(223, 223, 200, 0.9) url(./img/emptyBox.png) no-repeat center center / contain`;
-        event.target.style.boxShadow = `0px 0px 10px 3px rgba(54, 44, 55, 0.6)`;
+        event.target.classList.remove('garbage');
         inputDaysValue();
         sum();
       };
@@ -505,6 +508,12 @@ const backToTop = () => {
   };
 };
 
+const closeThemesMenu = () => {
+  themesWrapper.style.display = `none`;
+  setTimeout(() => {themesWrapper.classList.remove('open_menu')}, 1)
+  setTimeout(() => {themesWrapper.style.display = `block`}, 1)
+};
+
 document.addEventListener("scroll", function(event) {
   event.stopImmediatePropagation();
   if(window.pageYOffset  >= 50) {
@@ -521,7 +530,12 @@ goTopBtn.addEventListener('click', () => {
 });
 
 menuBurger.addEventListener('click', () =>{
-  moveMenuBurger();
+  if(themesWrapper.classList.contains('open_menu')) {
+    closeThemesMenu();
+    menuBurger.classList.remove('open_menu');
+  }else {
+    moveMenuBurger();
+  };
 });
 
 const changeTheme = (theme) => {
@@ -529,23 +543,33 @@ const changeTheme = (theme) => {
   const tds = Array.from(document.getElementsByTagName('TD'));
   const ths = Array.from(document.getElementsByTagName('TH'));
   const deleteBtns = Array.from(document.querySelectorAll('.btn__delete'));
-
   let currentTheme = header.classList[1];
- 
   header.classList.remove(currentTheme);
   menuBurger.classList.remove(currentTheme);
+  menuNav.classList.remove(currentTheme);
   mouseOver.classList.remove(currentTheme);
+  themesWrapper.classList.remove(currentTheme);
+  themesTitle.classList.remove(currentTheme);
+  menuLink.forEach(item => {item.classList.remove(currentTheme)});
   monthNames.forEach(item => {item.classList.remove(currentTheme)});
   formWrappers.forEach(item => {item.classList.remove(currentTheme)});
+  inputs.forEach(item => {item.classList.remove(currentTheme)});
+  btnsAdd.forEach(item => {item.classList.remove(currentTheme)});
   tds.forEach(item => {item.classList.remove(currentTheme)});
-  ths.forEach(item => {item.classList.toggle(currentTheme)});
+  ths.forEach(item => {item.classList.remove(currentTheme)});
   deleteBtns.forEach(item => {item.classList.remove(currentTheme)});
 
   header.classList.add(theme);
   menuBurger.classList.add(theme);
+  menuNav.classList.add(theme);
   mouseOver.classList.add(theme);
+  themesWrapper.classList.add(theme);
+  themesTitle.classList.add(theme);
+  menuLink.forEach(item => {item.classList.add(theme)});
   monthNames.forEach(item => {item.classList.add(theme)});
   formWrappers.forEach(item => {item.classList.add(theme)});
+  inputs.forEach(item => {item.classList.add(theme)});
+  btnsAdd.forEach(item => {item.classList.add(currentTheme)});
   tds.forEach(item => {item.classList.add(theme)});
   ths.forEach(item => {item.classList.add(theme)});
   deleteBtns.forEach(item => {item.classList.add(theme)});
@@ -553,22 +577,20 @@ const changeTheme = (theme) => {
   localStorage.setItem('reportsTheme', JSON.stringify(reportsTheme));
 };
 
-const closeThemesMenu = () => {
-  themesWrapper.style.display = `none`;
-  setTimeout(() => {themesWrapper.classList.remove('open_menu')}, 1)
-  setTimeout(() => {themesWrapper.style.display = `block`}, 1)
-};
+menuNav.addEventListener('click', event => {
+  if(event.target.classList.contains('change__theme')) {
+    menuNav.classList.remove('open_menu');
 
-nav.addEventListener('click', () => {
-  moveMenuBurger();
-  themesWrapper.classList.add('open_menu');
-  const btnsThemes = Array.from(themesWrapper.getElementsByTagName('div'));
-  btnsThemes.forEach(item => {
-    item.addEventListener('click', event => {
+    themesWrapper.classList.add('open_menu');
+    const btnsThemes = document.querySelectorAll('.theme__link');
+    btnsThemes.forEach(item => {
+      item.addEventListener('click', event => {
       changeTheme(event.target.classList[1])
       closeThemesMenu();
+      closeBurgerMenu();
+      });
     });
-  });
+  }else{};
 });
 
 i = 0;

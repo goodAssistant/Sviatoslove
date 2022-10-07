@@ -14,6 +14,14 @@
 .form__wrapper.theme__milk {
   box-shadow: 8px 8px 10px 0px rgba(55, 55, 44, 0.6);
 }
+.menu__link{
+  cursor: pointer;
+  font-weight: bold;
+}
+.menu__link:hover {
+  transform: scale(1.1);
+  text-decoration: underline;
+}
 .form_month{
   margin-bottom: 30px;
 }
@@ -43,8 +51,8 @@
   background-color: rgb(223, 223, 200);
   box-shadow: 4px 4px 8px 1px rgba(255, 255, 0, 0.6);
 }
-.inputs__month input:focus , .inputs__result input:focus {
-  transform: scale(1.1);
+.inputs__month input:focus, .inputs__result input:focus {
+  transform: scale(1.2);
   border: 1px solid rgb(0, 255, 187);
   box-shadow: 10px 5px 30px 10px rgba(156, 156, 152, 0.6);
 }

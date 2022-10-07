@@ -1,0 +1,56 @@
+/* ------------------- themes__blue__yellow ----------------*/
+
+.header.theme__blue__yellow {
+ background: linear-gradient(30deg, #ffd500 -10%, #0008ff 122%);
+}
+
+.menu__burger__header.theme__blue__yellow span, .menu__burger__header.theme__blue__yellow:after, .menu__burger__header.theme__blue__yellow:before {
+ background-color: rgba(255 180 0 / 60%);
+}
+
+.menu__burger__header.open_menu.theme__blue__yellow:before, .menu__burger__header.open_menu.theme__blue__yellow:after {
+ background-color: rgb(255 180 0 / 60%);
+}
+
+.mouse__over.theme__blue__yellow {
+ color: rgb(255 180 0 / 60%);
+ font-weight: bold;
+}
+
+.nav.open_menu.theme__blue__yellow, .themes__wrapper.theme__blue__yellow  {
+ background-color: rgba(255 180 0 / 60%);
+
+}
+
+.menu__link.theme__blue__yellow a {
+	color: #000;
+}
+
+.themes__title.theme__blue__yellow {
+	color: #0008ff;
+}
+
+.form_month.theme__blue__yellow {
+ background: linear-gradient(42deg, #0025ff -10%, #875e05 59%);
+}
+
+.form_result.theme__blue__yellow {
+ background: linear-gradient(42deg, #0025ff -10%, #875e05 59%);
+}
+.form__wrapper.theme__blue__yellow {
+ box-shadow: 8px 8px 10px 0px rgba(55, 55, 44, 0.6);
+}
+.menu__link.theme__blue__yellow {
+	color: rgb(16, 16, 13);
+}
+.inputs.theme__blue__yellow {
+ box-shadow: 8px 8px 10px 0px rgba(89, 19, 100, 0.6);
+}
+.btns_add.theme__blue__yellow {
+ box-shadow: 4px 4px 10px 0px rgba(190, 167, 194, 0.8);
+	border: solid rgb(251, 141, 7);
+	color: #fff;
+}
+td.theme__blue__yellow, th.theme__blue__yellow {
+ box-shadow: 0px 0px 10px 3px rgba(54, 44, 55, 0.6);
+}
