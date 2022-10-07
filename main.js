@@ -515,7 +515,7 @@ const closeThemesMenu = () => {
 };
 
 document.addEventListener("scroll", function() {
-  if(window.pageYOffset  >= 10) {
+  if(window.pageYOffset >= 1) {
     goTopBtn.classList.add('back_to_top-show');
     closeBurgerMenu();
     closeThemesMenu();
