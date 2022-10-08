@@ -113,7 +113,7 @@
 .back_to_top {
  position: fixed;
  bottom: 4vh;
- left: 2vw;
+ right: 2vw;
  z-index: 9999;
  width: 20px;
  height: 20px;

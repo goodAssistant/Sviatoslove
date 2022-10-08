@@ -32,11 +32,11 @@
 }
 
 .form_month.theme__street__ball {
- background: linear-gradient(42deg, #292b42 -10%, #8d836d 59%);
+ background: linear-gradient(42deg, rgba(41, 43, 66, 0.8) -10%, rgba(141, 131, 109, 0.8) 59%);
 }
 
 .form_result.theme__street__ball {
- background: linear-gradient(42deg, #292b42 -10%, #8d836d 59%);
+ background: linear-gradient(42deg, rgba(41, 43, 66, 0.8) -10%, rgba(141, 131, 109, 0.8) 59%);
 }
 .form__wrapper.theme__street__ball {
  box-shadow: 8px 8px 10px 0px rgba(0, 0, 0, 0.8);
@@ -63,20 +63,26 @@
 td.theme__street__ball, th.theme__street__ball {
  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.9);
 	color: #6d3120;
+	background-color: rgb(225 225 196 / 70%);
+}
+td.theme__street__ball:focus {
+ outline: 2px solid rgb(244, 197, 175);
 }
 .btn__delete__values.theme__street__ball {
  padding: 0;
  border: 1px solid rgba(89, 19, 100, 0.6);
-	background: rgba(223, 223, 200, 0.9) url(../img/emptyBasketball.png) no-repeat center center / contain;
+	background: rgba(223, 223, 200, 0.7) url(../img/emptyBasketball.png) no-repeat center center / contain;
 	box-shadow: 0px 0px 10px 3px rgba(27, 23, 28, 0.9);
 }
 .btn__delete__values.garbage.theme__street__ball {
-	background: rgba(204, 204, 144, 0.9) url(../img/fullBasketball.png) no-repeat center center / contain;
+	background: rgba(204, 204, 144, 0.7) url(../img/fullBasketball.png) no-repeat center center / contain;
 	box-shadow: 0px 0px 10px 4px rgba(251, 141, 7, 0.8);
 	border: none;
 }
 
 .btn__delete.theme__street__ball {
+ background-color: rgba(223, 223, 200, 0.7);
+
 	color: #6d3120;
 	border: 2px solid #6d3120;
  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.9);

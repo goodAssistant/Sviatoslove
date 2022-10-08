@@ -59,6 +59,10 @@ td.theme__milk, th.theme__milk {
  box-shadow: 0px 0px 10px 3px rgba(54, 44, 55, 0.6);
 }
 
+td.theme__milk:focus {
+ outline: 2px solid rgba(26, 123, 112, 0.5);
+}
+
 .btn__delete.theme__milk {
 	box-shadow: 0px 0px 10px 3px rgba(54, 44, 55, 0.6);
 	color: #000;
