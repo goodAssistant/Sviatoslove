@@ -1,3 +1,8 @@
+.wrapper__year {
+	overflow-y: scroll;
+ height: 420px;
+}
+
 .table__month {
  border-spacing: 10px;
  overflow: auto;
