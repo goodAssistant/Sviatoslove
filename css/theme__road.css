@@ -1,0 +1,126 @@
+.header.theme__road {
+ background: url(../img/road_autumn.jpg) no-repeat center center / cover;
+}
+
+.menu__burger__header.theme__road span, .menu__burger__header.theme__road:after, .menu__burger__header.theme__road:before {
+ background: linear-gradient(42deg, rgba(41, 43, 66, 0.8) -10%, rgba(141, 131, 109, 0.8) 59%);
+}
+
+.menu__burger__header.open_menu.theme__road:before, .menu__burger__header.open_menu.theme__road:after {
+ background: linear-gradient(21deg, #8d836d 30%, #292b42 71%);
+}
+
+.mouse__over.theme__road {
+ color: rgb(255, 140, 0);
+ font-weight: bold;
+}
+
+.nav.open_menu.theme__road, .themes__wrapper.theme__road  {
+ background: linear-gradient(21deg, rgba(141, 131, 109, 0.4) 30%, rgba(41, 43, 66, 0.4) 71%);
+}
+
+.menu__link.theme__road {
+	color: rgb(192, 182, 67);
+}
+
+.menu__link.theme__road a {
+	color: rgb(192, 182, 67);
+}
+
+.themes__title.theme__road {
+	color: rgb(255 180 0 / 60%);
+}
+
+/* .form_month.theme__road {
+ background: linear-gradient(42deg, rgba(41, 43, 66, 0.8) -10%, rgba(141, 131, 109, 0.8) 59%);
+}
+
+.form_result.theme__road {
+ background: linear-gradient(42deg, rgba(41, 43, 66, 0.8) -10%, rgba(141, 131, 109, 0.8) 59%);
+} */
+
+.form__wrapper.theme__road {
+ box-shadow: 8px 8px 10px 0px rgba(0, 0, 0, 0.8);
+ background: transparent;
+}
+
+.form__title.theme__road {
+ color: #6d3120;
+}
+
+.inputs.theme__road {
+ background-color: transparent;
+ box-shadow: 4px 4px 10px 0px rgba(213, 146, 124, 1);
+	color: #6d3120;
+}
+
+.inputs.theme__road:focus {
+ box-shadow: 4px 4px 4px 0px rgb(231, 217, 212);
+	border: 2px solid rgba(45, 13, 9, 1);
+}
+
+.inputs.theme__road::-webkit-input-placeholder { 
+ color: #fff; text-overflow: ellipsis; 
+ font-family: 'Arturo Black outline';
+}
+
+.inputs.theme__road:-moz-placeholder { 
+ color: #fff !important; text-overflow: ellipsis; 
+ font-family: 'Arturo Black outline';
+}
+
+.inputs.theme__road::-moz-placeholder { 
+ color: #fff !important; text-overflow: ellipsis; 
+ font-family: 'Arturo Black outline';
+}
+
+.inputs.theme__road:-ms-input-placeholder { 
+ color: #fff !important; text-overflow: ellipsis; 
+ font-family: 'Arturo Black outline';
+}
+
+.btns_add.theme__road {
+ box-shadow: 4px 4px 10px 0px rgba(190, 167, 194, 0.8);
+	border: solid rgb(251, 141, 7);
+	color: #fff;
+ background-color: transparent;
+}
+
+.month__name.theme__road {
+ font-family: 'Arturo Black outline';
+	color: #fff;
+}
+
+td.theme__road, th.theme__road {
+ box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.9);
+	color: #6d3120;
+	background-color: rgb(225 225 196 / 70%);
+}
+
+td.theme__road:focus {
+ outline: 2px solid rgb(244, 197, 175);
+}
+
+.btn__delete__values.theme__road {
+ padding: 0;
+ border: 1px solid rgba(89, 19, 100, 0.6);
+	background: rgba(223, 223, 200, 0.7) url(../img/emptyGarbage.png) no-repeat center center / contain;
+	box-shadow: 0px 0px 10px 3px rgba(27, 23, 28, 0.9);
+}
+
+.btn__delete__values.garbage.theme__road {
+	background: transparent url(../img/fullGarbage.png) no-repeat center center / contain;
+	box-shadow: 0px 0px 10px 4px rgba(251, 141, 7, 0.8);
+	border: none;
+}
+
+.btn__delete.theme__road {
+ background-color: rgba(223, 223, 200, 0.7);
+	color: #6d3120;
+	border: 2px solid #6d3120;
+ box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.9);
+}
+
+.btn__delete.theme__road:hover {
+	border: 2px solid #ff3700;
+}

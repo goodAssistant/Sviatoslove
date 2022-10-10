@@ -1,3 +1,9 @@
+.reports__title {
+  font-size: 20px;
+  position: absolute;
+  right: 1vw;
+}
+
 .form__wrapper {
   height: 86px;
   color: #000;
@@ -18,6 +24,9 @@
 }
 .form_month{
   margin-bottom: 30px;
+}
+.form_result {
+  position: relative;
 }
 .form__wrapper h4 {
   font-size: 15px;

@@ -1,9 +1,9 @@
 .header.theme__street__ball {
- background: url(../img/adidas-originals-streetball.jpg) repeat center 115px / contain;
+ background: url(../img/adidas-originals-streetball.jpg) no-repeat center center / cover;
 }
 
 .menu__burger__header.theme__street__ball span, .menu__burger__header.theme__street__ball:after, .menu__burger__header.theme__street__ball:before {
- background-color: rgba(255 180 0 / 60%);
+ background: linear-gradient(42deg, rgba(41, 43, 66, 0.8) -10%, rgba(141, 131, 109, 0.8) 59%);
 }
 
 .menu__burger__header.open_menu.theme__street__ball:before, .menu__burger__header.open_menu.theme__street__ball:after {
@@ -11,7 +11,7 @@
 }
 
 .mouse__over.theme__street__ball {
- color: rgb(255 180 0 / 60%);
+ color: rgb(255, 140, 0);
  font-weight: bold;
 }
 

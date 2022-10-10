@@ -2,6 +2,7 @@
  position: absolute;
  top: 3px;
  transition: all 0.5s ease;
+ z-index: 1;
 }
 
 .menu__burger__header {
@@ -82,6 +83,7 @@
  left: -5000%;
  transition: all 0.8s ease-out;
  text-align: start;
+ z-index: 1;
 }
 
 .nav a {
@@ -108,6 +110,12 @@
 
 .menu__item:not(:last-child) {
  margin-right: 10px;
+}
+
+.release {
+ text-align: end;
+ color: antiquewhite;
+ font-size: 8px;
 }
 
 .back_to_top {

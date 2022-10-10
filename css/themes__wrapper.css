@@ -6,7 +6,7 @@
 	max-width: 150px;
 	width: 100%;
  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
- top: 40px;
+ top: 86px;
  left: -5000%;
  color: #fff;
  padding: 10px 15px;
@@ -15,11 +15,12 @@
  background-color: rgba(89, 19, 100, 0.8);
  transition: all 0.8s ease-out;
  text-align: start;
+	z-index: 1;
  opacity: 0;
 }
 
 .themes__wrapper.open_menu {
-	left:43vw;
+	left:78.6vw;
  opacity: 1;
  transition: opacity 1.2s ease 0.5s;
  animation: myAnim 1s ease 1.2s 1 normal forwards;
@@ -45,10 +46,12 @@
 
 @keyframes myAnim {
 	0% {
-  left: 43vw;
+  left: 78.6vw;
+		top: 86px;
 	}
 
 	100% {
   left: 0;
+		top: 40px;
 	}
 }
