@@ -3,6 +3,9 @@
  height: 495px;
 	margin-top: 20px;
 }
+.wrapper__table {
+	margin-bottom: 10px;
+}
 
 .table__month {
  border-spacing: 10px;
