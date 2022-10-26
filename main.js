@@ -1249,7 +1249,7 @@ function cl() {
   setTimeout("cl()",200);
 };
 
-setTimeout("cl()",5);
+// setTimeout("cl()",5);
 
 const getReportsLength = () => {
   renderWrapperTableDom(reportsMonth[reportsMonth.length - 1]);
@@ -1263,7 +1263,9 @@ if(!reportsTheme[0].infoUpdate) {
   setTimeout(() => {
     imitationAlert(`
     <div style="display:flex; justify-content: space-between; align-items: center;">
-      <div style="width: min-content">Приветствую тебя, дорогой мой друг! В обновлении твоего помощника до версии 2.0</div>
+      <div style="width: min-content">Приветствую тебя, дорогой мой друг! В обновлении твоего помощника до версии 2.0
+      Для корректной работы приложения необходимо очистить все данные с помощью соответствующего пункта в меню. Не спеши очищать данные если ты их не переписал, чтобы не потерять их безвозвратно. Успехов!
+      </div>
       <div class="info__smile"></div>
     </div>
     <div style="display: flex; margin-top: 10px; align-items: center;">
@@ -1274,6 +1276,8 @@ if(!reportsTheme[0].infoUpdate) {
     </div>
     `)
     setTimeout(() => {
+      header.classList.add('active')
+      modalWindow.classList.add('start') 
       let smileInput = document.querySelector('.info__smile__input')
       smileInput.addEventListener('change', () => {
         reportsTheme[0].infoUpdate = true;
