@@ -1,36 +1,36 @@
-.header.theme__road {
- background: url(../img/road_autumn.jpg) no-repeat center center / cover;
+.header.theme__on__style {
+ background: url(../img/human.jpg) no-repeat center center / cover;
 }
 
-.menu__burger__header.theme__road span, .menu__burger__header.theme__road:after, .menu__burger__header.theme__road:before {
+.menu__burger__header.theme__on__style span, .menu__burger__header.theme__on__style:after, .menu__burger__header.theme__on__style:before {
  background: linear-gradient(42deg, rgba(41, 43, 66, 0.8) -10%, rgba(141, 131, 109, 0.8) 59%);
 }
 
-.menu__burger__header.open_menu.theme__road:before, .menu__burger__header.open_menu.theme__road:after {
+.menu__burger__header.open_menu.theme__on__style:before, .menu__burger__header.open_menu.theme__on__style:after {
  background: linear-gradient(21deg, #8d836d 30%, #292b42 71%);
 }
 
-.mouse__over.theme__road {
+.mouse__over.theme__on__style {
  color: rgb(255, 140, 0);
  font-weight: bold;
 }
 
-.nav.open_menu.theme__road, .themes__wrapper.theme__road  {
+.nav.open_menu.theme__on__style, .themes__wrapper.theme__on__style  {
  background: linear-gradient(21deg, rgba(141, 131, 109, 0.6) 30%, rgba(41, 43, 66, 0.6) 71%);
 }
-.tables__wrapper.open_menu.theme__road, .tables__total.open_menu.theme__road {
+.tables__wrapper.open_menu.theme__on__style, .tables__total.open_menu.theme__on__style {
 	background: linear-gradient(21deg, rgba(141, 131, 109, 0.6) 30%, rgba(41, 43, 66, 0.6) 71%);
 }
 
-.menu__link.theme__road {
+.menu__link.theme__on__style {
 	color: #ffb500;
 }
 
-.menu__link.theme__road a {
+.menu__link.theme__on__style a {
 	color: #ffb500;
 }
 
-.themes__title.theme__road {
+.themes__title.theme__on__style {
 	color: rgb(255 180 0 / 60%);
 }
 
@@ -42,68 +42,68 @@
  background: linear-gradient(42deg, rgba(41, 43, 66, 0.8) -10%, rgba(141, 131, 109, 0.8) 59%);
 } */
 
-.form__wrapper.theme__road {
+.form__wrapper.theme__on__style {
  box-shadow: 8px 8px 10px 0px rgba(0, 0, 0, 0.8);
  background: transparent;
 }
 
-.form__title.theme__road {
+.form__title.theme__on__style {
  color: #6d3120;
 }
 
-.inputs.theme__road {
+.inputs.theme__on__style {
  background-color: transparent;
  box-shadow: 4px 4px 10px 0px rgba(213, 146, 124, 1);
 	color: #6d3120;
 }
 
-.inputs.theme__road:focus {
+.inputs.theme__on__style:focus {
  box-shadow: 4px 4px 4px 0px rgb(231, 217, 212), 0px 0px 4px 2px rgb(231, 217, 212)inset;
 	border: none;
 }
 
-.inputs.theme__road::-webkit-input-placeholder { 
+.inputs.theme__on__style::-webkit-input-placeholder { 
  color: #fff; text-overflow: ellipsis; 
  font-family: 'Arturo Black outline';
 }
 
-.inputs.theme__road:-moz-placeholder { 
+.inputs.theme__on__style:-moz-placeholder { 
  color: #fff !important; text-overflow: ellipsis; 
  font-family: 'Arturo Black outline';
 }
 
-.inputs.theme__road::-moz-placeholder { 
+.inputs.theme__on__style::-moz-placeholder { 
  color: #fff !important; text-overflow: ellipsis; 
  font-family: 'Arturo Black outline';
 }
 
-.inputs.theme__road:-ms-input-placeholder { 
+.inputs.theme__on__style:-ms-input-placeholder { 
  color: #fff !important; text-overflow: ellipsis; 
  font-family: 'Arturo Black outline';
 }
 
-.btns_add.theme__road {
+.btns_add.theme__on__style {
  box-shadow: 4px 4px 10px 0px rgba(190, 167, 194, 0.8);
 	border: solid rgb(251, 141, 7);
 	color: #fff;
  background-color: transparent;
 }
 
-.month__name.theme__road {
+.month__name.theme__on__style {
  font-family: 'Arturo Black outline';
 	color: #fff;
 }
 
-.modal__text > .month__name.theme__road {
+.modal__text > .month__name.theme__on__style {
 	color: #6d3120;
 	font-family: 'Natasha';
 }
 
-.total__modal.theme__road {
+.total__modal.theme__on__style {
 	color: #6d3120;
 }
 
-.hours__pioneer.theme__road {
+.hours__pioneer.theme__on__style {
 	color: #2bff00;
 	box-shadow: 0px 0px 10px 2px rgb(255 229 0 / 80%), 0px 0px 90px 0px rgb(180 107 51 / 80%) inset;
 	width: 140px;
@@ -111,44 +111,44 @@
 	font-weight: bold;
 }
 
-td.theme__road, th.theme__road {
+td.theme__on__style, th.theme__on__style {
  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.9);
 	color: #ffffff;
 	background-color: rgb(225 225 196 / 20%);
 }
 
-td.theme__road {
+td.theme__on__style {
 	font-weight: bold;
 }
 
-th.theme__road {
+th.theme__on__style {
 	font-family: 'Arturo Black outline';
 }
 
-td.theme__road:focus {
+td.theme__on__style:focus {
  outline: 2px solid rgb(244, 197, 175);
 }
 
-.btn__delete__values.theme__road {
+.btn__delete__values.theme__on__style {
  padding: 0;
  border: 1px solid rgba(89, 19, 100, 0.6);
 	background: rgba(223, 223, 200, 0.7) url(../img/emptyGarbage.png) no-repeat center center / contain;
 	box-shadow: 0px 0px 10px 3px rgba(27, 23, 28, 0.9);
 }
 
-.btn__delete__values.garbage.theme__road {
+.btn__delete__values.garbage.theme__on__style {
 	background: transparent url(../img/fullGarbage.png) no-repeat center center / contain;
 	box-shadow: 0px 0px 10px 4px rgba(251, 141, 7, 0.8);
 	border: none;
 }
 
-.btn__delete.theme__road {
+.btn__delete.theme__on__style {
  background-color: rgba(223, 223, 200, 0.2);
 	color: #ffffff;
 	border: 2px solid #6d3120;
  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.9);
 }
 
-.btn__delete.theme__road:hover {
+.btn__delete.theme__on__style:hover {
 	border: 2px solid #ff3700;
 }

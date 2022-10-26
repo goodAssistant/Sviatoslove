@@ -2,7 +2,6 @@
  position: absolute;
  top: 3px;
  transition: all 0.5s ease;
- z-index: 1;
 }
 
 .menu__burger__header {
@@ -83,7 +82,8 @@
  left: -5000%;
  transition: all 0.8s ease-out;
  text-align: start;
- z-index: 1;
+ z-index: 100;
+ padding: 15px;
 }
 
 .nav a {
@@ -92,9 +92,9 @@
  color: rgb(255, 255, 255);
 }
 
-.nav a:hover {
+.menu__item:hover {
+ transform: scale(1.07);
  text-decoration: underline;
- font-size: 16px;
 }
 
 .nav.open_menu {
@@ -104,12 +104,39 @@
 } 
 
 .menu__item {
- margin: 10px 10px 10px 15px;
  font-size: 14px;
 }
 
 .menu__item:not(:last-child) {
- margin-right: 10px;
+ margin-bottom: 15px;
+}
+
+.menu__item:nth-child(2), .menu__item:nth-child(3) {
+ justify-content: space-between;
+ display: flex;
+ position: relative;
+}
+
+.menu__item:nth-child(3)::after, .menu__item:nth-child(2)::after {
+ position: absolute;
+ content: '';
+ width: 50%;
+ height: 1px;
+ color: antiquewhite;
+ bottom: 5px;
+ right: 18px;
+ border-bottom: dotted;
+}
+
+.menu__item:nth-child(3)::after {
+ width: 26%;
+}
+
+.check {
+ cursor: pointer;
+ width: 15px;
+ height: 15px;
+
 }
 
 .release {

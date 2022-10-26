@@ -16,7 +16,11 @@
 }
 
 .nav.open_menu.theme__street__ball, .themes__wrapper.theme__street__ball  {
- background: linear-gradient(21deg, #8d836d 30%, #292b42 71%);
+ background: linear-gradient(21deg, rgba(141, 131, 109, 0.8) 30%, rgba(41, 43, 66, 0.8) 71%);
+}
+
+.tables__wrapper.open_menu.theme__street__ball, .tables__total.open_menu.theme__street__ball {
+	background: linear-gradient(21deg, rgba(141, 131, 109, 0.8) 30%, rgba(41, 43, 66, 0.8) 71%);
 }
 
 .menu__link.theme__street__ball {
@@ -59,6 +63,13 @@
 }
 .month__name.theme__street__ball {
 	color: rgba(26, 123, 112, 1);
+}
+.hours__pioneer.theme__street__ball {
+	color: #000000;
+	box-shadow: 0px 0px 10px 2px rgb(255 229 0 / 80%), 0px 0px 90px 0px rgb(150 128 112 / 80%) inset;
+	width: 140px;
+	padding: 5px;
+	font-weight: bold;
 }
 td.theme__street__ball, th.theme__street__ball {
  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.9);

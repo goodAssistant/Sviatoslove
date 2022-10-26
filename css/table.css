@@ -1,16 +1,45 @@
 .wrapper__year {
-	overflow-y: scroll;
- height: 495px;
 	margin-top: 20px;
 }
+
+.wrapper__year.wrapper__year__none  {
+	visibility: hidden;
+}
+
 .wrapper__table {
 	margin-bottom: 20px;
 }
 
 .table__month {
  border-spacing: 10px;
- overflow: auto;
+ overflow-x: auto;
  display: block;
+}
+
+.month__name {
+	margin: 5px 0 5px;
+
+}
+
+.total__modal {
+	white-space: nowrap;
+	font-size: 14px;
+}
+
+.hours__pioneer {
+	border-radius: 10px;
+	width: fit-content;
+	margin-left: auto;
+	opacity: 0;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	display: none;
+}
+
+.hours__pioneer.open_menu {
+	display: block;
+	opacity: 1;
+	transition: display 0.5s ease-in;
+	transition: opacity 0.5s ease-in 0.5s;
 }
 
 th {
@@ -19,6 +48,7 @@ th {
  min-width: 24px;
  width: 100%;
 	transition: all 2s ease;
+	transition: visibility 0s ease 0s;
 }
 
 td {
@@ -76,4 +106,5 @@ td:focus {
  padding: 9px;
  letter-spacing: 1em;
 	margin: 0 10px;
+	transition: visibility 0s ease 0s;
 }

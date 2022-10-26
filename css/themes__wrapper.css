@@ -15,8 +15,12 @@
  background-color: rgba(89, 19, 100, 0.8);
  transition: all 0.8s ease-out;
  text-align: start;
-	z-index: 1;
+	z-index: 1000;
  opacity: 0;
+}
+
+.themes__wrapper > .menu__link:not(:last-child) {
+	margin-bottom: 15px;
 }
 
 .themes__wrapper.open_menu {

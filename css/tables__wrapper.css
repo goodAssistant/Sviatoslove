@@ -1,0 +1,22 @@
+.tables__wrapper, .tables__total {
+ max-height: 327px;
+ height: fit-content;
+ overflow-x: auto;
+ position: absolute;
+ top: 42px;
+ right: 20px;
+ padding: 10px;
+ z-index: 1000;
+ border-radius: 25px;
+ opacity: 0;
+}
+
+.tables__wrapper.open_menu, .tables__total.open_menu {
+ opacity: 1;
+ transition: opacity 1s ease-in;
+ box-shadow: 5px 5px 5px 0px rgb(0 0 0 / 70%);
+}
+
+.tables__wrapper > .menu__link, .tables__total > .menu__link {
+ margin: 0px 10px 10px 0;
+}
