@@ -1279,7 +1279,7 @@ function cl() {
   setTimeout("cl()",200);
 };
 
-// setTimeout("cl()",5);
+setTimeout("cl()",5);
 
 const getReportsLength = () => {
   renderWrapperTableDom(reportsMonth[reportsMonth.length - 1]);
