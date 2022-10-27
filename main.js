@@ -28,6 +28,7 @@ const inputs = document.querySelectorAll('.inputs');
 const btnsAdd = document.querySelectorAll('.btns_add');
 const goTopBtn = document.querySelector('.back_to_top');
 const modalWindow = document.querySelector('.modal__window');
+const modalWindowDeleteTable = document.querySelector('.modal__window__deleteTable');
 const modalWindowValues = document.querySelector('.modal__window__values');
 const overlay = document.querySelector('#overlay-modal');
 const checkMonth = document.querySelector('.check__month')
@@ -101,7 +102,7 @@ const addTableInitTheme = theme => {
 
 if(!localStorage.getItem('reportsTheme')){
   reportsTheme = [];
-  reportsTheme.push(new CreateTheme(startTheme, true, true, false, false));
+  reportsTheme.push(new CreateTheme(startTheme, true, false, false, false));
   localStorage.setItem('reportsTheme', JSON.stringify(reportsTheme))
   currentTheme = startTheme;
   statusFormMonth = reportsTheme[0].formMonth;
@@ -248,7 +249,7 @@ function eraseFormMonthTransition(status) {
   location.reload();
 };
 
-function eraseFormValueTransition(status) {
+function eraseFormValueTransition(status, bool = false) {
   if(status) {
     checkValue.removeAttribute('checked')
     statusFormValues = !status;
@@ -258,12 +259,14 @@ function eraseFormValueTransition(status) {
   };
   reportsTheme[0].formValues = statusFormValues;
   localStorage.setItem('reportsTheme', JSON.stringify(reportsTheme))
-  location.reload();
+  if(bool) {
+    location.reload();
+  }
 };
 
 checkMonth.addEventListener('click', () => {eraseFormMonthTransition(statusFormMonth)});
 
-checkValue.addEventListener('click', () => {eraseFormValueTransition(statusFormValues)});
+checkValue.addEventListener('click', () => {eraseFormValueTransition(statusFormValues, true)});
 
 if(!statusFormMonth) {
   wrapperResult.style.marginTop = '30px'
@@ -506,11 +509,16 @@ function insertValueMonth (counterClick, monthName, daysValue, currentYear) {
 buttonMonth.addEventListener('click', function(){
   if(inputMonth.value === '') {
     daysInMonth(currentMonth.toString());
-    formWrappers[1].style.marginTop = '40px'
   }else {
     daysInMonth(inputMonth.value);
-    formWrappers[1].style.marginTop = '40px'
   }
+  wrapperYear.style.marginTop = '40px'
+  formWrappers[1].style.marginTop = '40px'
+  eraseFormValueTransition(statusFormValues)
+  formWrappers[1].style.display = 'table';
+  formWrappers[1].style.opacity = '1';
+  reportsTheme[0].formMonth = !reportsTheme[0].formMonth;
+  localStorage.setItem('reportsTheme', JSON.stringify(reportsTheme));
 });
 
 document.addEventListener('keypress', function(event){
@@ -622,52 +630,56 @@ inputs.forEach((item, idx) => {
 })
 
 const pushBtnResult = () => {
-  let id = + wrapperYear.children[0].classList[1];
-  if(
-    inputDate.value === '' &&
+  if(wrapperYear.children.length > 0) {
+    let id = + wrapperYear.children[0].classList[1];
+    if(
+      inputDate.value === '' &&
+      !isNaN(inputDate.value) &&
+      !isNaN(inputHour.value) && 
+      !isNaN(inputPP.value) && 
+      !isNaN(inputPubl.value) && 
+      !isNaN(inputVideo.value) &&
+      !isNaN(inputIz.value)
+      ) {
+      reportsValue.push(new CreateValue(
+        id,
+        currentDate.toString(), 
+        inputHour.value,
+        inputPP.value,
+        inputPubl.value,
+        inputVideo.value,
+        inputIz.value
+      ));
+      localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
+      inputDaysValue();
+      sum();
+      setCurrentScrollInsertValue(currentDate.toString());
+    }else if(
     !isNaN(inputDate.value) &&
     !isNaN(inputHour.value) && 
     !isNaN(inputPP.value) && 
     !isNaN(inputPubl.value) && 
     !isNaN(inputVideo.value) &&
-    !isNaN(inputIz.value)
-    ) {
-    reportsValue.push(new CreateValue(
-      id,
-      currentDate.toString(), 
-      inputHour.value,
-      inputPP.value,
-      inputPubl.value,
-      inputVideo.value,
-      inputIz.value
-    ));
-    localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
-    inputDaysValue();
-    sum();
-    setCurrentScrollInsertValue(currentDate.toString());
-  }else if(
-  !isNaN(inputDate.value) &&
-  !isNaN(inputHour.value) && 
-  !isNaN(inputPP.value) && 
-  !isNaN(inputPubl.value) && 
-  !isNaN(inputVideo.value) &&
-  !isNaN(inputIz.value)) {
-    reportsValue.push(new CreateValue(
-      id,
-      inputDate.value, 
-      inputHour.value,
-      inputPP.value,
-      inputPubl.value,
-      inputVideo.value,
-      inputIz.value
-    ));
-    localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
-    inputDaysValue();
-    sum();
-    setCurrentScrollInsertValue(inputDate.value);
+    !isNaN(inputIz.value)) {
+      reportsValue.push(new CreateValue(
+        id,
+        inputDate.value, 
+        inputHour.value,
+        inputPP.value,
+        inputPubl.value,
+        inputVideo.value,
+        inputIz.value
+      ));
+      localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
+      inputDaysValue();
+      sum();
+      setCurrentScrollInsertValue(inputDate.value);
+    }else {
+      imitationAlert('Вы ввели не число в одно из полей. Будьте внимательнее пожалуйста.')
+    };
   }else {
-    imitationAlert('Вы ввели не число в одно из полей. Будьте внимательнее пожалуйста.')
-  };
+    imitationAlert('Дружочек, добавь пожалуйста месяц)))')
+  }
   inputDate.value = '';
   inputHour.value = '';
   inputPP.value = '';
@@ -695,6 +707,7 @@ document.addEventListener('keypress', function(event){
 });
 
 const modalText = document.querySelector('.modal__text')
+const modalTextDeleteTable = document.querySelector('.modal__text__deleteTable')
 const modalTextValues = document.querySelector('.modal__text__values')
 
 function moveModalWindow(str = null) {
@@ -706,6 +719,20 @@ function moveModalWindow(str = null) {
       overlay.classList.add('active')
       modalWindow.classList.add('active')
       modalText.innerHTML = str
+    }, 800);
+  };
+  formWrappers[1].scrollIntoView();
+};
+
+function moveModalWindowDeleteTable(str = null) {
+  if(overlay.classList.contains('active')) {
+    overlay.classList.remove('active')
+    modalWindowDeleteTable.classList.remove('active')
+  }else {
+    setTimeout(() => {
+      overlay.classList.add('active')
+      modalWindowDeleteTable.classList.add('active')
+      modalTextDeleteTable.innerHTML = str
     }, 800);
   };
   formWrappers[1].scrollIntoView();
@@ -725,21 +752,24 @@ function moveModalWindowValues(str = null) {
   formWrappers[1].scrollIntoView();
 };
 
-function modalBtnYes() {
+function modalBtnYes(func = null) {
   setTimeout(() => {
     document.querySelector('.yes__btn').addEventListener('click', event => {
       if(modalWindow.classList.contains('active')) {
         modalWindow.classList.remove('active')
         overlay.classList.remove('active')
       };
+      if(func !== null) {
+        func();
+      }
     });
-  },810);
+  }, 810);
 }
 
-function imitationAlert(str) {
+function imitationAlert(str, func = null) {
   $('.no__btn').css('display', 'none');
   moveModalWindow(str);
-  modalBtnYes();
+  modalBtnYes(func);
 }
 
 function deleteTable(event) {
@@ -771,18 +801,18 @@ function deleteTable(event) {
 
 function imitationConfirmTable(func, e, str1, str2, str3, str4) {
   let clickYes = 0;
-  btnsModal = document.querySelectorAll('.modal__btn');
-  moveModalWindow(str1);
+  let btnsModal = document.querySelectorAll('.modal__btn__deleteTable');
+  moveModalWindowDeleteTable(str1);
   btnsModal[0].onclick = function() {
     clickYes ++
     if(clickYes === 1) {
-      modalText.innerHTML = str2;
+      modalTextDeleteTable.innerHTML = str2;
     };
     if(clickYes === 2) {
-      modalText.innerHTML = str3;
+      modalTextDeleteTable.innerHTML = str3;
     };
     if(clickYes === 3) {
-      modalText.innerHTML = str4;
+      modalTextDeleteTable.innerHTML = str4;
     };
     if(clickYes === 4) {
       func(e);
@@ -790,7 +820,7 @@ function imitationConfirmTable(func, e, str1, str2, str3, str4) {
   };
   btnsModal[1].onclick = function() {
     clickYes = 0;
-    moveModalWindow();
+    moveModalWindowDeleteTable();
   };
 };
 
@@ -798,7 +828,7 @@ function imitationConfirmValues(func, str1, e = null, classCellBtn = null, class
   btnsModalValues = document.querySelectorAll('.modal__btn__values');
   moveModalWindowValues(str1);
   btnsModalValues[0].onclick = function() {
-    func(e, classCellBtn = null, classTableBtn = null);
+    func(e, classCellBtn, classTableBtn);
   }
   btnsModalValues[1].onclick = function() {
     moveModalWindowValues();
@@ -948,7 +978,7 @@ const closeThemesMenu = () => {
 };
 
 document.addEventListener("scroll", function() {
-  if(window.pageYOffset >= 1) {
+  if(window.pageYOffset >= 50) {
     goTopBtn.classList.add('back_to_top-show');
     closeBurgerMenu();
     closeThemesMenu();
@@ -1274,15 +1304,24 @@ if(!reportsTheme[0].infoUpdate) {
       </div>
       <input type="checkbox" class="info__smile__input">
     </div>
-    `)
+    `,
+    classInfDelete
+    )
     setTimeout(() => {
-      header.classList.add('active')
-      modalWindow.classList.add('start') 
+      header.classList.add('info')
+      modalWindow.classList.add('info') 
       let smileInput = document.querySelector('.info__smile__input')
       smileInput.addEventListener('change', () => {
         reportsTheme[0].infoUpdate = true;
         localStorage.setItem('reportsTheme', JSON.stringify(reportsTheme))
       })
     },800)
-  }, 2000)
+  }, 1000)
+};
+
+function classInfDelete() {
+  if(!modalWindow.classList.contains('active')) {
+    modalWindow.classList.remove('info') 
+    header.classList.remove('info')
+  };
 }
