@@ -106,7 +106,7 @@
   left: 50%;
   transform: translate(-50%);
   z-index: 10;
-  background-color: rgba(212, 212, 200, 0.48);
+  background-color: rgba(212, 212, 200, 0.8);
   border-radius: 25px;
   width: 200px;
   padding: 10px;
@@ -173,8 +173,8 @@
 
 .info__smile {
   background: url(../img/wink_smile.png) no-repeat center center / contain;
-  width: 50px;
-  height: 50px;
+  width: 90px;
+  height: 90px;
   align-items: center;
   margin: 0 auto;
 }

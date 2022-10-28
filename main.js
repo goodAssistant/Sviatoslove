@@ -236,7 +236,7 @@ function initFormValue(status) {
 initFormMonth(statusFormMonth);
 initFormValue(statusFormValues);
 
-function eraseFormMonthTransition(status) {
+function eraseFormMonthTransition(status, bool = false) {
   if(status) {
     checkMonth.removeAttribute('checked')
     statusFormMonth = !status;
@@ -246,7 +246,9 @@ function eraseFormMonthTransition(status) {
   };
   reportsTheme[0].formMonth = statusFormMonth;
   localStorage.setItem('reportsTheme', JSON.stringify(reportsTheme));
-  location.reload();
+  if(bool) {
+    location.reload();
+  }
 };
 
 function eraseFormValueTransition(status, bool = false) {
@@ -264,7 +266,7 @@ function eraseFormValueTransition(status, bool = false) {
   }
 };
 
-checkMonth.addEventListener('click', () => {eraseFormMonthTransition(statusFormMonth)});
+checkMonth.addEventListener('click', () => {eraseFormMonthTransition(statusFormMonth, true)});
 
 checkValue.addEventListener('click', () => {eraseFormValueTransition(statusFormValues, true)});
 
@@ -506,19 +508,26 @@ function insertValueMonth (counterClick, monthName, daysValue, currentYear) {
   sum();
 };
 
+function checkFormsForFormMonth() {
+  if(reportsTheme[0].formMonth) {
+    eraseFormMonthTransition(reportsTheme[0].formMonth)
+  }
+  if(!reportsTheme[0].formValues) {
+    eraseFormValueTransition(reportsTheme[0].formValues)
+    formWrappers[1].style.display = 'table';
+    formWrappers[1].style.opacity = '1';
+  }
+  wrapperYear.style.marginTop = '40px'
+  formWrappers[1].style.marginTop = '40px'
+}
+
 buttonMonth.addEventListener('click', function(){
   if(inputMonth.value === '') {
     daysInMonth(currentMonth.toString());
   }else {
     daysInMonth(inputMonth.value);
   }
-  wrapperYear.style.marginTop = '40px'
-  formWrappers[1].style.marginTop = '40px'
-  eraseFormValueTransition(statusFormValues)
-  formWrappers[1].style.display = 'table';
-  formWrappers[1].style.opacity = '1';
-  reportsTheme[0].formMonth = !reportsTheme[0].formMonth;
-  localStorage.setItem('reportsTheme', JSON.stringify(reportsTheme));
+  checkFormsForFormMonth()
 });
 
 document.addEventListener('keypress', function(event){
@@ -527,6 +536,7 @@ document.addEventListener('keypress', function(event){
       if(event.target.value === ''){
       }
       daysInMonth(inputMonth.value);
+      checkFormsForFormMonth()
     };
   };
 });
@@ -706,7 +716,7 @@ document.addEventListener('keypress', function(event){
   };
 });
 
-const modalText = document.querySelector('.modal__text')
+const modalText = document.querySelector('.modal__text__wrapp')
 const modalTextDeleteTable = document.querySelector('.modal__text__deleteTable')
 const modalTextValues = document.querySelector('.modal__text__values')
 
@@ -720,8 +730,10 @@ function moveModalWindow(str = null) {
       modalWindow.classList.add('active')
       modalText.innerHTML = str
     }, 800);
+    setTimeout(() => {
+      modalWindow.scrollIntoView();
+    }, 810);
   };
-  formWrappers[1].scrollIntoView();
 };
 
 function moveModalWindowDeleteTable(str = null) {
@@ -734,8 +746,10 @@ function moveModalWindowDeleteTable(str = null) {
       modalWindowDeleteTable.classList.add('active')
       modalTextDeleteTable.innerHTML = str
     }, 800);
+    setTimeout(() => {
+      modalWindowDeleteTable.scrollIntoView();
+    }, 810);
   };
-  formWrappers[1].scrollIntoView();
 };
 
 function moveModalWindowValues(str = null) {
@@ -748,8 +762,10 @@ function moveModalWindowValues(str = null) {
       modalWindowValues.classList.add('active')
       modalTextValues.innerHTML = str
     }, 800);
+    setTimeout(() => {
+      modalWindowValues.scrollIntoView();
+    }, 810);
   };
-  formWrappers[1].scrollIntoView();
 };
 
 function modalBtnYes(func = null) {
@@ -852,13 +868,17 @@ function deleteValues(event, classCellBtn, classTableBtn) {
 
 document.addEventListener('click', event => {
   if(event.target.classList.contains('btn__delete')) {
-    let monthName = reportsMonth.find(item => item.id === + event.target.classList[1]).monthName;
+    let {monthName, yearMonth} = reportsMonth.find(item => {
+      if(item.id === + event.target.classList[1]) {
+        return [item.monthName, item.yearMonth];
+      };
+    });
     imitationConfirmTable(
       deleteTable, 
 
       event.target, 
 
-      `Вы уверены, что желаете удалить таблицу за ${monthName} месяц и все введённые в неё данные без возможности восстановления?`,
+      `Вы уверены, что желаете удалить таблицу за <span class="modal__data">${monthName} месяц</span> <span class="modal__data">${yearMonth} года</span> и все введённые в неё данные без возможности восстановления?`,
 
       `Извиняюсь, но хочу ещё раз уточнить, хорошо подумайте, данные потом не восстановишь! Удалить таблицу?`,
 
@@ -870,11 +890,12 @@ document.addEventListener('click', event => {
     let classCellBtn = + event.target.classList[1];
     let classTableBtn = + event.target.id;
     let indexMonth = reportsMonth.map(month => month.id).indexOf(classTableBtn);
-    let month = reportsMonth[indexMonth].monthName;
+    let monthName = reportsMonth[indexMonth].monthName;
+    let yearMonth = reportsMonth[indexMonth].yearMonth;
     if(event.target.classList.contains('garbage')) {
       imitationConfirmValues(
         deleteValues,
-        `Вы уверены, что желаете очистить все значения в столбце за ${classCellBtn}-ое число месяца ${month}?`,
+        `Вы уверены, что желаете очистить все значения в столбце за <span class="modal__data">${classCellBtn}-ое число </span> <span class="modal__data">месяца ${monthName}</span> <span class="modal__data">${yearMonth} года</span>?`,
         event.target,
         classCellBtn,
         classTableBtn
@@ -1293,7 +1314,7 @@ if(!reportsTheme[0].infoUpdate) {
   setTimeout(() => {
     imitationAlert(`
     <div style="display:flex; justify-content: space-between; align-items: center;">
-      <div style="width: min-content">Приветствую тебя, дорогой мой друг! В обновлении твоего помощника до версии 2.0
+      <div class="modal__text">Приветствую тебя, дорогой мой друг! В обновлении твоего помощника до версии 2.0
       Для корректной работы приложения необходимо очистить все данные с помощью соответствующего пункта в меню. Не спеши очищать данные если ты их не переписал, чтобы не потерять их безвозвратно. Успехов!
       </div>
       <div class="info__smile"></div>
@@ -1324,4 +1345,4 @@ function classInfDelete() {
     modalWindow.classList.remove('info') 
     header.classList.remove('info')
   };
-}
+};

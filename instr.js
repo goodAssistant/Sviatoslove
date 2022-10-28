@@ -36,11 +36,18 @@ function setInstructions() {
  instrWrapper.innerHTML = template;
  instrWrapper.append(deleteInstr);
 
+ setTimeout(() => {
+  overlay.classList.add('active');
  instrWrapper.classList.add('active');
  header.classList.add('active');
+ }, 100)
  deleteInstr.addEventListener('click', () => {
-  instrWrapper.remove()
-  header.classList.remove('active');
+  instrWrapper.style.opacity = '0'
+  setTimeout(() => {
+   overlay.classList.remove('active')
+   instrWrapper.remove()
+   header.classList.remove('active')
+  }, 1000)
  })
 }
 
