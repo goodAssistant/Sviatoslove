@@ -2,8 +2,8 @@
  position: absolute;
  top: 5%;
  left: -5000%;
- min-width: 240px;
- width: fit-content;
+ max-width: 305px;
+ width: 100%;
  z-index: 30;
  background-color: rgb(225 225 196 / 70%);
  border-radius: 25px;
