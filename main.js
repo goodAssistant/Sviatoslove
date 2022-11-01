@@ -1104,7 +1104,7 @@ function setTotalMonth() {
     wrapperTotal = document.createElement('div');
     wrapperTotal.classList.add('tables__total', reportsTheme[0].theme);
     setInterval(() => wrapperTotal.classList.add('open_menu'), 1);
-    header.append(wrapperTotal);
+    document.querySelector('.container').append(wrapperTotal);
     closeBurgerMenu();
     let tableItem = (reportsMonth.map(item =>{ 
       let blockItem = 

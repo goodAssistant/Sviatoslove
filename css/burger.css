@@ -79,7 +79,7 @@
  top: 37px;
  box-shadow: 5px 5px 5px 0px rgb(0 0 0 / 70%);
  background-color: rgba(89, 19, 100, 0.8);
- left: -5000%;
+ left: -10000%;
  transition: all 0.8s ease-out;
  text-align: start;
  z-index: 100;
