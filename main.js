@@ -1097,6 +1097,7 @@ function setTotalMonth() {
     }
     return totalH;
   }
+  
 
   if(reportsMonth.length > 0) {
     overlay.classList.add('active')
