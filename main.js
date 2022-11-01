@@ -731,7 +731,7 @@ function moveModalWindow(str = null) {
       modalText.innerHTML = str
     }, 800);
     setTimeout(() => {
-      modalWindow.scrollIntoView();
+      document.querySelector('.reports__title').scrollIntoView();
     }, 810);
   };
 };
@@ -747,7 +747,7 @@ function moveModalWindowDeleteTable(str = null) {
       modalTextDeleteTable.innerHTML = str
     }, 800);
     setTimeout(() => {
-      modalWindowDeleteTable.scrollIntoView();
+      document.querySelector('.reports__title').scrollIntoView();
     }, 810);
   };
 };
@@ -763,7 +763,7 @@ function moveModalWindowValues(str = null) {
       modalTextValues.innerHTML = str
     }, 800);
     setTimeout(() => {
-      modalWindowValues.scrollIntoView();
+      document.querySelector('.reports__title').scrollIntoView();
     }, 810);
   };
 };
@@ -832,6 +832,7 @@ function imitationConfirmTable(func, e, str1, str2, str3, str4) {
     };
     if(clickYes === 4) {
       func(e);
+      moveModalWindowDeleteTable();
     };
   };
   btnsModal[1].onclick = function() {
@@ -1086,7 +1087,18 @@ const changeTheme = (theme) => {
 };
 
 function setTotalMonth() {
-  if(reportsMonth.length > 1) {
+  
+  const getWholeHours = str => {
+    let totalH = '';
+    for(let i = 0; i < str.length; i++){
+      if(i <= 2 && !isNaN(str[i])) {
+        totalH += str[i];
+      }
+    }
+    return totalH;
+  }
+
+  if(reportsMonth.length > 0) {
     overlay.classList.add('active')
     wrapperTotal = document.createElement('div');
     wrapperTotal.classList.add('tables__total', reportsTheme[0].theme);
@@ -1152,7 +1164,7 @@ function setTotalMonth() {
                     Часы:
                   </th>
                   <td class="total__modal ${reportsTheme[0].theme}">
-                    ${item.totalHours}
+                    ${getWholeHours(item.totalHours)}
                   </td>
                 </tr>
                 <tr>
@@ -1173,9 +1185,9 @@ function setTotalMonth() {
         })
       })
     })
-  }else if(wrapperYear.children.length === 0) {
+  }else {
     imitationAlert('Добавьте таблицу, пожалуйста ;-)')
-  }else {imitationAlert('Добавьте более одной таблицы, пожалуйста ;-)')}
+  }
 } 
 
 const deleteLocalStorage = () => {

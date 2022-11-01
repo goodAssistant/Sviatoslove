@@ -94,7 +94,7 @@
 	color: #fff;
 }
 
-.modal__text > .month__name.theme__road {
+.modal__text__wrapp > .month__name.theme__road {
 	color: #6d3120;
 	font-family: 'Natasha';
 }

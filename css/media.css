@@ -1,15 +1,28 @@
 /*---------------------- Media Queries-------------- */
 
+/*1200px..... */
+@media screen and (max-width: 100000px) {
+  .modal__window, .modal__window__deleteTable, .modal__window__values {
+    max-width: 490px;
+  }
+}
+
 /* 992- 1200px */
 @media screen and (max-width: 1200px) {
+  .modal__window, .modal__window__deleteTable, .modal__window__values {
+    max-width: 490px;
+  }
 }
 /* 768-992px */
 @media screen and (max-width: 992px) {
   .container {
     width: 95%;
   }
+  .modal__window, .modal__window__deleteTable, .modal__window__values {
+    max-width: fit-content;
+  }
   .form__wrapper {
-    min-width: auto;
+    max-width: auto;
   }
   .order__result {
     margin-top: 10px;
@@ -49,7 +62,7 @@
     letter-spacing: 0.5em;
   }
   .order__month {
-    min-width: 115px;
+    max-width: 115px;
   }
   .themes__wrapper {
     top: 170px;
@@ -78,13 +91,16 @@
   .header.info {
     min-height: 107vh;
   } 
+  .modal__window, .modal__window__deleteTable, .modal__window__values {
+    max-width: 330px;
+  }
 }
 
 /* 320-576px  */
 @media screen and (max-width: 576px) {
   .header.theme__street__ball {
     background: url(../img/adidas-originals-streetball.jpg) repeat center 115px / contain;
-   }
+  }
   .container {
     width: 90%;
   }
@@ -106,8 +122,6 @@
   .info__wrapper {
     left: 0;
     transform: translate(0);
-  }
-  .wrapper__year {
   }
   h3 {
     margin: 5px 0;
@@ -137,7 +151,6 @@
    transition: opacity 1.2s ease 0.5s;
    animation: myAnim 1s ease 1.2s 1 normal forwards;
   }
-
   .instr__wrapper {
     width: 105%;
   }
