@@ -1,5 +1,5 @@
 .header.theme__street__ball {
- background: url(../img/adidas-originals-streetball.jpg) no-repeat center center / cover;
+ background: url(../img/basket431_604.jpg) no-repeat center center / cover;
 }
 
 .menu__burger__header.theme__street__ball span, .menu__burger__header.theme__street__ball:after, .menu__burger__header.theme__street__ball:before {
@@ -81,11 +81,11 @@ td.theme__street__ball:focus {
 .btn__delete__values.theme__street__ball {
  padding: 0;
  border: 1px solid rgba(89, 19, 100, 0.6);
-	background: rgba(223, 223, 200, 0.7) url(../img/emptyBasketball.png) no-repeat center center / contain;
+	background: rgba(223, 223, 200, 0.7) url(../img/trash.png) no-repeat center center / contain;
 	box-shadow: 0px 0px 10px 3px rgba(27, 23, 28, 0.9);
 }
 .btn__delete__values.garbage.theme__street__ball {
-	background: rgba(204, 204, 144, 0.7) url(../img/fullBasketball.png) no-repeat center center / contain;
+	background: rgba(204, 204, 144, 0.7) url(../img/лампо_ка.png) no-repeat center center / contain;
 	box-shadow: 0px 0px 10px 4px rgba(251, 141, 7, 0.8);
 	border: none;
 }

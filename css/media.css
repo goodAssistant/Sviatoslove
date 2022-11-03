@@ -98,9 +98,9 @@
 
 /* 320-576px  */
 @media screen and (max-width: 576px) {
-  .header.theme__street__ball {
+  /* .header.theme__street__ball {
     background: url(../img/adidas-originals-streetball.jpg) repeat center 115px / contain;
-  }
+  } */
   .container {
     width: 90%;
   }
