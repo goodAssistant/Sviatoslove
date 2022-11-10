@@ -202,12 +202,34 @@ function setSumSee() {
   }
 }
 
-const addValuesBasket  = () => {
+function sumMonthDayValue(indexM, day) {
+  let currentObj = reportsValue.filter(item => {
+   if(item.id === indexM && + item.monthDay === day) {
+    return item;
+   }
+  })
+  let values = [];
+  currentObj.forEach(item => {
+   values.push(+ item.hours);
+  })
+  if(values.length > 0) {
+    return values.reduce((acc, item) => acc + item)
+  }
+}
+
+const addValuesBasket  = (indexM, day) => {
   let buttonsDelete = Array.from(document.querySelectorAll('.btn__delete__values'));
   reportsValue.filter(valueObj => {
     buttonsDelete.filter(item => {
       if(valueObj.id === + item.id && item.classList[1] === valueObj.monthDay) {
-        item.classList.add('garbage');
+        console.log(item.classList[1])
+        if(sumMonthDayValue(indexM, day) >= 150) {
+          if(+ item.classList[1] === day) {
+            item.classList.add('mustardSeed');
+          }
+        }else {
+          item.classList.add('garbage');
+        };
       };
     });
   });
@@ -393,7 +415,7 @@ const inputDaysValue = () => {
       let valueResult = (getResult(arrDaysValueId));
       $wrapperTable.filter(elem => {
         if(+ elem.classList[1] === month.id){
-          addValuesBasket(numDay);
+          addValuesBasket(month.id, numDay);
           let $row = Array.from(elem.getElementsByClassName(`cell__${numDay}`));
           $row.forEach((cellValue, a) => {
             valueResult.forEach((value, b) => {
@@ -862,6 +884,7 @@ function deleteValues(event, classCellBtn, classTableBtn) {
   localStorage.setItem('reportsValue', JSON.stringify(finalValues));
   reportsValue = JSON.parse(localStorage.getItem('reportsValue'));
   event.classList.remove('garbage');
+  event.classList.remove('mustardSeed');
   moveModalWindowValues();
   inputDaysValue();
   sum();

@@ -141,6 +141,12 @@ td.theme__road:focus {
 	border: none;
 }
 
+.btn__delete__values.mustardSeed.theme__road {
+	background: rgba(93, 126, 40, 0.6) url(../img/lamp.png) no-repeat center center / contain;
+	box-shadow: 0px 0px 20px 5px rgba(255, 238, 0, 0.6);
+	border: none;
+}
+
 .btn__delete.theme__road {
  background-color: rgba(223, 223, 200, 0.2);
 	color: #ffffff;

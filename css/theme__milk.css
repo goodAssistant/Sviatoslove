@@ -93,6 +93,12 @@ td.theme__milk:focus {
  border: none;
 }
 
+.btn__delete__values.mustardSeed.theme__milk {
+	background: rgba(93, 126, 40, 0.6) url(../img/lamp.png) no-repeat center center / contain;
+	box-shadow: 0px 0px 20px 5px rgba(255, 238, 0, 0.6);
+	border: none;
+}
+
 .btn__delete.theme__milk {
 	color: #6d3120;
 	border: 2px solid #6d3120;

@@ -50,4 +50,3 @@ function setInstructions() {
   }, 1000)
  })
 }
-
