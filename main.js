@@ -222,7 +222,6 @@ const addValuesBasket  = (indexM, day) => {
   reportsValue.filter(valueObj => {
     buttonsDelete.filter(item => {
       if(valueObj.id === + item.id && item.classList[1] === valueObj.monthDay) {
-        console.log(item.classList[1])
         if(sumMonthDayValue(indexM, day) >= 150) {
           if(+ item.classList[1] === day) {
             item.classList.add('mustardSeed');
@@ -805,7 +804,8 @@ function modalBtnYes(func = null) {
 }
 
 function imitationAlert(str, func = null) {
-  $('.no__btn').css('display', 'none');
+  const noBtn = document.querySelector('.no__btn');
+  noBtn.style.display = 'none';
   moveModalWindow(str);
   modalBtnYes(func);
 }
