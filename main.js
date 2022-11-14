@@ -549,6 +549,7 @@ buttonMonth.addEventListener('click', function(){
     daysInMonth(inputMonth.value);
   }
   checkFormsForFormMonth()
+  inputHour.focus();
 });
 
 document.addEventListener('keypress', function(event){
@@ -1381,4 +1382,8 @@ function classInfDelete() {
     modalWindow.classList.remove('info') 
     header.classList.remove('info')
   };
+};
+
+if(wrapperYear.children.length > 0) {
+  inputHour.focus();
 };
