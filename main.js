@@ -432,7 +432,13 @@ const inputDaysValue = () => {
 const getTimeFromMins = mins => {
   let hours = Math.trunc(mins/60);
   let minutes = mins % 60;
-  return hours + 'ч. ' + minutes + 'м.';
+  if(mins < 60 ) {
+    return minutes + 'м.';
+  } else if(mins % 60 === 0) {
+    return hours + 'ч.';
+  }else {
+    return hours + 'ч. ' + minutes + 'м.';
+  }
 };
 
 const sum = () => {
@@ -565,11 +571,11 @@ document.addEventListener('keypress', function(event){
 
 function setCurrentScrollInsertValue(value) {
   if(value < 11) {
-  $tableMonth.scrollLeft = 45 * value;
+  $tableMonth.scrollLeft = 70 * value;
   } else if(value > 10 && value < 21) {
-    $tableMonth.scrollLeft = 50 * value;
+    $tableMonth.scrollLeft = 85 * value;
   }else {
-    $tableMonth.scrollLeft = 55 * value;
+    $tableMonth.scrollLeft = 87 * value;
   };
 };
 
