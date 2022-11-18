@@ -419,7 +419,11 @@ const inputDaysValue = () => {
           $row.forEach((cellValue, a) => {
             valueResult.forEach((value, b) => {
               if(a === b) {
-                value === 0 ? cellValue.innerHTML = '' : cellValue.innerHTML = getTimeFromMins(value);
+                if(a === 0) {
+                  value === 0 ? cellValue.innerHTML = '' : cellValue.innerHTML = getTimeFromMins(value);
+                } else {
+                  value === 0 ? cellValue.innerHTML = '' : cellValue.innerHTML = value;
+                }
               };
             });
           });
