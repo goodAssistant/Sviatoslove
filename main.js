@@ -419,7 +419,7 @@ const inputDaysValue = () => {
           $row.forEach((cellValue, a) => {
             valueResult.forEach((value, b) => {
               if(a === b) {
-                value === 0 ? cellValue.innerHTML = '' : cellValue.innerHTML = value;
+                value === 0 ? cellValue.innerHTML = '' : cellValue.innerHTML = getTimeFromMins(value);
               };
             });
           });
@@ -661,6 +661,21 @@ inputs.forEach((item, idx) => {
   }
 })
 
+function timeConversionHvMin(time) {
+  let arrTime = time.split(/\b/);
+  if(time.indexOf('ч') > 0) {
+    if(arrTime.length > 2) {
+      return + arrTime[0] * 60 + + arrTime[2];
+    }else {
+      return + arrTime[0] * 60;
+    };
+  }else if(time.indexOf('м') > 0) {
+    return  arrTime[0];
+  }else if (time.indexOf('ч') + 1 === 0){
+    return time;
+  };
+};
+
 const pushBtnResult = () => {
   if(wrapperYear.children.length > 0) {
     let id = + wrapperYear.children[0].classList[1];
@@ -676,7 +691,7 @@ const pushBtnResult = () => {
       reportsValue.push(new CreateValue(
         id,
         currentDate.toString(), 
-        inputHour.value,
+        timeConversionHvMin(inputHour.value),
         inputPP.value,
         inputPubl.value,
         inputVideo.value,
@@ -696,7 +711,7 @@ const pushBtnResult = () => {
       reportsValue.push(new CreateValue(
         id,
         inputDate.value, 
-        inputHour.value,
+        timeConversionHvMin(inputHour.value),
         inputPP.value,
         inputPubl.value,
         inputVideo.value,
