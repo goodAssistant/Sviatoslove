@@ -673,6 +673,7 @@ inputs.forEach((item, idx) => {
 
 function timeConversionHvMin(time) {
   let arrTime = time.split(/\b/);
+  console.log(arrTime)
   if(time.indexOf('ч') > 0) {
     if(arrTime.length > 2) {
       return + arrTime[0] * 60 + + arrTime[2];
@@ -681,9 +682,12 @@ function timeConversionHvMin(time) {
     };
   }else if(time.indexOf('м') > 0) {
     return  arrTime[0];
-  }else if (time.indexOf('ч') + 1 === 0){
+  }else if (arrTime.length === 1){
     return time;
-  };
+  }else {
+    imitationAlert('Неверный формат данных. Инструкция: Поле "Чч. мин." принимает разные форматы, например, если вы ведёте просто число, оно зафиксируется, как просто минуты, также вы можете ввести данные в следующих форматах: 1ч/час; 50м/мин; 1ч 50м либо 150 мин, либо 150 = 2ч.30мин. В итоге ты получишь формат: чч:мин.')
+    return '';
+  }
 };
 
 const pushBtnResult = () => {
@@ -691,8 +695,7 @@ const pushBtnResult = () => {
     let id = + wrapperYear.children[0].classList[1];
     if(
       inputDate.value === '' &&
-      !isNaN(inputDate.value) &&
-      !isNaN(inputHour.value) && 
+      !isNaN(inputDate.value) && 
       !isNaN(inputPP.value) && 
       !isNaN(inputPubl.value) && 
       !isNaN(inputVideo.value) &&
@@ -712,8 +715,7 @@ const pushBtnResult = () => {
       sum();
       setCurrentScrollInsertValue(currentDate.toString());
     }else if(
-    !isNaN(inputDate.value) &&
-    !isNaN(inputHour.value) && 
+    !isNaN(inputDate.value) && 
     !isNaN(inputPP.value) && 
     !isNaN(inputPubl.value) && 
     !isNaN(inputVideo.value) &&
