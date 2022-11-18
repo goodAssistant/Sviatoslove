@@ -54,7 +54,7 @@
 .inputs.theme__road {
  background-color: transparent;
  box-shadow: 4px 4px 10px 0px rgba(213, 146, 124, 1);
-	color: #6d3120;
+	color: #ffffff;
 }
 
 .inputs.theme__road:focus {
