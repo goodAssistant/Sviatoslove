@@ -217,6 +217,20 @@ function sumMonthDayValue(indexM, day) {
   }
 }
 
+// function letThereBeLight(item = 0) {
+//   if(isNaN(item)) {
+//     lightOfTruth(item);
+//   }else {
+//     Array.from(document.querySelectorAll('.btn__delete__values')).forEach(i => {
+//       if(i.classList.contains('mustardSeed')) {
+//         lightOfTruth(i);
+//       }
+//     })
+//   }
+// }
+
+// letThereBeLight();
+
 const addValuesBasket  = (indexM, day) => {
   let buttonsDelete = Array.from(document.querySelectorAll('.btn__delete__values'));
   reportsValue.filter(valueObj => {
@@ -225,6 +239,7 @@ const addValuesBasket  = (indexM, day) => {
         if(sumMonthDayValue(indexM, day) >= 150) {
           if(+ item.classList[1] === day) {
             item.classList.add('mustardSeed');
+            // letThereBeLight(item);
           }
         }else {
           item.classList.add('garbage');
@@ -671,9 +686,12 @@ inputs.forEach((item, idx) => {
   }
 })
 
+const alertForValueHour = () => {
+  imitationAlert('Неверный формат данных.<br/>Инструкция: Поле "Чч. мин." принимает разные форматы, например, если вы ведёте просто число, оно зафиксируется, как просто минуты, также вы можете ввести данные в следующих форматах: 1ч/час; 50м/мин; 1ч 50м либо 150 мин, либо 150 = 2ч.30мин. В итоге ты получишь формат: чч:мин.');
+};
+
 function timeConversionHvMin(time) {
-  let arrTime = time.split(/\b/);
-  console.log(arrTime)
+  let arrTime = time.split(/\b/g);
   if(time.indexOf('ч') > 0) {
     if(arrTime.length > 2) {
       return + arrTime[0] * 60 + + arrTime[2];
@@ -685,67 +703,81 @@ function timeConversionHvMin(time) {
   }else if (arrTime.length === 1){
     return time;
   }else {
-    imitationAlert('Неверный формат данных.<br/>Инструкция: Поле "Чч. мин." принимает разные форматы, например, если вы ведёте просто число, оно зафиксируется, как просто минуты, также вы можете ввести данные в следующих форматах: 1ч/час; 50м/мин; 1ч 50м либо 150 мин, либо 150 = 2ч.30мин. В итоге ты получишь формат: чч:мин.')
+    alertForValueHour();
     return '';
-  }
+  };
 };
 
 const pushBtnResult = () => {
   if(wrapperYear.children.length > 0) {
+    let hourValue = timeConversionHvMin(inputHour.value);
     let id = + wrapperYear.children[0].classList[1];
+    const checkHourValue = (value, alertUser) => {
+      if(value !== ''){
+        return true;
+      }else {
+        alertUser();
+        return false;
+      };
+    };
     if(
-      inputDate.value === '' &&
+      inputDate.value === '' && 
       !isNaN(inputDate.value) && 
       !isNaN(inputPP.value) && 
       !isNaN(inputPubl.value) && 
       !isNaN(inputVideo.value) &&
       !isNaN(inputIz.value)
       ) {
-      reportsValue.push(new CreateValue(
-        id,
-        currentDate.toString(), 
-        timeConversionHvMin(inputHour.value),
-        inputPP.value,
-        inputPubl.value,
-        inputVideo.value,
-        inputIz.value
-      ));
-      localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
-      inputDaysValue();
-      sum();
-      setCurrentScrollInsertValue(currentDate.toString());
+        if(checkHourValue(hourValue, alertForValueHour)) {
+          reportsValue.push(new CreateValue(
+            id,
+            currentDate.toString(), 
+            hourValue,
+            inputPP.value,
+            inputPubl.value,
+            inputVideo.value,
+            inputIz.value
+          ));
+          localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
+          inputDaysValue();
+          sum();
+          setCurrentScrollInsertValue(currentDate.toString());
+        }
     }else if(
     !isNaN(inputDate.value) && 
     !isNaN(inputPP.value) && 
     !isNaN(inputPubl.value) && 
     !isNaN(inputVideo.value) &&
-    !isNaN(inputIz.value)) {
-      reportsValue.push(new CreateValue(
-        id,
-        inputDate.value, 
-        timeConversionHvMin(inputHour.value),
-        inputPP.value,
-        inputPubl.value,
-        inputVideo.value,
-        inputIz.value
-      ));
-      localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
-      inputDaysValue();
-      sum();
-      setCurrentScrollInsertValue(inputDate.value);
+    !isNaN(inputIz.value)
+    ) {
+      if(checkHourValue(hourValue, alertForValueHour)) {
+        reportsValue.push(new CreateValue(
+          id,
+          inputDate.value, 
+          hourValue,
+          inputPP.value,
+          inputPubl.value,
+          inputVideo.value,
+          inputIz.value
+        ));
+        localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
+        inputDaysValue();
+        sum();
+        setCurrentScrollInsertValue(inputDate.value);
+      };
     }else {
       imitationAlert('Вы ввели не число в одно из полей. Будьте внимательнее пожалуйста.')
     };
   }else {
     imitationAlert('Дружочек, добавь пожалуйста месяц)))')
-  }
+  };
   inputDate.value = '';
   inputHour.value = '';
   inputPP.value = '';
   inputPubl.value = '';
   inputVideo.value = '';
   inputIz.value = '';
-  inputs.forEach((item, idx) => {idx > 0 ? item.blur() : null})
+  inputs.forEach((item, idx) => {idx > 0 ? item.blur() : null});
 };
 
 buttonResult.addEventListener('click', pushBtnResult);
@@ -829,14 +861,14 @@ function modalBtnYes(func = null) {
       }
     });
   }, 810);
-}
+};
 
 function imitationAlert(str, func = null) {
   const noBtn = document.querySelector('.no__btn');
   noBtn.style.display = 'none';
   moveModalWindow(str);
   modalBtnYes(func);
-}
+};
 
 function deleteTable(event) {
   let classBtn = + event.classList[1];
@@ -1353,16 +1385,27 @@ deleteForm.forEach(item => {
   });
 });
 
-i = 0;
-dt = [
+let i = 0;
+let dt = [
   '#ffd70000', '#ffd7001a', '#ffd70036', '#ffd7004d', '#ffd70063', '#ffd70080', '#ffd7009e', '#ffd700ba', '#ffd700d1', '#ffd700e6', '#ffd700fa', "#ffd700", "#d5c328", "#a0963e", "#767144", "#827e5f", "#8c8973", '#8e8c80', '#afaea6', '#d3d2cb', '#efeeea', '#ffffff', '#f5ede2', '#ecdcc7', '#f0d6b4', '#f5d09e', '#f4c689', '#f5bf78', '#f3b767', '#f2ae54', '#f3a742', '#ef9c2f', '#ef9c2f', '#ef941c', '#f3900f', '#ff9000', '#ff9002e3', '#ff9002c9', '#ff9002ad', '#ff90028f', '#ff900278', '#ff90025e', '#ff900247', '#ff900233', '#ff900221', '#ff90020d', '#ff900200', '#64398b17', '#64398b36', '#64398b4f', '#64398b70', '#64398b87', '#64398b9e', '#64398bb5', '#64398bcc', '#64398be3', '#64398bf5', '#64398b', '#6d399d', '#7235ab', '#752fb6', '#7c2ac8', '#7f23d4', '#7f17df', '#7f0de8', '#8206f5', '#8400ff', '#7906df', '#6606bb', '#5a0aa1', '#4f0f88', '#4c1a79', '#4e2375', '#562f78', '#613e80', '#6a4b86', '#704c90', '#694f80', '#614f71', '#74697e', '#76717a', '#737275', '#5a5a5a', '#393737', '#201f1f', '#100f0f', '#0e0e0e', '#000000'
 ];
+
+// let w = 0;
+// let colorsMustardSeed = [
+//   '#ffee00', '#ebdc0f', '#dbce18', '#d0c423', '#c5ba2d', '#c5ba2d', '#aca441', '#a8a14f', '#aaa45e', '#9f9a65', '#9c9971', '#969479', '#919082', '#a5a59e', '#cbcbc6', '#ebebe4', '#e8e8d0', '#e6e6bb', '#e6e6a8', '#ebeb9c', '#eded88', '#efef76', '#efef64', '#efef4f', '#f3f341', '#f3f32f', '#f1f11d', '#f3f308', '#f8f808'
+// ];
 
 function cl() {
   document.querySelector('.reports__title').style.color = dt[i++];
   if (i > dt.length) i=0;
   setTimeout("cl()",200);
 };
+
+// function lightOfTruth(item) {
+//   item.style.backgroundColor = colorsMustardSeed[w++];
+//   if (w > colorsMustardSeed.length) w=0;
+//   setTimeout(lightOfTruth(item), 200);
+// };
 
 setTimeout("cl()",5);
 
