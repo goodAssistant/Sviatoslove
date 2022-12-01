@@ -742,7 +742,7 @@ const pushBtnResult = () => {
           inputDaysValue();
           sum();
           setCurrentScrollInsertValue(currentDate.toString());
-        }
+        };
     }else if(
     !isNaN(inputDate.value) && 
     !isNaN(inputPP.value) && 
@@ -1421,8 +1421,7 @@ if(!reportsTheme[0].infoUpdate) {
   setTimeout(() => {
     imitationAlert(`
     <div style="display:flex; justify-content: space-between; align-items: center;">
-      <div class="modal__text">Приветствую тебя, дорогой мой друг! В обновлении твоего помощника до версии 2.0
-      Для корректной работы приложения необходимо очистить все данные с помощью соответствующего пункта в меню. Не спеши очищать данные если ты их не переписал, чтобы не потерять их безвозвратно. Успехов!
+      <div class="modal__text">Приветствую тебя, дорогой мой друг! Для более удобного сотрудничества с Good Assistant, т.е. со мной, прочти пожалуйста инструкцию, которая доступна в меню под пунктом 'Good Assistant: "Познакомимся?"'. Успехов!
       </div>
       <div class="info__smile"></div>
     </div>
