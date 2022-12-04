@@ -20,7 +20,7 @@
 }
 
 .themes__wrapper > .menu__link:not(:last-child) {
-	margin-bottom: 15px;
+	margin-bottom: 20px;
 }
 
 .themes__wrapper.open_menu {
@@ -39,6 +39,11 @@
  color: #fff;
  font-size: 13px; 
  cursor: pointer;
+	border-bottom: 1px solid;
+	border-right: 1px solid;
+	padding: 2px 5px;
+	border-radius: 5px;
+	box-shadow: 5px 6px 10px 0px rgb(0, 0, 0, 0.7);
 }
 .themes__link:hover {
  text-decoration: underline;

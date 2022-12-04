@@ -88,7 +88,6 @@
 
 .nav a {
  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
- font-weight: bold;
  color: rgb(255, 255, 255);
 }
 
@@ -108,7 +107,7 @@
 }
 
 .menu__item:not(:last-child) {
- margin-bottom: 15px;
+ margin-bottom: 20px;
 }
 
 .menu__item:nth-child(2), .menu__item:nth-child(3) {
@@ -120,7 +119,7 @@
 .menu__item:nth-child(3)::after, .menu__item:nth-child(2)::after {
  position: absolute;
  content: '';
- width: 50%;
+ width: 46%;
  height: 1px;
  color: antiquewhite;
  bottom: 5px;
@@ -129,7 +128,7 @@
 }
 
 .menu__item:nth-child(3)::after {
- width: 26%;
+ width: 21%;
 }
 
 .check {
