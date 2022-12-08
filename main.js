@@ -1,7 +1,11 @@
-const wrapperMonth = document.querySelector('.form_month');
-const wrapperResult = document.querySelector('.form_result');
+const container = document.querySelector('.container');
+
+const wrapperMonth = container.querySelector('.form_month');
+const wrapperResult = container.querySelector('.form_result');
+
 const inputMonth = wrapperMonth.querySelector('.month');
 const buttonMonth = wrapperMonth.querySelector('.order__month');
+
 const inputDate = wrapperResult.querySelector('.input__date');
 const inputHour = wrapperResult.querySelector('.input__hour');
 const inputPP = wrapperResult.querySelector('.input__pp');
@@ -9,30 +13,33 @@ const inputPubl = wrapperResult.querySelector('.input__publ');
 const inputVideo = wrapperResult.querySelector('.input__video');
 const inputIz = wrapperResult.querySelector('.input__iz');
 const buttonResult = wrapperResult.querySelector('.order__result');
-const wrapperYear = document.querySelector('.wrapper__year');
+const wrapperYear = container.querySelector('.wrapper__year');
 
-const header = document.querySelector('.header');
-const wrapperBurger = document.querySelector('.wrapper__burger');
-const menuBurger = document.querySelector('.menu__burger__header');
-const mouseOver = document.querySelector('.mouse__over');
-const menu = document.querySelector('.menu');
+const header = container.closest('.header');
+const wrapperBurger = container.querySelector('.wrapper__burger');
+const menuBurger = wrapperBurger.querySelector('.menu__burger__header');
+const mouseOver = menuBurger.querySelector('.mouse__over');
+const menuNav = wrapperBurger.querySelector('.nav');
+const menu = menuNav.querySelector('.menu');
+const themesWrapper = container.querySelector('.themes__wrapper');
+const reportsTitle = container.querySelector('.reports__title');
+const themesTitle = themesWrapper.querySelector('.themes__title');
 
-const menuNav = document.querySelector('.nav');
-const menuItem = Array.from(document.querySelectorAll('.menu__item'));
-const menuLink = document.querySelectorAll('.menu__link');
-const themesWrapper = document.querySelector('.themes__wrapper');
-const themesTitle = document.querySelector('.themes__title');
-const formWrappers = document.querySelectorAll('.form__wrapper');
-const formTitle = Array.from(document.getElementsByTagName('h3'));
-const inputs = document.querySelectorAll('.inputs');
-const btnsAdd = document.querySelectorAll('.btns_add');
-const goTopBtn = document.querySelector('.back_to_top');
-const modalWindow = document.querySelector('.modal__window');
-const modalWindowDeleteTable = document.querySelector('.modal__window__deleteTable');
-const modalWindowValues = document.querySelector('.modal__window__values');
-const overlay = document.querySelector('#overlay-modal');
-const checkMonth = document.querySelector('.check__month')
-const checkValue = document.querySelector('.check__value')
+const menuItem = Array.from(menu.querySelectorAll('.menu__item'));
+const menuLink = menu.querySelectorAll('.menu__link');
+
+const formWrappers = container.querySelectorAll('.form__wrapper');
+const formTitle = Array.from(container.getElementsByTagName('h3'));
+const inputs = container.querySelectorAll('.inputs');
+const btnsAdd = container.querySelectorAll('.btns_add');
+
+const goTopBtn = container.querySelector('.back_to_top');
+const modalWindow = container.querySelector('.modal__window');
+const modalWindowDeleteTable = container.querySelector('.modal__window__deleteTable');
+const modalWindowValues = container.querySelector('.modal__window__values');
+const overlay = container.querySelector('#overlay-modal');
+const checkMonth = menu.querySelector('.check__month')
+const checkValue = menu.querySelector('.check__value')
 
 const months = ['empty', 'январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь', 'empty'];
 const currentMonth = new Date().getMonth() + 1;
@@ -41,7 +48,7 @@ inputMonth.setAttribute('placeholder', upperCase(months[`${currentMonth}`]))
 
 let reportsValueTrans = [];
 let reportsValueNew = [];
-let $wrapperYear = document.querySelector(`.wrapper__year`);
+let $wrapperYear = container.querySelector(`.wrapper__year`);
 let scrollLeft = window.pageXOffset;
 let scrollCenter = window.pageYOffset;
 let reportsMonth;
@@ -86,10 +93,10 @@ const initTheme = theme => {
 
 const addTableInitTheme = theme => {
   const monthNames = wrapperYear.querySelectorAll('.month__name');
-  const tds = Array.from(document.getElementsByTagName('TD'));
-  const ths = Array.from(document.getElementsByTagName('TH'));
-  const btnDeleteValues  = Array.from(document.querySelectorAll('.btn__delete__values'));
-  const deleteBtns = Array.from(document.querySelectorAll('.btn__delete'));
+  const tds = Array.from(wrapperYear.getElementsByTagName('td'));
+  const ths = Array.from(wrapperYear.getElementsByTagName('th'));
+  const btnDeleteValues  = Array.from(wrapperYear.querySelectorAll('.btn__delete__values'));
+  const deleteBtns = Array.from(wrapperYear.querySelectorAll('.btn__delete'));
 
   hoursPioneer.classList.add(theme);
   monthNames.forEach(item => {item.classList.add(theme)});
@@ -177,7 +184,7 @@ class CreateValue {
 function setSumSee() {
   if (wrapperYear.children.length > 0) {
     const currentDay = new Date().getDate();
-    const totalHours = document.querySelector('.total')
+    const totalHours = wrapperYear.querySelector('.total')
     const createDiv = () => {
       hoursPioneer.innerHTML = `Поднажми, у тебя уже: ${totalHours.innerHTML}`
       setTimeout(() => {
@@ -232,7 +239,7 @@ function sumMonthDayValue(indexM, day) {
 // letThereBeLight();
 
 const addValuesBasket  = (indexM, day) => {
-  let buttonsDelete = Array.from(document.querySelectorAll('.btn__delete__values'));
+  let buttonsDelete = Array.from(wrapperYear.querySelectorAll('.btn__delete__values'));
   reportsValue.filter(valueObj => {
     buttonsDelete.filter(item => {
       if(valueObj.id === + item.id && item.classList[1] === valueObj.monthDay) {
@@ -415,7 +422,7 @@ const getResult = (arr) => {
 
 const inputDaysValue = () => {
   let arrDaysValueId = [];
-  let $wrapperTable = Array.from(document.querySelectorAll(`.wrapper__table`));
+  let $wrapperTable = Array.from(wrapperYear.querySelectorAll(`.wrapper__table`));
   reportsMonth.forEach((month, mId) => {
     let arrDaysMonth = Array.from({ length: month.daysMonth}, (v, i) =>  i + 1);
     arrDaysMonth.forEach(numDay => {
@@ -461,7 +468,7 @@ const getTimeFromMins = mins => {
 };
 
 const sum = () => {
-  let $wrapperTable = Array.from(document.querySelectorAll(`.wrapper__table`));
+  let $wrapperTable = Array.from(wrapperYear.querySelectorAll(`.wrapper__table`));
   reportsMonth.forEach((month, mId) => {
     let arrDaysValueId = reportsValue.filter(obj => {
       if (obj.id === month.id){
@@ -797,9 +804,9 @@ document.addEventListener('keypress', function(event){
   };
 });
 
-const modalText = document.querySelector('.modal__text__wrapp')
-const modalTextDeleteTable = document.querySelector('.modal__text__deleteTable')
-const modalTextValues = document.querySelector('.modal__text__values')
+const modalText = modalWindow.querySelector('.modal__text__wrapp')
+const modalTextDeleteTable = modalWindowDeleteTable.querySelector('.modal__text__deleteTable')
+const modalTextValues = modalWindowValues.querySelector('.modal__text__values')
 
 function moveModalWindow(str = null) {
   if(overlay.classList.contains('active')) {
@@ -812,7 +819,7 @@ function moveModalWindow(str = null) {
       modalText.innerHTML = str
     }, 800);
     setTimeout(() => {
-      document.querySelector('.reports__title').scrollIntoView();
+      reportsTitle.scrollIntoView();
     }, 810);
   };
 };
@@ -828,7 +835,7 @@ function moveModalWindowDeleteTable(str = null) {
       modalTextDeleteTable.innerHTML = str
     }, 800);
     setTimeout(() => {
-      document.querySelector('.reports__title').scrollIntoView();
+      reportsTitle.scrollIntoView();
     }, 810);
   };
 };
@@ -844,14 +851,14 @@ function moveModalWindowValues(str = null) {
       modalTextValues.innerHTML = str
     }, 800);
     setTimeout(() => {
-      document.querySelector('.reports__title').scrollIntoView();
+      reportsTitle.scrollIntoView();
     }, 810);
   };
 };
 
 function modalBtnYes(func = null) {
   setTimeout(() => {
-    document.querySelector('.yes__btn').addEventListener('click', event => {
+    modalWindow.querySelector('.yes__btn').addEventListener('click', event => {
       if(modalWindow.classList.contains('active')) {
         modalWindow.classList.remove('active')
         overlay.classList.remove('active')
@@ -864,7 +871,7 @@ function modalBtnYes(func = null) {
 };
 
 function imitationAlert(str, func = null) {
-  const noBtn = document.querySelector('.no__btn');
+  const noBtn = modalWindow.querySelector('.no__btn');
   noBtn.style.display = 'none';
   moveModalWindow(str);
   modalBtnYes(func);
@@ -899,7 +906,7 @@ function deleteTable(event) {
 
 function imitationConfirmTable(func, e, str1, str2, str3, str4) {
   let clickYes = 0;
-  let btnsModal = document.querySelectorAll('.modal__btn__deleteTable');
+  let btnsModal = modalWindowDeleteTable.querySelectorAll('.modal__btn__deleteTable');
   moveModalWindowDeleteTable(str1);
   btnsModal[0].onclick = function() {
     clickYes ++
@@ -924,7 +931,7 @@ function imitationConfirmTable(func, e, str1, str2, str3, str4) {
 };
 
 function imitationConfirmValues(func, str1, e = null, classCellBtn = null, classTableBtn = null) {
-  btnsModalValues = document.querySelectorAll('.modal__btn__values');
+  btnsModalValues = modalWindowValues.querySelectorAll('.modal__btn__values');
   moveModalWindowValues(str1);
   btnsModalValues[0].onclick = function() {
     func(e, classCellBtn, classTableBtn);
@@ -1126,9 +1133,9 @@ document.addEventListener('click', (event) =>{
 
 const changeTheme = (theme) => {
   const monthNames = wrapperYear.querySelectorAll('.month__name');
-  const tds = Array.from(document.getElementsByTagName('TD'));
-  const ths = Array.from(document.getElementsByTagName('TH'));
-  const deleteBtns = Array.from(document.querySelectorAll('.btn__delete'));
+  const tds = Array.from(wrapperYear.getElementsByTagName('td'));
+  const ths = Array.from(wrapperYear.getElementsByTagName('th'));
+  const deleteBtns = Array.from(wrapperYear.querySelectorAll('.btn__delete'));
   let currentTheme = header.classList[1];
   header.classList.remove(currentTheme);
   menuBurger.classList.remove(currentTheme);
@@ -1187,7 +1194,7 @@ function setTotalMonth() {
     wrapperTotal = document.createElement('div');
     wrapperTotal.classList.add('tables__total', reportsTheme[0].theme);
     setInterval(() => wrapperTotal.classList.add('open_menu'), 1);
-    document.querySelector('.container').append(wrapperTotal);
+    container.append(wrapperTotal);
     closeBurgerMenu();
     let tableItem = (reportsMonth.map(item =>{ 
       let blockItem = 
@@ -1202,13 +1209,13 @@ function setTotalMonth() {
     }))
     wrapperTotal.innerHTML = tableItem.join('')
     wrapperTotal.classList.add(reportsTheme[0].theme);
-    const menuLinks = document.querySelectorAll('.menu__link');
+    const menuLinks = menu.querySelectorAll('.menu__link');
     menuLinks.forEach(item => {
       if(!item.classList.contains(reportsTheme[0].theme)) {
         item.classList.add(reportsTheme[0].theme);
       };
     });
-    const totalLinks = Array.from(document.querySelectorAll('.table__link'))
+    const totalLinks = Array.from(wrapperTotal.querySelectorAll('.table__link'))
     totalLinks.forEach(item => {
       item.addEventListener('click', event => {
         event.preventDefault();
@@ -1287,7 +1294,7 @@ menuNav.addEventListener('click', event => {
     overlay.classList.add('active')
     menuNav.classList.remove('open_menu');
     themesWrapper.classList.add('open_menu');
-    const btnsThemes = document.querySelectorAll('.theme__link');
+    const btnsThemes = themesWrapper.querySelectorAll('.theme__link');
     btnsThemes.forEach(item => {
       item.addEventListener('click', event => {
       event.preventDefault();
@@ -1326,13 +1333,13 @@ menuNav.addEventListener('click', event => {
       }))
       wrapperTables.innerHTML = tableItem.join('')
       wrapperTables.classList.add(reportsTheme[0].theme);
-      const menuLinks = document.querySelectorAll('.menu__link');
+      const menuLinks = menu.querySelectorAll('.menu__link');
       menuLinks.forEach(item => {
         if(!item.classList.contains(reportsTheme[0].theme)) {
           item.classList.add(reportsTheme[0].theme);
         };
       });
-      const tableLinks = Array.from(document.querySelectorAll('.table__link'))
+      const tableLinks = Array.from(wrapperTotal.querySelectorAll('.table__link'))
       tableLinks.forEach(item => {
         item.addEventListener('click', event => {
           event.preventDefault();
@@ -1370,7 +1377,7 @@ menuNav.addEventListener('click', event => {
   };
 });
 
-deleteForm = Array.from(document.querySelectorAll('.delete__form'));
+deleteForm = Array.from(container.querySelectorAll('.delete__form'));
 deleteForm.forEach(item => {
   item.addEventListener('click', event => {
     if(event.target.classList.contains('delete__month')) {
@@ -1396,7 +1403,7 @@ let dt = [
 // ];
 
 function cl() {
-  document.querySelector('.reports__title').style.color = dt[i++];
+  reportsTitle.style.color = dt[i++];
   if (i > dt.length) i=0;
   setTimeout("cl()",200);
 };
@@ -1437,7 +1444,7 @@ if(!reportsTheme[0].infoUpdate) {
     setTimeout(() => {
       header.classList.add('info')
       modalWindow.classList.add('info') 
-      let smileInput = document.querySelector('.info__smile__input')
+      let smileInput = modalWindow.querySelector('.info__smile__input')
       smileInput.addEventListener('change', () => {
         reportsTheme[0].infoUpdate = true;
         localStorage.setItem('reportsTheme', JSON.stringify(reportsTheme))

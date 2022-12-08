@@ -1,5 +1,3 @@
-const container = document.querySelector('.container');
-
 function setInstructions() {
  const instrWrapper = document.createElement('div')
  const deleteInstr = document.createElement('div')
