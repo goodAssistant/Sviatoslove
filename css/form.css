@@ -74,6 +74,11 @@
   margin-top: 6px;
   justify-content: space-between;
 }
+.wrapper__all__inputs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .inputs__month input, .inputs__result input {
   font-family: 'Choco cooky';
   height: 34px;
@@ -108,7 +113,6 @@
 .inputs__result input{
   margin: 0 20px 0 0;
 }
-
 .info__wrapper {
   position: absolute;
   top: 74px;
@@ -193,3 +197,11 @@
   height: 10px;
   margin: 0;
 }
+
+
+/* .our_services div:nth-child(3n) {
+  margin: 0;
+}
+.our_services div:not(:nth-child(-n+3)) {
+margin-top: 62px;
+} */

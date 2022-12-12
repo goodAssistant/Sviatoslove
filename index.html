@@ -5,6 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Good Assistant</title>
+  <script src="instr.js" defer></script>
+  <script src="main.js" defer></script>
+  <script src="dropDownList.js" defer></script>
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="./fonts/stylesheet_Arturo_Black_outline.css">
   <link rel="stylesheet" href="./fonts/stylesheet.css">
@@ -22,9 +25,8 @@
   <link rel="stylesheet" href="css/instructions.css">
   <link rel="stylesheet" href="css/theme__on__style.css">
   <link rel="stylesheet" href="css/modal__window.css">
+  <link rel="stylesheet" href="css/dropdown.css">
   <link rel="stylesheet" href="css/media.css">
-  <script src="instr.js" defer></script>
-  <script src="main.js" defer></script>
 </head>
 <body>
   <header class="header">
@@ -97,7 +99,7 @@
               </a>
             </div>
             <div class="release menu__item">
-              Release 2.0
+              Release 2.1
             </div>
           </div>
         </div>
@@ -146,12 +148,26 @@
             Внесите данные
           </h3>
           <div class="inputs__result">
-            <input class="input__date inputs" type="text" placeholder="Число" required>
-            <input class="input__hour inputs" type="text" placeholder="Чч. мин." required>
-            <input class="input__pp inputs" type="text" placeholder="ПП" required>
-            <input class="input__publ inputs" type="text" placeholder="Публ" required>
-            <input class="input__video inputs" type="text" placeholder="Видео" required>
-            <input class="input__iz inputs" type="text" placeholder="Из" required>
+            <div class="wrapper__all__inputs">
+              <div class="wrapper__input__date">
+                <input class="input__date inputs" type="text" placeholder="Число" required>
+              </div>
+              <div class="wrapper__input__hour">
+                <input class="input__hour inputs" type="text" placeholder="Чч. мин." required>
+              </div>
+              <div class="wrapper__input__pp">
+                <input class="input__pp inputs" type="text" placeholder="ПП" required>
+              </div>
+              <div class="wrapper__input__publ">
+                <input class="input__publ inputs" type="text" placeholder="Публ" required>
+              </div>
+              <div class="wrapper__input__video">
+                <input class="input__video inputs" type="text" placeholder="Видео" required>
+              </div>
+              <div class="wrapper__input__iz">
+                <input class="input__iz inputs" type="text" placeholder="Из" required>
+              </div>
+            </div>
             <button class="order__result btns_add" type="submit">
               Внести
             </button>

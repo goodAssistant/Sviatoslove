@@ -5,12 +5,18 @@
   .modal__window, .modal__window__deleteTable, .modal__window__values {
     max-width: 490px;
   }
+  .wrapper__all__inputs {
+    margin-bottom: 10px;
+  }
 }
 
 /* 992- 1200px */
 @media screen and (max-width: 1200px) {
   .modal__window, .modal__window__deleteTable, .modal__window__values {
     max-width: 490px;
+  }
+  .wrapper__all__inputs {
+    margin-bottom: 10px;
   }
 }
 /* 768-992px */
@@ -24,8 +30,11 @@
   .form__wrapper {
     max-width: auto;
   }
-  .order__result {
-    margin-top: 10px;
+  .wrapper__all__inputs {
+    margin-bottom: 0;
+  }
+  .wrapper__all__inputs div:nth-child(1n) {
+    margin-bottom: 10px;
   }
   .themes__wrapper {
     top: 125px;
@@ -63,6 +72,9 @@
   }
   .order__month {
     max-width: 115px;
+  }
+  .wrapper__all__inputs {
+    margin-bottom: 0;
   }
   .themes__wrapper {
     top: 170px;
@@ -113,8 +125,14 @@
   .inputs__month input {
     margin: 0 auto 10px;
   }
-  .inputs__result input {
-    margin: 0 0 10px 0;
+  .inputs__result input{
+    margin-right: 0;
+  }
+  .wrapper__all__inputs div:nth-child(1n) {
+    margin-left: 5px;
+  }
+  .wrapper__all__inputs{
+    margin-bottom: 0;
   }
   .check__wrapp input {
     margin: 0 0 0 10px;

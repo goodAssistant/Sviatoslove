@@ -2,6 +2,7 @@ const container = document.querySelector('.container');
 
 const wrapperMonth = container.querySelector('.form_month');
 const wrapperResult = container.querySelector('.form_result');
+const formResults = wrapperResult.querySelector('.form__results');
 
 const inputMonth = wrapperMonth.querySelector('.month');
 const buttonMonth = wrapperMonth.querySelector('.order__month');
@@ -64,6 +65,11 @@ let statusFormMonth;
 let statusFormValues;
 let infoDate;
 let deleteForm;
+let mustardSeedCounter1;
+let mustardSeedCounter2;
+let monthName;
+
+
 let startTheme = 'theme__black';
 
 class CreateTheme {
@@ -145,7 +151,7 @@ const initPage = theme => {
     initTheme(theme);
   } else {
     reportsMonth = JSON.parse(localStorage.getItem('reportsMonth'));
-    reportsValue = JSON.parse(localStorage.getItem('reportsValue'));
+    reportsValue = JSON.parse(localStorage.getItem('reportsValue')); 
     initTheme(theme);
     if(reportsMonth.length === 0) {
       counterClick = -1;
@@ -442,7 +448,7 @@ const inputDaysValue = () => {
             valueResult.forEach((value, b) => {
               if(a === b) {
                 if(a === 0) {
-                  value === 0 ? cellValue.innerHTML = '' : cellValue.innerHTML = getTimeFromMins(value);
+                  value === 0 ? cellValue.innerHTML = '' : cellValue.innerHTML = convertHoursToMinutes(value);
                 } else {
                   value === 0 ? cellValue.innerHTML = '' : cellValue.innerHTML = value;
                 }
@@ -453,18 +459,22 @@ const inputDaysValue = () => {
       });
     });
   });
+  mustardSeedCounter1 = wrapperYear.querySelectorAll('.mustardSeed ').length;
+  mustardSeedCounter2 = wrapperYear.querySelectorAll('.garbage ').length - mustardSeedCounter1;
+  monthName = wrapperYear.querySelector('.month__name');
+  addShowMustardSeed(mustardSeedCounter1, mustardSeedCounter2);
 };
 
-const getTimeFromMins = mins => {
+const convertHoursToMinutes = mins => {
   let hours = Math.trunc(mins/60);
   let minutes = mins % 60;
   if(mins < 60 ) {
-    return minutes + 'м.';
+    return minutes + ' мин';
   } else if(mins % 60 === 0) {
-    return hours + 'ч.';
+    return hours + ' ч';
   }else {
-    return hours + 'ч. ' + minutes + 'м.';
-  }
+    return hours + ' ч ' + minutes + ' мин';
+  };
 };
 
 const sum = () => {
@@ -482,11 +492,11 @@ const sum = () => {
         $cellResult.forEach((cell, cId) => {
           valueResult.forEach((valueRes, valResId) => {
             if(cId === valResId) {
-              cId === 0 ? cell.innerHTML = getTimeFromMins(valueRes) : cell.innerHTML = valueRes;
+              cId === 0 ? cell.innerHTML = convertHoursToMinutes(valueRes) : cell.innerHTML = valueRes;
             };
           });
         });
-        month.totalHours = getTimeFromMins(valueResult[0])
+        month.totalHours = convertHoursToMinutes(valueResult[0])
         month.totalPp = valueResult[1]
         month.totalPubl = valueResult[2]
         month.totalVid = valueResult[3]
@@ -557,7 +567,7 @@ function insertValueMonth (counterClick, monthName, daysValue, currentYear) {
   reportsMonth.push(new CreateMonth(counterClick + 1, monthName, daysValue, currentYear, counterClick))
   localStorage.setItem('reportsMonth', JSON.stringify(reportsMonth))
   renderWrapperTableDom(reportsMonth[reportsMonth.length - 1]);
-  inputDaysValue();
+  // inputDaysValue();
   sum();
 };
 
@@ -574,7 +584,8 @@ function checkFormsForFormMonth() {
   formWrappers[1].style.marginTop = '40px'
 }
 
-buttonMonth.addEventListener('click', function(){
+buttonMonth.addEventListener('click', function(event){
+  event.stopPropagation();
   if(inputMonth.value === '') {
     daysInMonth(currentMonth.toString());
   }else {
@@ -697,27 +708,28 @@ const alertForValueHour = () => {
   imitationAlert('Неверный формат данных.<br/>Инструкция: Поле "Чч. мин." принимает разные форматы, например, если вы ведёте просто число, оно зафиксируется, как просто минуты, также вы можете ввести данные в следующих форматах: 1ч/час; 50м/мин; 1ч 50м либо 150 мин, либо 150 = 2ч.30мин. В итоге ты получишь формат: чч:мин.');
 };
 
-function timeConversionHvMin(time) {
+function convertMinutesToHours(time, bool = true) {
   let arrTime = time.split(/\b/g);
   if(time.indexOf('ч') > 0) {
     if(arrTime.length > 2) {
-      return + arrTime[0] * 60 + + arrTime[2];
+      return String(+ arrTime[0] * 60 + + arrTime[2]);
     }else {
-      return + arrTime[0] * 60;
+      return String(+ arrTime[0] * 60);
     };
   }else if(time.indexOf('м') > 0) {
     return  arrTime[0];
   }else if (arrTime.length === 1){
     return time;
-  }else {
+  }else if(bool) {
     alertForValueHour();
     return '';
   };
 };
 
-const pushBtnResult = () => {
+const pushBtnResult = (event) => {
+  event.stopPropagation();
   if(wrapperYear.children.length > 0) {
-    let hourValue = timeConversionHvMin(inputHour.value);
+    let hourValue = convertMinutesToHours(inputHour.value);
     let id = + wrapperYear.children[0].classList[1];
     const checkHourValue = (value, alertUser) => {
       if(value !== ''){
@@ -745,6 +757,7 @@ const pushBtnResult = () => {
             inputVideo.value,
             inputIz.value
           ));
+          customSelect.addUserItemDrop(hourValue);
           localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
           inputDaysValue();
           sum();
@@ -767,7 +780,8 @@ const pushBtnResult = () => {
           inputVideo.value,
           inputIz.value
         ));
-        localStorage.setItem('reportsValue', JSON.stringify(reportsValue))
+        customSelect.addUserItemDrop(hourValue);
+        localStorage.setItem('reportsValue', JSON.stringify(reportsValue));
         inputDaysValue();
         sum();
         setCurrentScrollInsertValue(inputDate.value);
@@ -790,6 +804,7 @@ const pushBtnResult = () => {
 buttonResult.addEventListener('click', pushBtnResult);
 
 document.addEventListener('keypress', function(event){
+  event.stopPropagation();
   if(
     event.target.classList.contains('input__date') ||
     event.target.classList.contains('input__hour') ||
@@ -799,7 +814,7 @@ document.addEventListener('keypress', function(event){
     event.target.classList.contains('input__iz')
   ) {
     if(event.keyCode === 13) {
-      pushBtnResult();
+      pushBtnResult(event);
     };
   };
 });
@@ -955,6 +970,7 @@ function deleteValues(event, classCellBtn, classTableBtn) {
   moveModalWindowValues();
   inputDaysValue();
   sum();
+  addShowMustardSeed(mustardSeedCounter1, mustardSeedCounter2);
 };
 
 document.addEventListener('click', event => {
@@ -1339,7 +1355,7 @@ menuNav.addEventListener('click', event => {
           item.classList.add(reportsTheme[0].theme);
         };
       });
-      const tableLinks = Array.from(wrapperTotal.querySelectorAll('.table__link'))
+      const tableLinks = Array.from(wrapperTables.querySelectorAll('.table__link'))
       tableLinks.forEach(item => {
         item.addEventListener('click', event => {
           event.preventDefault();
@@ -1457,6 +1473,57 @@ function classInfDelete() {
   if(!modalWindow.classList.contains('active')) {
     modalWindow.classList.remove('info') 
     header.classList.remove('info')
+  };
+};
+
+addShowMustardSeed(mustardSeedCounter1, mustardSeedCounter2);
+
+function addShowMustardSeed(counter1, counter2) {
+  let tamplate = `
+  <div class="wrapper__counter">
+    <div class="mustardSeed__icon1"></div>
+    <div class="mustardSeed__counter1">
+   - ${counter1}
+    </div>
+  </div>
+  <div class="wrapper__counter">
+  <div class="mustardSeed__icon2"></div>
+    <div class="mustardSeed__counter2">
+   - ${counter2}
+    </div>
+  </div>
+  `;
+  monthName.style.textAlign = 'end';
+  if(!counter1) {
+    tamplate = `
+    <div class="wrapper__counter">
+      <div class="mustardSeed__icon2"></div>
+      <div class="mustardSeed__counter2">
+     - ${counter2}
+      </div>
+    </div>
+    `;
+    monthName.style.textAlign = 'center';
+  }else if(!counter2) {
+    tamplate = `
+    <div class="wrapper__counter">
+      <div class="mustardSeed__icon1"></div>
+      <div class="mustardSeed__counter1">
+     - ${counter1}
+      </div>
+    </div>
+    `;
+    monthName.style.textAlign = 'center';
+  };
+  if(!wrapperYear.querySelector('.mustardSeed__wrapper')) {
+    const mustardSeedWrapper = document.createElement('div');
+    mustardSeedWrapper.classList.add('mustardSeed__wrapper');
+    wrapperYear.append(mustardSeedWrapper);
+    mustardSeedWrapper.innerHTML = tamplate;
+  }else {
+    const mustardSeedWrapper = document.querySelector('.mustardSeed__wrapper');
+    mustardSeedWrapper.innerHTML = '';
+    mustardSeedWrapper.innerHTML = tamplate;
   };
 };
 
