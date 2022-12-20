@@ -273,13 +273,13 @@
 	}
 
 	100% {
-		transform: translateX(78px);
+		transform: translateX(98px);
 	}
 }
 
 @keyframes slideLeft2 {
 	0% {
-		transform: translateX(78px);
+		transform: translateX(98px);
 	}
 
 	100% {
@@ -293,13 +293,13 @@
 	}
 
 	100% {
-		transform: translateX(95px);
+		transform: translateX(85px);
 	}
 }
 
 @keyframes slideLeft3 {
 	0% {
-		transform: translateX(95px);
+		transform: translateX(85px);
 	}
 
 	100% {
