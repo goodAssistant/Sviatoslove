@@ -108,7 +108,6 @@ document.addEventListener('click', (event) => {
  else {
   selectList.classList.remove('active')
   buttonResult.classList.remove('btnShift');
- 
  };
 });
 
