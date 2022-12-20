@@ -19,7 +19,7 @@ class CustomSelect {
  };
 
  render(container) {
-  container.classList.add('select-dropdown__wrapp', 'select-dropdown--${this.#id}');
+  container.classList.add('select-dropdown__wrapp');
   const templateList = this.#dropdownUserValue.map((item, idx) => {
    if(idx <= 11) {
     return `<li class="select-dropdown__list-item" data-value=${item.value}>${convertHoursToMinutes(item.text)}</li>`;
@@ -104,9 +104,12 @@ const selectElem = event => {
 
 document.addEventListener('click', (event) => {
  const {target} = event;
- console.log()
  if(target.className.includes('input__hour')) dropDownShow(event);
- else selectList.classList.remove('active');
+ else {
+  selectList.classList.remove('active')
+  buttonResult.classList.remove('btnShift');
+ 
+ };
 });
 
 function dropDownShow(event) {
@@ -115,6 +118,7 @@ function dropDownShow(event) {
   if(dropdownUserValue.length === 0) return;
   if(!selectList.classList.contains('active')) {
    selectList.classList.add('active')
+   buttonResult.classList.add('btnShift');
   };
  };
  selectList.addEventListener('click', selectElem);

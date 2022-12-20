@@ -73,6 +73,7 @@
 .inputs__result {
   margin-top: 6px;
   justify-content: space-between;
+  transition: all .5s ease-in-out .2s;
 }
 .wrapper__all__inputs {
   display: flex;
