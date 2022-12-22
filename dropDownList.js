@@ -109,8 +109,10 @@ document.addEventListener('click', (event) => {
  if(target.className.includes('input__hour')) {
   dropDownShow(event);
   inputHour.onblur = () => {
-  buttonResult.classList.remove('btnShift');
-  selectList.classList.remove('active');
+   setTimeout(() => {
+    buttonResult.classList.remove('btnShift');
+    selectList.classList.remove('active');
+   }, 200);
   };
  }else {
   selectList.classList.remove('active');
