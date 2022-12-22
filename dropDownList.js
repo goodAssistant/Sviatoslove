@@ -99,13 +99,19 @@ const selectElem = event => {
  customSelect.selectedValue = dropdownUserValue.find(item => item.value === clickElemId);
  inputHour.value = convertHoursToMinutes(customSelect.selectedValue.text);
  inputHour.focus();
- setTimeout(() => {selectList.classList.remove('active')}, 200);
+ setTimeout(() => {
+  buttonResult.classList.remove('btnShift');
+  selectList.classList.remove('active')}, 200);
 };
 
 document.addEventListener('click', (event) => {
  const {target} = event;
- if(target.className.includes('input__hour')) dropDownShow(event);
- else {
+ if(target.className.includes('input__hour')) {
+  inputHour.onblur = () => {
+  buttonResult.classList.remove('btnShift');
+  };
+  dropDownShow(event);
+ }else {
   selectList.classList.remove('active')
   buttonResult.classList.remove('btnShift');
  };

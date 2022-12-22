@@ -799,6 +799,7 @@ const pushBtnResult = (event) => {
   inputVideo.value = '';
   inputIz.value = '';
   inputs.forEach((item, idx) => {idx > 0 ? item.blur() : null});
+  buttonResult.classList.remove('btnShift');
 };
 
 buttonResult.addEventListener('click', pushBtnResult);
