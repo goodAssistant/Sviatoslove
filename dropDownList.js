@@ -107,12 +107,13 @@ const selectElem = event => {
 document.addEventListener('click', (event) => {
  const {target} = event;
  if(target.className.includes('input__hour')) {
+  dropDownShow(event);
   inputHour.onblur = () => {
   buttonResult.classList.remove('btnShift');
+  selectList.classList.remove('active');
   };
-  dropDownShow(event);
  }else {
-  selectList.classList.remove('active')
+  selectList.classList.remove('active');
   buttonResult.classList.remove('btnShift');
  };
 });
