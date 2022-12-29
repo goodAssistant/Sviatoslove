@@ -1,7 +1,6 @@
 .tables__wrapper, .tables__total {
  max-height: 327px;
  height: fit-content;
- overflow-x: auto;
  position: absolute;
  top: 42px;
  right: 20px;

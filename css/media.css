@@ -126,9 +126,13 @@
   .order__result {
    animation: slideLeft2 1s ease 0s 1 normal forwards;
   }
+  .instr__wrapper.active {
+    height: 85vh;
+    overflow-y: auto;
+   }
 }
 
- /* 320-420px  */
+/* 320-420px  */
 @media screen and (max-width: 420px) {
   .order__result.btnShift {
     animation: slideRight3 1s ease 0s 1 normal forwards;

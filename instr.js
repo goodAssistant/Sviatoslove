@@ -29,7 +29,7 @@ function setInstructions() {
   <h4 class="instr__bye">Успехов тебе, дорогой мой друг!!!</h4>
   <p class="prava release">Все не защищённые права, не защищены</p>
   <p class="inc release">Eternity Corporation</p>
-  <p class="instr__footer release">Release 2.1</p>
+  <p class="instr__footer release">Release 2.2</p>
  `
  instrWrapper.innerHTML = template;
  instrWrapper.append(deleteInstr);
@@ -47,4 +47,14 @@ function setInstructions() {
    header.classList.remove('active')
   }, 1000)
  })
-}
+ instrWrapper.addEventListener("scroll", function() {
+  if(instrWrapper.scrollTop >= 50) {
+    goTopBtn.classList.add('back_to_top-show');
+  }else {
+    goTopBtn.classList.remove('back_to_top-show');
+  }
+ })
+ goTopBtn.addEventListener('click', () => {
+   instrWrapper.scrollBy(0, (-instrWrapper.scrollTop))
+ });
+};

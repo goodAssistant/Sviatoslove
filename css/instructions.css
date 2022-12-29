@@ -12,6 +12,8 @@
 .instr__wrapper.active {
  left: 50%;
  transform: translate(-50%);
+ height: fit-content;
+ scroll-behavior: smooth;
 }
 
 .delete__instr {

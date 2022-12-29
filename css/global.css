@@ -10,14 +10,23 @@ body {
   padding: 0;
   margin: 0;
   height: 100vh;
+  overflow: hidden;
 }
 .header {
-  min-height: 100vh;
   position: relative;
 }
 
 .header.active {
-  min-height: 230vh;
+}
+
+.menu_utilites {
+  background: black;
+}
+
+.section_work {  
+  height: 100vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 .container {

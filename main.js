@@ -42,6 +42,9 @@ const overlay = container.querySelector('#overlay-modal');
 const checkMonth = menu.querySelector('.check__month')
 const checkValue = menu.querySelector('.check__value')
 
+const sectionWork = header.querySelector('.section_work')
+const menuUtilites = header.querySelector('.menu_utilites')
+
 const months = ['empty', 'январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь', 'empty'];
 const currentMonth = new Date().getMonth() + 1;
 const currentDate = new Date().getDate();
@@ -1097,21 +1100,23 @@ const closeBurgerMenu = () => {
 }
 
 const backToTop = () => {
-  if (window.pageYOffset > 0) {
-    window.scrollBy(0, (-window.pageYOffset));
-  };
+  sectionWork.scrollBy(0, (-sectionWork.scrollTop))
 };
 
 const closeThemesMenu = () => {
   setTimeout(() => {themesWrapper.classList.remove('open_menu')}, 1)
 };
 
-document.addEventListener("scroll", function() {
-  if(window.pageYOffset >= 50) {
+sectionWork.addEventListener("scroll", function() {
+  if(sectionWork.scrollTop >= 50) {
     goTopBtn.classList.add('back_to_top-show');
+    menuUtilites.style.height = '5vh';
+    sectionWork.style.height = '95vh';
     closeBurgerMenu();
     closeThemesMenu();
   }else {
+    menuUtilites.style.height = '0vh';
+    sectionWork.style.height = '100vh';
     goTopBtn.classList.remove('back_to_top-show');
   }
 });
