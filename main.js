@@ -731,6 +731,13 @@ function convertMinutesToHours(time, bool = true) {
 
 const pushBtnResult = (event) => {
   event.stopPropagation();
+  if(isNaN(inputHour.value.split(/\b/g)[0]) || inputHour.value.search(/[A-Z]+/gi) + 1) {
+    imitationAlert(
+      '<div style="display: flex"><div style="flex-shrink:200">Дорогой друг, вводи данные пожалуйста на русской раскладке клавиатуры и первым символом ввода должно быть число. Формат принимаемых данных можно посмотреть в первом пункте меню.</div> <span style="background: url(./img/hmmm__smile.png)no-repeat center center / contain; width: 50px; height: 50px"></span></div>')
+    inputHour.value = ''
+    return
+  }
+  
   if(wrapperYear.children.length > 0) {
     let hourValue = convertMinutesToHours(inputHour.value);
     let id = + wrapperYear.children[0].classList[1];
@@ -1471,7 +1478,7 @@ if(!reportsTheme[0].infoUpdate) {
         reportsTheme[0].infoUpdate = true;
         localStorage.setItem('reportsTheme', JSON.stringify(reportsTheme))
       })
-    },800)
+    }, 800)
   }, 1000)
 };
 
