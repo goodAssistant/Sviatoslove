@@ -20,12 +20,11 @@ body {
 }
 
 .menu_utilites {
-  background: black;
+  background: transparent;
 }
 
 .section_work {  
   height: 100vh;
-  overflow-y: auto;
   scroll-behavior: smooth;
 }
 

@@ -737,7 +737,7 @@ const pushBtnResult = (event) => {
     inputHour.value = ''
     return
   }
-  
+
   if(wrapperYear.children.length > 0) {
     let hourValue = convertMinutesToHours(inputHour.value);
     let id = + wrapperYear.children[0].classList[1];
@@ -1113,6 +1113,8 @@ const backToTop = () => {
 const closeThemesMenu = () => {
   setTimeout(() => {themesWrapper.classList.remove('open_menu')}, 1)
 };
+
+if(window.innerHeight < 600) sectionWork.style.overflowY = 'auto'
 
 sectionWork.addEventListener("scroll", function() {
   if(sectionWork.scrollTop >= 50) {
