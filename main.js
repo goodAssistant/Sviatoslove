@@ -155,12 +155,6 @@ const initPage = theme => {
   } else {
     reportsMonth = JSON.parse(localStorage.getItem('reportsMonth'));
     reportsValue = JSON.parse(localStorage.getItem('reportsValue')); 
-    console.log(reportsValue)
-    const template = `<div>${reportsValue.map((elem => `<div>${Object.entries(elem)}</div>`))}</div>`
-    //const z = document.createElement('div')
-    //z.innerHTML = template
-    container.innerHTML = template
-
     initTheme(theme);
     if(reportsMonth.length === 0) {
       counterClick = -1;
@@ -171,7 +165,6 @@ const initPage = theme => {
     };
   };
 };
-
 
 initPage(currentTheme);
 
